@@ -63,12 +63,29 @@ Open the `server` and `client` in separate VSCode workspaces or open the combine
 
 ### Purpose
 
-2-5 sentences describing what the system does
+Our project aims to provide an easy-to-use and convenient way to rent a car online. Users can register on the website, make bookings in advance, select the time period of the rental, and choose a type of car that they like, after which they can pay for their order online. Managers of the car rental service receive the orders through the system, allowing them to prepare the selected cars for the customers. They can also upload, modify and delete the rental cars in the system. 
 
 ### Pages
 
-* Home: 1-3 sentences describing what the page displays and what a user can do
-* Shopping cart: ...
+#### Landing page:
+
+The first page where the user arrives after opening the website. Provides a short introduction of the service, shows the car fleet available for rental as well as their respective prices. It includes a simple calculator for calculating the expected price based on the number of days for the rental and the selected car. It also offers the user to sign up for the service or to log in to make a reservation.
+
+#### Rental page:
+
+This page is the main focus of the service, it is only available for logged in users and it includes a multi-page wizard consisting of clearly laid out steps that walk the user through the process of booking a car. 
+
+These steps are:
+1. Car selection
+2. Pickup location selection
+3. Form for filling in personal information
+4. Payment screen
+5. Final booking confirmation
+
+#### Manager admin page:
+
+This page is only available for the manager after they log in, and it allows them to manage and update their fleet. There are options for adding new cars to the system, and they can also see their existing cars, and modify their details as necessary.
+
 
 ### Entity-Relationship (ER) Diagram
 
