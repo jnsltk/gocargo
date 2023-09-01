@@ -71,6 +71,14 @@ Our project aims to provide an easy-to-use and convenient way to rent a car onli
 
 The first page where the user arrives after opening the website. Provides a short introduction of the service, shows the car fleet available for rental as well as their respective prices. It includes a simple calculator for calculating the expected price based on the number of days for the rental and the selected car. It also offers the user to sign up for the service or to log in to make a reservation.
 
+#### Sign Up page:
+
+The sign up page lets the user register for the service. It includes a form asking for personal data, such as email address, name, and also asks them to set a password.
+
+#### Log In page:
+
+This page is both for the user to log in and access the rental page, and also for the manager to access the admin page. It has a simple log in form asking for username/email and a password, and depending on the identity of the person (user or manager) it leads to either one of those options.
+
 #### Rental page:
 
 This page is the main focus of the service, it is only available for logged in users and it includes a multi-page wizard consisting of clearly laid out steps that walk the user through the process of booking a car. 
