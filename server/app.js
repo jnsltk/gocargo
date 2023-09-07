@@ -1,28 +1,27 @@
-var express = require('express');
-var mongoose = require('mongoose');
-var morgan = require('morgan');
-var path = require('path');
-var cors = require('cors');
-var history = require('connect-history-api-fallback');
-const userRoutes = require('./routes/user');
+const express = require('express');
+const mongoose = require('mongoose');
+const morgan = require('morgan');
+const path = require('path');
+const cors = require('cors');
+const history = require('connect-history-api-fallback');
 
 // Variables
-var mongoURI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/animalDevelopmentDB';
-var port = process.env.PORT || 3000;
-var car = require("./routes/car");
+const mongoURI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/carRentalDB';
+const port = process.env.PORT || 3000;
 
 // Connect to MongoDB
-mongoose.connect(mongoURI).catch(function(err) {
-    if (err) {
-        console.error(`Failed to connect to MongoDB with URI: ${mongoURI}`);
-        console.error(err.stack);
-        process.exit(1);
-    }
+mongoose.connect(mongoURI)
+  .then(() => {
     console.log(`Connected to MongoDB with URI: ${mongoURI}`);
-});
+  })
+  .catch(err => {
+    console.error(`Failed to connect to MongoDB with URI: ${mongoURI}`);
+    console.error(err.stack);
+    process.exit(1);
+  });
 
 // Create Express app
-var app = express();
+const app = express();
 // Parse requests of content-type 'application/json'
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -32,14 +31,13 @@ app.use(morgan('dev'));
 app.options('*', cors());
 app.use(cors());
 
-app.use("/car", car);
-
 // Import routes
-app.get('/api', function(req, res) {
-    res.json({'message': 'Welcome to your DIT342 backend ExpressJS project!'});
-});
+const userRoutes = require('./routes/user'); // Import user routes
+const carRoutes = require('./routes/car'); // Import car routes
 
+//Define API routes
 app.use(userRoutes);
+app.use(carRoutes);
 
 // Catch all non-error handler for api (i.e., 404 Not Found)
 app.use('/api/*', function (req, res) {
@@ -50,16 +48,16 @@ app.use('/api/*', function (req, res) {
 // Support Vuejs HTML 5 history mode
 app.use(history());
 // Serve static assets
-var root = path.normalize(__dirname + '/..');
-var client = path.join(root, 'client', 'dist');
+const root = path.normalize(__dirname + '/..');
+const client = path.join(root, 'client', 'dist');
 app.use(express.static(client));
 
 // Error handler (i.e., when exception is thrown) must be registered last
-var env = app.get('env');
+const env = app.get('env');
 // eslint-disable-next-line no-unused-vars
 app.use(function(err, req, res, next) {
     console.error(err.stack);
-    var err_res = {
+    const err_res = {
         'message': err.message,
         'error': {}
     };
