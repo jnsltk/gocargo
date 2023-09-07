@@ -38,10 +38,12 @@ app.get('/api', function(req, res) {
 
 const userRoutes = require('./routes/user'); // Import user routes
 const carRoutes = require('./routes/car'); // Import car routes
+const bookingRoutes = require('./routes/booking'); // Import booking routes
 
 //Define API routes
 app.use(userRoutes);
 app.use(carRoutes);
+app.use(bookingRoutes);
 
 // Catch all non-error handler for api (i.e., 404 Not Found)
 app.use('/api/*', function (req, res) {
