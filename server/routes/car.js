@@ -47,6 +47,25 @@ route.get('/api/cars/:id', async function(req, res, next) {
     }
 });
 
+
+// Update the car with the given ID
+route.put('/api/cars/:id', async function(req, res, next) {
+    try {
+        const id = req.params.id;
+        const car = await Car.findById(id).exec();
+        if (car == null) {
+            return res.status(404).json({"message": "Car not found"});
+        }
+        car.image = req.body.image;
+        car.price = req.body.price;
+        car.description = req.body.description;
+        await car.save();
+        res.json(car);
+    } catch (err) {
+        return next(err);
+    }
+});
+
 // Delete the car with the given ID
 route.delete('/api/cars/:id', async function(req, res, next) {
     try {
