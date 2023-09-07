@@ -43,3 +43,23 @@ exports.createBooking = async (req, res, next) => {
         next(error);
     }
 }
+
+// Remove booking by id
+exports.removeBookingById = async (req, res, next) => {
+    const id = req.params.booking_id;
+
+    try {
+        const booking = await BookingModel.findById(id);
+        // Check if booking exists
+        if (!booking) {
+            return res.status(404).json( {message: 'Booking not found' });
+        }
+
+        // Delete booking
+        await booking.deleteOne();
+
+        return res.json({ message: 'Booking removed successfully'})
+    } catch (error) {
+        next(error);
+    }
+}

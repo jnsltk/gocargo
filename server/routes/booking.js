@@ -12,6 +12,6 @@ router.get('/api/bookings/:booking_id', BookingController.getBookingById);
 router.post('/api/bookings', BookingController.createBooking);
 
 // DELETE to remove booking by id
-// router.delete('/api/bookings/:booking_id', BookingController.removeBookingById)
+router.delete('/api/bookings/:booking_id', BookingController.removeBookingById)
 
 module.exports = router;
