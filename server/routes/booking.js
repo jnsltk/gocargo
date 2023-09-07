@@ -6,7 +6,7 @@ const BookingController = require('../controllers/bookingController');
 router.get('/api/bookings', BookingController.getAllBookings);
 
 // GET a specific booking by id
-// router.get('/api/bookings/:booking_id', BookingController.getBookingById);
+router.get('/api/bookings/:booking_id', BookingController.getBookingById);
 
 // POST to create new booking
 router.post('/api/bookings', BookingController.createBooking);

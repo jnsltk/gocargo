@@ -10,6 +10,20 @@ exports.getAllBookings = async (req, res, next) => {
     }
 }
 
+// GET specific booking by id
+exports.getBookingById = async (req, res, next) => {
+    const id = req.params.booking_id;
+    try {
+        const booking = await BookingModel.findById(id);
+        if (!booking) {
+            return res.status(404).json( {message: 'Booking not found' });
+        }
+        res.json(booking);
+    } catch (error) {
+        next(error);
+    }
+}
+
 // Create new booking (POST request)
 exports.createBooking = async (req, res, next) => {
     const { startDate, endDate, status, content} = req.body;
