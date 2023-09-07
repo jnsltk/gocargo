@@ -1,5 +1,5 @@
 const express = require("express");
-var route = express;
+var route = express.Router();
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
