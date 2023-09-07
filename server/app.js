@@ -32,6 +32,10 @@ app.options('*', cors());
 app.use(cors());
 
 // Import routes
+app.get('/api', function(req, res) {
+    res.json({'message': 'Car Rental Service backend API v1'});
+});
+
 const userRoutes = require('./routes/user'); // Import user routes
 const carRoutes = require('./routes/car'); // Import car routes
 
