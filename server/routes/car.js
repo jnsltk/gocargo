@@ -34,4 +34,17 @@ route.get('/api/cars', (req, res) => {
     });
 });
 
+// Return the car with the given ID
+route.get('/api/cars/:id', async function(req, res, next) {
+    try {
+        const car = await Car.findById(req.params.id).exec();
+        if (car == null) {
+            return res.status(404).json({"message": "Car not found"});
+        }
+        res.json(car);
+    } catch (err) {
+        return next(err);
+    }
+});
+
 module.exports = route;
