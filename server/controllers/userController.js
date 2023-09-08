@@ -53,8 +53,8 @@ exports.registerUser = async (req, res, next) => {
     }
 };
 
-// PUT to modify an existing user by email
-exports.updateUserByEmail = async (req, res, next) => {
+// PATCH to modify an existing user by email
+exports.patchUserByEmail = async (req, res, next) => {
     const userEmail = req.params.user_email;
     const updatedUserData = req.body;
     
@@ -76,6 +76,30 @@ exports.updateUserByEmail = async (req, res, next) => {
       }
 }
 
+// PUT to modify user (replacing all fields)
+exports.modifyUserByEmail = async (req, res, next) => {
+    const userEmail = req.params.user_email;
+    const { email, fname, lname, password, balance } = req.body;
+
+    try {
+        const user = await UserModel.findOne({ email: userEmail });
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        if (!Object.values({ email, fname, lname, password, balance }).every((value) => Boolean(value))) {
+            res.status(400).json({ message: 'One or more fields are missing' });
+        }
+
+        Object.assign(user, { email, fname, lname, password, balance });
+        
+        await user.save();
+
+        res.json({ message: 'User updated successfully', user });
+    } catch (error) {
+        next(error);
+    }
+}
+4
 // DELETE to remove user by email
 exports.deleteUserByEmail = async (req, res, next) => {
     const userEmail = req.params.user_email;
