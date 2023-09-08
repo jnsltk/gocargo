@@ -61,4 +61,17 @@ route.delete('/api/cars/:id', async function(req, res, next) {
     }
 });
 
+// Delete all cars
+route.delete('/api/cars', async (req, res, next) => {
+    try {
+      const result = await Car.deleteMany({});
+      if (result.deletedCount === 0) {
+        return res.status(404).json({ message: 'No cars found to delete' });
+      }
+      res.json({ message: `Successfully deleted ${result.deletedCount} cars` });
+    } catch (err) {
+      next(err);
+    }
+  });
+
 module.exports = route;
