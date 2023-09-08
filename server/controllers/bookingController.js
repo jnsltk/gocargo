@@ -44,6 +44,16 @@ exports.createBooking = async (req, res, next) => {
     }
 }
 
+// Remove all bookings
+exports.removeAllBookings = async (req, res, next) => {
+    try {
+        await BookingModel.deleteMany({});
+        res.status(200).json({ message: 'Successfully removed all bookings'});
+    } catch (error) {
+        next(error);
+    }
+}
+
 // Remove booking by id
 exports.removeBookingById = async (req, res, next) => {
     const id = req.params.booking_id;
@@ -58,7 +68,7 @@ exports.removeBookingById = async (req, res, next) => {
         // Delete booking
         await booking.deleteOne();
 
-        return res.json({ message: 'Booking removed successfully'})
+        return res.status(204).json({ message: 'Booking removed successfully'})
     } catch (error) {
         next(error);
     }

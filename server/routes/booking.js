@@ -11,6 +11,9 @@ router.get('/api/bookings/:booking_id', BookingController.getBookingById);
 // POST to create new booking
 router.post('/api/bookings', BookingController.createBooking);
 
+// DELETE all bookings
+router.delete('/api/bookings', BookingController.removeAllBookings);
+
 // DELETE to remove booking by id
 router.delete('/api/bookings/:booking_id', BookingController.removeBookingById)
 
