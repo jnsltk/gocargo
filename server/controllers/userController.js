@@ -99,7 +99,17 @@ exports.modifyUserByEmail = async (req, res, next) => {
         next(error);
     }
 }
-4
+
+// Remove all users
+exports.deleteAllUsers = async (req, res, next) => {
+    try {
+        await UserModel.deleteMany({});
+        res.status(200).json({ message: 'Successfully removed all users'});
+    } catch (error) {
+        next(error);
+    }
+}
+
 // DELETE to remove user by email
 exports.deleteUserByEmail = async (req, res, next) => {
     const userEmail = req.params.user_email;
