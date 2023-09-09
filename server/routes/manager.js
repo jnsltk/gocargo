@@ -21,8 +21,12 @@ const Managers = mongoose.model('manager',MangersSchema);
 
 // create to register a new manager
 router.post('/api/managers', async(req, res,) =>{
+   const{email, fname, lname, password, balance,address} = req.body;
    try{
-      const{email, fname, lname, password, balance,address} = req.body;
+      const existingManager = await Managers.findOne({ email });
+        if (existingManager) {
+            return res.status(409).json({ message: 'Manager already exists' });
+        }
 
       const newManager = new Managers({
          email,
@@ -40,6 +44,5 @@ router.post('/api/managers', async(req, res,) =>{
 });
 
   
-
 
 module.exports = router;
