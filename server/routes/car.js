@@ -12,45 +12,13 @@ router.get('/api/cars', carController.getAllCars);
 // Return the car with the given ID
 router.get('/api/cars/:id', carController.getCarById);
 
-
-
-
 // Update the car with the given ID
-router.put('/api/cars/:id', async function(req, res, next) {
-    try {
-        const id = req.params.id;
-        const car = await Car.findById(id).exec();
-        if (car == null) {
-            return res.status(404).json({"message": "Car not found"});
-        }
-        
-        car.image = req.body.image;
-        car.price = req.body.price;
-        car.description = req.body.description;
-        await car.save();
-        res.json(car);
-    } catch (err) {
-        return next(err);
-    }
-});
+router.put('/api/cars/:id', carController.updateCarById);
 
 // Partially update the car with the given ID
-router.patch('/api/cars/:id', async function(req, res, next) {
-    try {
-        const id = req.params.id;
-        const car = await Car.findById(id).exec();
-        if (car == null) {
-            return res.status(404).json({"message": "Car not found"});
-        }
-        car.image = req.body.image || car.image;
-        car.price = req.body.price || car.price;
-        car.description = req.body.description || car.description;
-        await car.save();
-        res.json(car);
-    } catch (err) {
-        return next(err);
-    }
-});
+router.patch('/api/cars/:id', carController.partiallyUpdateCarById);
+
+
 
 // Delete the car with the given ID
 router.delete('/api/cars/:id', async function(req, res, next) {
