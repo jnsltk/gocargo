@@ -43,5 +43,16 @@ router.post('/api/managers', async(req, res,) =>{
    }
 });
 
+// get all managers
+router.get('/api/managers', async (req, res) => {
+   try {
+     const managers = await Managers.find(); 
+ 
+     res.json(managers); 
+   } catch (err) {
+     res.status(500).json({ message: err.message });
+   }
+ });
 
+ 
 module.exports = router;
