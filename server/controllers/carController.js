@@ -75,3 +75,30 @@ exports.partiallyUpdateCarById = async (req, res, next) => {
         next(err);
     }
 };
+
+// Delete the car with the given ID
+exports.deleteCarById = async (req, res, next) => {
+    try {
+        const id = req.params.id;
+        const car = await Car.findOneAndDelete({ _id: id }).exec();
+        if (car == null) {
+            return res.status(404).json({ "message": "Car not found" });
+        }
+        res.json(car);
+    } catch (err) {
+        next(err);
+    }
+};
+
+// Delete all cars
+exports.deleteAllCars = async (req, res, next) => {
+    try {
+        const result = await Car.deleteMany({});
+        if (result.deletedCount === 0) {
+            return res.status(404).json({ message: 'No cars found to delete' });
+        }
+        res.json({ message: `Successfully deleted ${result.deletedCount} cars` });
+    } catch (err) {
+        next(err);
+    }
+};
