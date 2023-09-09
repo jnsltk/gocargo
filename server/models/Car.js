@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 // Mongoose schema
 const carSchema = new Schema({
@@ -7,4 +8,5 @@ const carSchema = new Schema({
     description: {type: String}
 });
 
+// Export mongoose model
 module.exports = mongoose.model('Car', carSchema);

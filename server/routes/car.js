@@ -1,30 +1,13 @@
 const express = require("express");
-var route = express.Router();
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+var router = express.Router();
+const carController = require('../controllers/carController');
 
-// Mongoose schema
-var carSchema = new Schema({
-    image: { type: String },
-    price: { type: Number },
-    description: {type: String}
-});
-// Mongoose model
-var Car = mongoose.model('cars', carSchema);
 
 // Create a new car
-route.post('/api/cars', function(req, res, next) {
-    var car = new Car(req.body);
-    car.save().then(savedUser => {
-        console.log('Car save successfully:', savedUser);
-        res.json(car);
-    }).catch(err => {
-        console.error('Fail to save:', err);
-    });
-});
+router.post('/api/cars', carController.createCar);
 
 // Return a list of all cars
-route.get('/api/cars', (req, res) => {
+router.get('/api/cars', (req, res) => {
     Car.find({}).then(cars => {
         console.log('All cars: ', cars);
         res.status(200).json(cars);
@@ -35,7 +18,7 @@ route.get('/api/cars', (req, res) => {
 });
 
 // Return the car with the given ID
-route.get('/api/cars/:id', async function(req, res, next) {
+router.get('/api/cars/:id', async function(req, res, next) {
     try {
         const car = await Car.findById(req.params.id).exec();
         if (car == null) {
@@ -49,7 +32,7 @@ route.get('/api/cars/:id', async function(req, res, next) {
 
 
 // Update the car with the given ID
-route.put('/api/cars/:id', async function(req, res, next) {
+router.put('/api/cars/:id', async function(req, res, next) {
     try {
         const id = req.params.id;
         const car = await Car.findById(id).exec();
@@ -68,7 +51,7 @@ route.put('/api/cars/:id', async function(req, res, next) {
 });
 
 // Partially update the car with the given ID
-route.patch('/api/cars/:id', async function(req, res, next) {
+router.patch('/api/cars/:id', async function(req, res, next) {
     try {
         const id = req.params.id;
         const car = await Car.findById(id).exec();
@@ -86,7 +69,7 @@ route.patch('/api/cars/:id', async function(req, res, next) {
 });
 
 // Delete the car with the given ID
-route.delete('/api/cars/:id', async function(req, res, next) {
+router.delete('/api/cars/:id', async function(req, res, next) {
     try {
         const id = req.params.id;
         const car = await Car.findOneAndDelete({ _id: id }).exec();
@@ -100,7 +83,7 @@ route.delete('/api/cars/:id', async function(req, res, next) {
 });
 
 // Delete all cars
-route.delete('/api/cars', async (req, res, next) => {
+router.delete('/api/cars', async (req, res, next) => {
     try {
       const result = await Car.deleteMany({});
       if (result.deletedCount === 0) {
@@ -112,4 +95,4 @@ route.delete('/api/cars', async (req, res, next) => {
     }
   });
 
-module.exports = route;
+module.exports = router;
