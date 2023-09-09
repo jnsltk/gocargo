@@ -19,7 +19,27 @@ const Schema = mongoose.Schema;
 // create mongoose model
 const Managers = mongoose.model('manager',MangersSchema);
 
+// create to register a new manager
+router.post('/api/managers', async(req, res,) =>{
+   try{
+      const{email, fname, lname, password, balance,address} = req.body;
 
+      const newManager = new Managers({
+         email,
+         fname,
+         lname,
+         password,
+         balance,
+         address,
+     });
+     const saveManager = await newManager.save();
+     res.status(201).json('Manager registered successfully');
+   }catch(err) {
+      res.status(400).json({message:err.message});
+   }
+});
+
+  
 
 
 module.exports = router;
