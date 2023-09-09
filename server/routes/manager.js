@@ -54,5 +54,20 @@ router.get('/api/managers', async (req, res) => {
    }
  });
 
- 
+ //GET a specific manager by ID
+
+ router.get('/api/managers/:manager_id', async (req, res, next) => {
+      const managerId = req.params.manager_Id;
+   try {
+      const manager = await Managers.findOne({email: managerId});
+
+       if (!manager) {
+           return res.status(404).json({"message": "ManagerId not found"});
+       }
+
+       res.json(manager);
+   } catch (err) {
+       next(err); 
+   }
+}); 
 module.exports = router;
