@@ -71,5 +71,4 @@ router.get('/api/managers', async (req, res) => {
    }
 });
 
-
 module.exports = router;
