@@ -7,28 +7,12 @@ const carController = require('../controllers/carController');
 router.post('/api/cars', carController.createCar);
 
 // Return a list of all cars
-router.get('/api/cars', (req, res) => {
-    Car.find({}).then(cars => {
-        console.log('All cars: ', cars);
-        res.status(200).json(cars);
-      }).catch(err => {
-        console.error('Error: ', err);
-        res.status(500).json({ error: 'Error' });
-    });
-});
+router.get('/api/cars', carController.getAllCars);
 
 // Return the car with the given ID
-router.get('/api/cars/:id', async function(req, res, next) {
-    try {
-        const car = await Car.findById(req.params.id).exec();
-        if (car == null) {
-            return res.status(404).json({"message": "Car not found"});
-        }
-        res.json(car);
-    } catch (err) {
-        return next(err);
-    }
-});
+router.get('/api/cars/:id', carController.getCarById);
+
+
 
 
 // Update the car with the given ID
