@@ -3,7 +3,7 @@ const UserModel = require('../models/User');
 // GET all users
 exports.getAllUsers = async (req, res, next) => {
     try {
-        const users = await UserModel.find();
+        const users = await UserModel.find().populate('bookings');
         res.json(users);
     } catch (error) {
         next(error);
@@ -14,7 +14,7 @@ exports.getAllUsers = async (req, res, next) => {
 exports.getUserByEmail = async (req, res, next) => {
     const userEmail = req.params.user_email;
     try {
-        const user = await UserModel.findOne({ email: userEmail });
+        const user = await UserModel.findOne({ email: userEmail }).populate('bookings');
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
