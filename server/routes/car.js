@@ -9,6 +9,9 @@ router.post('/api/cars', carController.createCar);
 // Return a list of all cars
 router.get('/api/cars', carController.getAllCars);
 
+// Return a sort list of all cars by price. asending: sort = 1 ; desending: sort = -1
+router.get('/api/cars/price/:sort', carController.getCarsByPriceAsc);
+
 // Return the car with the given ID
 router.get('/api/cars/:id', carController.getCarById);
 
