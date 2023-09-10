@@ -13,7 +13,7 @@ const Schema = mongoose.Schema;
     password: { type: String, required: true },
     balance: { type: Number, default: 0 },
     bookingId: {type: String, require: true},
-    address: { type: String, required: true,}
+    address: { type: String, required: true}
  })
 // create mongoose model
 const Managers = mongoose.model('manager',MangersSchema);
@@ -70,5 +70,42 @@ try {
 }
 }); 
 
+//GET a specific manager by email
+
+router.get('/api/managers/:manager_email', async (req, res, next) => {
+   const managerEmail = req.params.manager_email;
+try {
+   const manager = await Managers.findOne({email: managerEmail});
+
+    if (!manager) {
+        return res.status(404).json({"message": "Email not found"});
+    }
+
+    res.json(manager);
+} catch (err) {
+   next(err); 
+}
+}); 
+
+// PUT to modify manager (replacing all fields)
+router.put('/api/managers/:manager_Email', async (req, res, next) => {
+   const managerEmail = req.params.manager_Email;
+try {
+   const manager = await Managers.findOne({email: managerEmail});
+
+   if (!manager) {
+      return res.status(404).json({"message": "Email not found"});
+   }
+   manager.email =req.body.email ;
+   manager.fname =req.body.fname ;
+   manager.lname =req.body.lname ;
+   manager.password =req.body.password ;
+   manager.address =req.body.address ;
+   await manager.save();
+   res.json({message: 'Manager updated successfully',manager});
+} catch (err) {
+   return next(err); 
+}
+}); 
 
 module.exports = router;
