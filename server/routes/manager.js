@@ -13,7 +13,6 @@ const Schema = mongoose.Schema;
     password: { type: String, required: true },
     balance: { type: Number, default: 0 },
     bookingId: {type: String, require: true},
-    managerId:{ type: String, required:true, unique: true},
     address: { type: String, required: true,}
  })
 // create mongoose model
