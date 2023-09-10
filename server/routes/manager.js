@@ -108,4 +108,33 @@ try {
 }
 }); 
 
+// Remove all managers
+router.delete('/api/managers', async (req, res, next) => {
+   try {
+       await Managers.deleteMany({});
+       res.status(200).json({ message: 'Successfully removed all managers'});
+   } catch (error) {
+       next(error);
+   }
+})
+
+
+// DELETE to remove manager by email
+router.delete('/api/managers/:manager_email', async (req, res, next) => {
+   const ManagerEmail = req.params.manager_email;
+
+   try {
+       const manager = await Managers.findOne({ email: ManagerEmail });
+       if (!manager) {
+           return res.status(404).json({ message: 'manager email not found' });
+       }
+
+       await manager.deleteOne();
+
+       return res.json({ message: 'Manager removed successfully' });
+   } catch (error) {
+       next(error);
+   }
+})
+
 module.exports = router;
