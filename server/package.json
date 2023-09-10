@@ -23,6 +23,7 @@
     "url": "git+https://gitlab.com/dit342/group-00-web.git"
   },
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "connect-history-api-fallback": "^1.6.0",
     "cors": "^2.8.5",
