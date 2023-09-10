@@ -1,4 +1,5 @@
 const UserModel = require('../models/User');
+const bcrypt = require('bcrypt');
 
 // GET all users
 exports.getAllUsers = async (req, res, next) => {
@@ -34,13 +35,16 @@ exports.registerUser = async (req, res, next) => {
         if (existingUser) {
             return res.status(409).json({ message: 'User already exists' });
         }
+
+        // Hash the password
+        const hashedPassword = await bcrypt.hash(password, 10);
         
-        // Create a new user
+        // Create a new user with the hashed password
         const newUser = new UserModel({
             email,
             fname,
             lname,
-            password,
+            password: hashedPassword,
             balance,
         });
         
