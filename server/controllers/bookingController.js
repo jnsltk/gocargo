@@ -81,10 +81,6 @@ exports.createBooking = async (req, res, next) => {
 }
 
 // POST to create a new booking for a specific user
-// 1. get the user for their id
-// 2. create new booking with user id and provided data
-// 3. save booking
-// 4. update user with booking id
 exports.createBookingForUser = async (req, res, next) => {
     const userEmail = req.params.user_email;
     const { startDate, endDate, status, content} = req.body;

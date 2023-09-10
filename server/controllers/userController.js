@@ -61,26 +61,26 @@ exports.patchUserByEmail = async (req, res, next) => {
     try {
         const user = await UserModel.findOne({ email: userEmail });
         if (!user) {
-          return res.status(404).json({ message: 'User not found' });
+            return res.status(404).json({ message: 'User not found' });
         }
-    
+        
         // Update user data with the new data
         Object.assign(user, updatedUserData);
-    
+        
         // Save the updated user
         await user.save();
-    
+        
         res.status(200).json({ message: 'User updated successfully', user });
-      } catch (error) {
+    } catch (error) {
         next(error);
-      }
+    }
 }
 
 // PUT to modify user (replacing all fields)
 exports.modifyUserByEmail = async (req, res, next) => {
     const userEmail = req.params.user_email;
     const { email, fname, lname, password, balance, bookings } = req.body;
-
+    
     try {
         const user = await UserModel.findOne({ email: userEmail });
         if (!user) {
@@ -89,11 +89,11 @@ exports.modifyUserByEmail = async (req, res, next) => {
         if (!Object.values({ email, fname, lname, password, balance, bookings }).every((value) => Boolean(value))) {
             res.status(400).json({ message: 'One or more fields are missing' });
         }
-
+        
         Object.assign(user, { email, fname, lname, password, balance, bookings });
         
         await user.save();
-
+        
         res.status(200).json({ message: 'User updated successfully', user });
     } catch (error) {
         next(error);
@@ -113,13 +113,13 @@ exports.deleteAllUsers = async (req, res, next) => {
 // DELETE to remove user by email
 exports.deleteUserByEmail = async (req, res, next) => {
     const userEmail = req.params.user_email;
-
+    
     try {
         const user = await UserModel.findOne({ email: userEmail });
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
-
+        
         // Delete user
         await user.deleteOne();
 
