@@ -13,7 +13,7 @@ const Schema = mongoose.Schema;
     password: { type: String, required: true },
     balance: { type: Number, default: 0 },
     bookingId: {type: String, require: true},
-    address: { type: String, required: true,}
+    address: { type: String, required: true}
  })
 // create mongoose model
 const Managers = mongoose.model('manager',MangersSchema);
@@ -70,5 +70,21 @@ try {
 }
 }); 
 
+//GET a specific manager by email
+
+router.get('/api/managers/:manager_email', async (req, res, next) => {
+   const managerEmail = req.params.manager_email;
+try {
+   const manager = await Managers.findOne({email: managerEmail});
+
+    if (!manager) {
+        return res.status(404).json({"message": "Email not found"});
+    }
+
+    res.json(manager);
+} catch (err) {
+   next(err); 
+}
+}); 
 
 module.exports = router;
