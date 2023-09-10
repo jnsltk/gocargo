@@ -1,4 +1,6 @@
 const Car = require('../models/Car');
+const BookingModel = require('../models/Booking');
+const UserModel = require('../models/User');
 
 // Create a new car
 exports.createCar = async (req, res, next) => {
@@ -37,6 +39,49 @@ exports.getCarById = async (req, res, next) => {
         next(err);
     }
 };
+
+// Return a car associated with a booking
+exports.getCarByBookingId = async (req, res, next) => {
+    const bookingId = req.params.booking_id;
+
+    try {
+        const booking = await BookingModel.findById(bookingId).populate('car');
+        if (!booking) {
+            return res.status(404).json({ 'message': 'Booking not found' });
+        }
+        res.json(booking.car);
+    } catch (error) {
+        next(error);
+    }
+}
+
+// Return a car associated with a booking and a user
+exports.getCarByBookingAndUser = async (req, res, next) => {
+    const userEmail = req.params.user_email;
+    const bookingId = req.params.booking_id;
+
+    try {
+        const user = await UserModel.findOne({ email: userEmail }).populate('bookings');
+        if (!user) {
+            return res.status(404).json({ 'message': 'User not found' })
+        }
+        
+        const booking = user.bookings.find((booking) => booking._id.toString() === bookingId);
+        if (!booking) {
+            return res.status(404).json({ message: 'User has no booking with this ID' });
+        }
+
+        const car = await Car.findById(booking.car).exec();
+        if (car == null) {
+            return res.status(404).json({ "message": "Car not found" });
+        }
+
+        res.json(car);
+    } catch (error) {
+        next(error);
+    }
+
+}
 
 // Update the car with the given ID
 exports.updateCarById = async (req, res, next) => {
