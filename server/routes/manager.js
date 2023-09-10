@@ -62,12 +62,13 @@ try {
 
     if (!manager) {
         return res.status(404).json({"message": "Email not found"});
-    }
+   }
 
     res.json(manager);
 } catch (err) {
    next(err); 
 }
 }); 
+
 
 module.exports = router;
