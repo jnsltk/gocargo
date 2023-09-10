@@ -17,6 +17,9 @@ router.get('/api/users/:user_email/bookings/:booking_id', BookingController.getB
 // POST to create new booking
 router.post('/api/bookings', BookingController.createBooking);
 
+// POST to create a new booking for a specific user
+router.post('/api/users/:user_email/bookings', BookingController.createBookingForUser);
+
 // DELETE all bookings
 router.delete('/api/bookings', BookingController.removeAllBookings);
 

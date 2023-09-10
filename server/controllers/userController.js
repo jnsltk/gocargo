@@ -70,7 +70,7 @@ exports.patchUserByEmail = async (req, res, next) => {
         // Save the updated user
         await user.save();
     
-        res.json({ message: 'User updated successfully', user });
+        res.status(200).json({ message: 'User updated successfully', user });
       } catch (error) {
         next(error);
       }
@@ -79,22 +79,22 @@ exports.patchUserByEmail = async (req, res, next) => {
 // PUT to modify user (replacing all fields)
 exports.modifyUserByEmail = async (req, res, next) => {
     const userEmail = req.params.user_email;
-    const { email, fname, lname, password, balance } = req.body;
+    const { email, fname, lname, password, balance, bookings } = req.body;
 
     try {
         const user = await UserModel.findOne({ email: userEmail });
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
-        if (!Object.values({ email, fname, lname, password, balance }).every((value) => Boolean(value))) {
+        if (!Object.values({ email, fname, lname, password, balance, bookings }).every((value) => Boolean(value))) {
             res.status(400).json({ message: 'One or more fields are missing' });
         }
 
-        Object.assign(user, { email, fname, lname, password, balance });
+        Object.assign(user, { email, fname, lname, password, balance, bookings });
         
         await user.save();
 
-        res.json({ message: 'User updated successfully', user });
+        res.status(200).json({ message: 'User updated successfully', user });
     } catch (error) {
         next(error);
     }
