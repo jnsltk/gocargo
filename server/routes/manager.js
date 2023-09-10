@@ -1,4 +1,5 @@
 const express = require("express");
+const bcrypt = require('bcrypt');
 const router = express.Router();
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
@@ -12,9 +13,8 @@ const Schema = mongoose.Schema;
     lname: { type: String, required: true },
     password: { type: String, required: true },
     balance: { type: Number, default: 0 },
-    bookingId: {type: String, require: true},
-    managerId:{ type: String, required:true, unique: true},
-    address: { type: String, required: true,}
+    bookingId: {type: String, required: true},
+    address: { type: String, required: true}
  })
 // create mongoose model
 const Managers = mongoose.model('manager',MangersSchema);
@@ -28,11 +28,15 @@ router.post('/api/managers', async(req, res,) =>{
             return res.status(409).json({ message: 'Manager already exists' });
         }
 
+      // Hash the password
+      const hashedPassword = await bcrypt.hash(password, 10);
+
+      // Create a new manager with the hashed password
       const newManager = new Managers({
          email,
          fname,
          lname,
-         password,
+         password: hashedPassword,
          balance,
          address,
      });
