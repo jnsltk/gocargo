@@ -5,7 +5,8 @@ const bookingSchema = new mongoose.Schema({
     startDate: { type: Date, required: true },
     endDate: { type: Date, required: true },
     status: { type: String, required: true },
-    content: { type: String, required: true }
+    content: { type: String, required: true },
+    car:  { type: mongoose.Schema.Types.ObjectId, ref: 'Car', required: true }
 });
 
 // Pre-delete middleware to make sure references are deleted with bookings

@@ -61,7 +61,7 @@ exports.getBookingByUserAndId = async (req, res, next) => {
 
 // Create new booking (POST request)
 exports.createBooking = async (req, res, next) => {
-    const { user, startDate, endDate, status, content} = req.body;
+    const { user, startDate, endDate, status, content, car} = req.body;
     
     try {
         const newBooking = new BookingModel({
@@ -69,7 +69,8 @@ exports.createBooking = async (req, res, next) => {
             startDate,
             endDate,
             status,
-            content
+            content,
+            car
         });
         
         await newBooking.save();
@@ -83,7 +84,7 @@ exports.createBooking = async (req, res, next) => {
 // POST to create a new booking for a specific user
 exports.createBookingForUser = async (req, res, next) => {
     const userEmail = req.params.user_email;
-    const { startDate, endDate, status, content} = req.body;
+    const { startDate, endDate, status, content, car} = req.body;
     
     try {
         const existingUser = await UserModel.findOne({ email: userEmail }).populate('bookings');
@@ -97,7 +98,8 @@ exports.createBookingForUser = async (req, res, next) => {
             startDate,
             endDate,
             status,
-            content
+            content,
+            car
         });
         
         await newBooking.save();

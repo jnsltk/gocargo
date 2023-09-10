@@ -12,6 +12,12 @@ router.get('/api/cars', carController.getAllCars);
 // Return the car with the given ID
 router.get('/api/cars/:id', carController.getCarById);
 
+// Return a car associated with a booking
+// router.get('/api/bookings/:booking_id/car', carController.getCarByBookingId)
+
+// Return a car associated with a booking and a user
+// router.get('/api/users/:user_id/bookings/:booking_id/car', carController.getCarByBookingAndUser)
+
 // Update the car with the given ID
 router.put('/api/cars/:id', carController.updateCarById);
 
