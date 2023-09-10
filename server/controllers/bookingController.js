@@ -4,7 +4,7 @@ const UserModel = require('../models/User');
 // GET all bookings
 exports.getAllBookings = async (req, res, next) => {
     try {
-        const bookings = await BookingModel.find();
+        const bookings = await BookingModel.find().populate('car');
         res.json(bookings);
     } catch (error) {
         next(error);
@@ -15,7 +15,7 @@ exports.getAllBookings = async (req, res, next) => {
 exports.getBookingById = async (req, res, next) => {
     const id = req.params.booking_id;
     try {
-        const booking = await BookingModel.findById(id);
+        const booking = await BookingModel.findById(id).populate('car');
         if (!booking) {
             return res.status(404).json( {message: 'Booking not found' });
         }
