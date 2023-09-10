@@ -24,6 +24,9 @@ router.post('/api/users/:user_email/bookings', BookingController.createBookingFo
 router.delete('/api/bookings', BookingController.removeAllBookings);
 
 // DELETE to remove booking by id
-router.delete('/api/bookings/:booking_id', BookingController.removeBookingById)
+router.delete('/api/bookings/:booking_id', BookingController.removeBookingById);
+
+// DELETE to remove booking by user and id
+router.delete('/api/users/:user_email/bookings/:booking_id', BookingController.removeBookingByUserAndId);
 
 module.exports = router;

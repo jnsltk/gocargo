@@ -139,7 +139,31 @@ exports.removeBookingById = async (req, res, next) => {
         // Delete booking
         await booking.deleteOne();
         
-        return res.status(204).json({ message: 'Booking removed successfully'})
+        return res.status(200).json({ message: 'Booking removed successfully'});
+    } catch (error) {
+        next(error);
+    }
+}
+
+// Remove booking by user and id
+exports.removeBookingByUserAndId = async (req, res, next) => {
+    const userEmail = req.params.user_email;
+    const bookingId = req.params.booking_id;
+
+    try {
+        const user = await UserModel.findOne({ email: userEmail }).populate('bookings');
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        const booking = user.bookings.find((booking) => booking._id.toString() === bookingId);
+        if (!booking) {
+            return res.status(404).json({ message: 'User has no booking with this ID' });
+        }
+
+        await booking.deleteOne();
+
+        return res.status(200).json({ message: 'Booking removed successfully'});
     } catch (error) {
         next(error);
     }
