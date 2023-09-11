@@ -1,5 +1,6 @@
 const UserModel = require('../models/User');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt'); // Introduced the bcrypt library for encrypting the password
+const jwt = require('jsonwebtoken'); // Introduced the jsonwebtoken library for JWT token
 
 // GET all users
 exports.getAllUsers = async (req, res, next) => {
@@ -132,3 +133,31 @@ exports.deleteUserByEmail = async (req, res, next) => {
         next(error);
     }
 }
+
+// Authenticate the user login
+exports.authenticateUser = async (req, res, next) => {
+    const { email, password } = req.body;
+    
+    try {
+        // Find the user by email
+        const user = await UserModel.findOne({ email });
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Compare the provided password with the hashed password in the database
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if (!isPasswordValid) {
+            return res.status(401).json({ message: 'Invalid password' });
+        }
+
+        // else Password is valid, user is authenticated
+        // Generate a JWT token
+        const token = jwt.sign({ userId: user._id }, 'your-secret-key', { expiresIn: '2h' });
+
+        // Response the token
+        res.status(200).json({ message: 'Authentication successful', token });
+    } catch (error) {
+        next(error);
+    }
+};
