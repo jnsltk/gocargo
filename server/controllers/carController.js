@@ -27,6 +27,19 @@ exports.getAllCars = async (req, res, next) => {
     }
 };
 
+// Return a sort list of all cars by price
+exports.getCarsByPriceAsc = async (req, res, next) => {
+    try {
+        const sort = parseInt(req.params.sort, 10); // Parse req to int type
+        const cars = await Car.find({}).sort({ price: sort }); // asending: sort = 1 ; desending: sort = -1
+        console.log('Cars sorted by price (ascending):', cars);
+        res.status(200).json(cars);
+    } catch (err) {
+        console.error('Error:', err);
+        res.status(500).json({ error: 'Error' });
+    }
+};
+
 // Return the car with the given ID
 exports.getCarById = async (req, res, next) => {
     try {
