@@ -1,5 +1,6 @@
 const ManagerModel = require('../models/Manager');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken'); // Introduced the jsonwebtoken library for JWT token
 
 // POST to register a new manager
 
@@ -127,3 +128,31 @@ exports.deleteManagerByEmail = async (req, res, next) => {
        next(err);
    }
 };
+
+// Authenticate the manager login
+exports.authenticateManager = async (req, res, next) => {
+    const { email, password } = req.body;
+    
+    try {
+        // Find the manager by email
+        const manager = await ManagerModel.findOne({ email });
+        if (!manager) {
+            return res.status(404).json({ message: 'Manager not found' });
+        }
+
+        // Compare the provided password with the hashed password in the database
+        const isPasswordValid = await bcrypt.compare(password, manager.password);
+        if (!isPasswordValid) {
+            return res.status(401).json({ message: 'Invalid password' });
+        }
+
+        // else Password is valid, manager is authenticated
+        // Generate a JWT token
+        const token = jwt.sign({ managerId: manager._id }, 'your-secret-key', { expiresIn: '2h' });
+
+        // Response the token
+        res.status(200).json({ message: 'Authentication successful', token });
+    } catch (error) {
+        next(error);
+    }
+}
