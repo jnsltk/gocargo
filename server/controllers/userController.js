@@ -68,6 +68,12 @@ exports.patchUserByEmail = async (req, res, next) => {
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
+
+        // Check if new email is already registered
+        const existingUser = await UserModel.findOne({ email: updatedUserData.email });
+        if (existingUser) {
+            return res.status(409).json({ message: 'User already exists' });
+        }
         
         // Update user data with the new data
         Object.assign(user, updatedUserData);
@@ -91,7 +97,15 @@ exports.modifyUserByEmail = async (req, res, next) => {
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
-        if (!Object.values({ email, fname, lname, password, balance, bookings }).every((value) => Boolean(value))) {
+
+        // Check if new email is already registered
+        const existingUser = await UserModel.findOne({ email: email });
+        if (existingUser) {
+            return res.status(409).json({ message: 'User already exists' });
+        }
+
+        // Check if fields are empty, not including bookings and balance because those can be null
+        if (!Object.values({ email, fname, lname, password }).every((value) => Boolean(value))) {
             res.status(400).json({ message: 'One or more fields are missing' });
         }
         

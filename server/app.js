@@ -6,7 +6,8 @@ const cors = require('cors');
 const history = require('connect-history-api-fallback');
 
 // Variables
-const mongoURI = process.env.MONGODB_URI || 'mongodb+srv://admin:fUUc6JIkdxqHbK17@carrentaldb.xuonflo.mongodb.net/?retryWrites=true&w=majority';
+const mongoURI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/carRentalDB';
+;
 const port = process.env.PORT || 3000;
 
 // Connect to MongoDB
