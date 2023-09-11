@@ -37,7 +37,7 @@ exports.registerManager = async(req, res,) =>{
  exports.getAllManagers = async (req, res ,next) =>{
     try {
         const managers = await ManagerModel.find({});
-        res.status(200).josn(managers);
+        res.status(200).json(managers);
     } catch(err) {
         console.error('Error:', err);
         res.status(500).json({ error: 'Error' });
@@ -50,9 +50,9 @@ exports.registerManager = async(req, res,) =>{
     try {
     const manager = await ManagerModel.findOne({email:managerEmail});
     if(!manager){
-        res.status(404).josn({message:'manager not found !'});
+        res.status(404).json({message:'manager not found !'});
     }
-    res.josn(manager);
+    res.json(manager);
     } catch(err){
       next(err);
     }
@@ -64,7 +64,7 @@ exports.updateManagerByEmail = async (req, res, next) => {
     try {
         const manager = await ManagerModel.findOne({email:managerEmail});
         if (!manager){
-            res.status(404).josn({message:'manager not found !'});
+            res.status(404).json({message:'manager not found !'});
         }
         manager.email =req.body.email ;
         manager.fname =req.body.fname ;
@@ -72,7 +72,7 @@ exports.updateManagerByEmail = async (req, res, next) => {
         manager.password =req.body.password ;
         manager.address =req.body.address ;
         await manager.save();   
-        res.status(200).josn({massage :'Manager updated successfully',manager});
+        res.status(200).json({massage :'Manager updated successfully',manager});
     }catch(err){
         next(err);
     }
