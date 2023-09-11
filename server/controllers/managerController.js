@@ -101,3 +101,29 @@ exports.patchManagerByEmail = async (req, res, next) => {
     next(err); 
    }
 }; 
+
+// Remove all managers
+exports.deleteAllManager = async (req, res, next) => {
+    try {
+        await ManagerModel.deleteMany({});
+        return res.status(200).json({ message: 'Successfully removed all managers'});
+    } catch (err) {
+        next(err);
+    }
+ };
+
+ //DELETE to remove manager by email
+exports.deleteManagerByEmail = async (req, res, next) => {
+   const ManagerEmail = req.params.manager_email;
+
+   try {
+       const manager = await ManagerModel.findOne({ email: ManagerEmail });
+       if (!manager) {
+           return res.status(404).json({ message: 'manager email not found' });
+       }
+       await manager.deleteOne();
+       return res.json({ message: 'Manager removed successfully' });
+   } catch (err) {
+       next(err);
+   }
+};
