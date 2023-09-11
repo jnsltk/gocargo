@@ -1,5 +1,6 @@
 const UserModel = require('../models/User');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt'); // Introduced the bcrypt library for encrypting the password
+const jwt = require('jsonwebtoken'); // Introduced the jsonwebtoken library for JWT token
 
 // GET all users
 exports.getAllUsers = async (req, res, next) => {
@@ -150,8 +151,12 @@ exports.authenticateUser = async (req, res, next) => {
             return res.status(401).json({ message: 'Invalid password' });
         }
 
-        // Password is valid, user is authenticated
-        res.status(200).json({ message: 'Authentication successful' });
+        // else Password is valid, user is authenticated
+        // Generate a JWT token
+        const token = jwt.sign({ userId: user._id }, 'your-secret-key', { expiresIn: '2h' });
+
+        // Response the token
+        res.status(200).json({ message: 'Authentication successful', token });
     } catch (error) {
         next(error);
     }
