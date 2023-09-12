@@ -32,6 +32,13 @@ exports.createCarByManagerEmail = async (req, res, next) => {
         car.manager = manager; // associate car with manager
         const savedCar = await car.save();
 
+        //Add the ID of car to the 'cars' array of manager
+        manager.cars.push(savedCar._id);
+        await manager.save();
+
+        console.log('Car saved successfully:', savedCar);
+        res.status(201).json(savedCar);
+
     } catch (err) {
         console.error('Failed to save car:', err);
         res.status(400).json({ error: 'Failed to save car' });
