@@ -25,6 +25,6 @@ router.delete('/api/managers', ManagerController.deleteAllManager);
 router.delete('/api/managers/:manager_email', ManagerController.deleteManagerByEmail)
 
 // Authenticate the manager login
-router.post('/api/managers/authenticate', ManagerController.authenticateManager);
+router.post('/api/managers/authentication', ManagerController.authenticateManager);
 
 module.exports = router;

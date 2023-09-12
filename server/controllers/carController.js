@@ -1,6 +1,7 @@
 const Car = require('../models/Car');
 const BookingModel = require('../models/Booking');
 const UserModel = require('../models/User');
+const ManagerModel = require('../models/Manager');
 
 // Create a new car
 exports.createCar = async (req, res, next) => {
