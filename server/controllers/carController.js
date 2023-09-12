@@ -8,12 +8,15 @@ exports.createCar = async (req, res, next) => {
         const car = new Car(req.body);
         const savedCar = await car.save();
         console.log('Car saved successfully:', savedCar);
-        res.json(savedCar);
+        res.status(201).json(savedCar);
     } catch (err) {
         console.error('Failed to save car:', err);
+        res.status(400).json({error: 'Failed to save car'});
         next(err);
     }
 };
+
+// Create a new car by manager_id
 
 // Return a list of all cars
 exports.getAllCars = async (req, res, next) => {
@@ -28,7 +31,7 @@ exports.getAllCars = async (req, res, next) => {
 };
 
 // Return a sort list of all cars by price
-exports.getCarsByPriceAsc = async (req, res, next) => {
+exports.getCarsByPriceSort = async (req, res, next) => {
     try {
         const sort = parseInt(req.params.sort, 10); // Parse req to int type
         const cars = await Car.find({}).sort({ price: sort }); // asending: sort = 1 ; desending: sort = -1

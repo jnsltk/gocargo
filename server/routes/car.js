@@ -6,11 +6,14 @@ const carController = require('../controllers/carController');
 // Create a new car
 router.post('/api/cars', carController.createCar);
 
+// Create a new car by manager id
+router.post('/api/managers/:manager_id/cars', carController.createCarByManagerId);
+
 // Return a list of all cars
 router.get('/api/cars', carController.getAllCars);
 
 // Return a sort list of all cars by price. asending: sort = 1 ; desending: sort = -1
-router.get('/api/cars/price/:sort', carController.getCarsByPriceAsc);
+router.get('/api/cars/price/:sort', carController.getCarsByPriceSort);
 
 // Return the car with the given ID
 router.get('/api/cars/:id', carController.getCarById);
