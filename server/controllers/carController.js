@@ -40,10 +40,12 @@ exports.getCarsByPriceAsc = async (req, res, next) => {
     }
 };
 
-// Return the car with the given ID
-exports.getCarById = async (req, res, next) => {
+// Return the car with the given registration number
+exports.getCarByReg = async (req, res, next) => {
+    const carRegistration = req.params.registration;
+
     try {
-        const car = await Car.findById(req.params.id).exec();
+        const car = await Car.findOne({ registration: carRegistration }).exec();
         if (car == null) {
             return res.status(404).json({ "message": "Car not found" });
         }
@@ -54,11 +56,11 @@ exports.getCarById = async (req, res, next) => {
 };
 
 // Return a car associated with a booking
-exports.getCarByBookingId = async (req, res, next) => {
-    const bookingId = req.params.booking_id;
+exports.getCarByBookingRef = async (req, res, next) => {
+    const bookingReference = req.params.booking_reference;
 
     try {
-        const booking = await BookingModel.findById(bookingId).populate('car');
+        const booking = await BookingModel.findOne({ bookingReference: bookingReference }).populate('car');
         if (!booking) {
             return res.status(404).json({ 'message': 'Booking not found' });
         }
@@ -71,7 +73,7 @@ exports.getCarByBookingId = async (req, res, next) => {
 // Return a car associated with a booking and a user
 exports.getCarByBookingAndUser = async (req, res, next) => {
     const userEmail = req.params.user_email;
-    const bookingId = req.params.booking_id;
+    const bookingReference = req.params.booking_reference;
 
     try {
         const user = await UserModel.findOne({ email: userEmail }).populate('bookings');
@@ -79,7 +81,7 @@ exports.getCarByBookingAndUser = async (req, res, next) => {
             return res.status(404).json({ 'message': 'User not found' })
         }
         
-        const booking = user.bookings.find((booking) => booking._id.toString() === bookingId);
+        const booking = user.bookings.find((booking) => booking.bookingReference === bookingReference);
         if (!booking) {
             return res.status(404).json({ message: 'User has no booking with this ID' });
         }
@@ -96,15 +98,16 @@ exports.getCarByBookingAndUser = async (req, res, next) => {
 
 }
 
-// Update the car with the given ID
-exports.updateCarById = async (req, res, next) => {
+// Update the car with the given registration number
+exports.updateCarByReg = async (req, res, next) => {
     try {
-        const id = req.params.id;
-        const car = await Car.findById(id).exec();
+        const registration = req.params.registration;
+        const car = await Car.findOne({ registration: registration }).exec();
         if (car == null) {
             return res.status(404).json({ "message": "Car not found" });
         }
 
+        car.registration = req.body.registration;
         car.image = req.body.image;
         car.price = req.body.price;
         car.description = req.body.description;
@@ -115,15 +118,16 @@ exports.updateCarById = async (req, res, next) => {
     }
 };
 
-// Partially update the car with the given ID
-exports.partiallyUpdateCarById = async (req, res, next) => {
+// Partially update the car with the given registration number
+exports.partiallyUpdateCarByReg = async (req, res, next) => {
     try {
-        const id = req.params.id;
-        const car = await Car.findById(id).exec();
+        const registration = req.params.registration;
+        const car = await Car.findOne({ registration: registration }).exec();
         if (car == null) {
             return res.status(404).json({ "message": "Car not found" });
         }
 
+        car.registration = req.body.registration || car.registration;
         car.image = req.body.image || car.image;
         car.price = req.body.price || car.price;
         car.description = req.body.description || car.description;
@@ -134,11 +138,11 @@ exports.partiallyUpdateCarById = async (req, res, next) => {
     }
 };
 
-// Delete the car with the given ID
-exports.deleteCarById = async (req, res, next) => {
+// Delete the car with the given registration number
+exports.deleteCarByReg = async (req, res, next) => {
     try {
-        const id = req.params.id;
-        const car = await Car.findOneAndDelete({ _id: id }).exec();
+        const registration = req.params.registration;
+        const car = await Car.findOneAndDelete({ registration: registration }).exec();
         if (car == null) {
             return res.status(404).json({ "message": "Car not found" });
         }

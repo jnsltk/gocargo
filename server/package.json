@@ -30,7 +30,8 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^7.4.4",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "shortid": "^2.2.16"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
