@@ -6,8 +6,8 @@ const carController = require('../controllers/carController');
 // Create a new car
 router.post('/api/cars', carController.createCar);
 
-// Create a new car by manager id
-router.post('/api/managers/:manager_id/cars', carController.createCarByManagerId);
+// Create a new car by manager email
+router.post('/api/managers/:manager_email/cars', carController.createCarByManagerEmail);
 
 // Return a list of all cars
 router.get('/api/cars', carController.getAllCars);

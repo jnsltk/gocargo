@@ -16,7 +16,28 @@ exports.createCar = async (req, res, next) => {
     }
 };
 
-// Create a new car by manager_id
+// Create a new car by manager_email
+exports.createCarByManagerEmail = async (req, res, next) => {
+    const managerEmail = req.params.manager_email;
+    try {
+        // Find the corresponding manager by the manager's email
+        const manager = await ManagerModel.findOne({ email: managerEmail });
+        if (!manager) {
+            res.status(404).json({ message: 'Manager not found!' });
+            return;
+        }
+
+        // Create a new car and associate it with the manager
+        const car = new Car(req.body);
+        car.manager = manager; // associate car with manager
+        const savedCar = await car.save();
+
+    } catch (err) {
+        console.error('Failed to save car:', err);
+        res.status(400).json({ error: 'Failed to save car' });
+        next(err);
+    }
+};
 
 // Return a list of all cars
 exports.getAllCars = async (req, res, next) => {
