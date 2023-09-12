@@ -56,11 +56,11 @@ exports.getCarByReg = async (req, res, next) => {
 };
 
 // Return a car associated with a booking
-exports.getCarByBookingId = async (req, res, next) => {
-    const bookingId = req.params.booking_id;
+exports.getCarByBookingRef = async (req, res, next) => {
+    const bookingReference = req.params.booking_reference;
 
     try {
-        const booking = await BookingModel.findById(bookingId).populate('car');
+        const booking = await BookingModel.findOne({ bookingReference: bookingReference }).populate('car');
         if (!booking) {
             return res.status(404).json({ 'message': 'Booking not found' });
         }
@@ -73,7 +73,7 @@ exports.getCarByBookingId = async (req, res, next) => {
 // Return a car associated with a booking and a user
 exports.getCarByBookingAndUser = async (req, res, next) => {
     const userEmail = req.params.user_email;
-    const bookingId = req.params.booking_id;
+    const bookingReference = req.params.booking_reference;
 
     try {
         const user = await UserModel.findOne({ email: userEmail }).populate('bookings');
@@ -81,7 +81,7 @@ exports.getCarByBookingAndUser = async (req, res, next) => {
             return res.status(404).json({ 'message': 'User not found' })
         }
         
-        const booking = user.bookings.find((booking) => booking._id.toString() === bookingId);
+        const booking = user.bookings.find((booking) => booking.bookingReference === bookingReference);
         if (!booking) {
             return res.status(404).json({ message: 'User has no booking with this ID' });
         }

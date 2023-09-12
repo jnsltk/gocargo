@@ -1,5 +1,8 @@
 const BookingModel = require('../models/Booking');
 const UserModel = require('../models/User');
+const CarModel = require('../models/Car');
+
+const shortid = require('shortid');
 
 // GET all bookings
 exports.getAllBookings = async (req, res, next) => {
@@ -11,11 +14,12 @@ exports.getAllBookings = async (req, res, next) => {
     }
 }
 
-// GET specific booking by id
-exports.getBookingById = async (req, res, next) => {
-    const id = req.params.booking_id;
+// GET specific booking by bookingReference
+exports.getBookingByRef = async (req, res, next) => {
+    const bookingReference = req.params.booking_reference;
+
     try {
-        const booking = await BookingModel.findById(id).populate('car');
+        const booking = await BookingModel.findOne({ bookingReference: bookingReference }).populate('car');
         if (!booking) {
             return res.status(404).json( {message: 'Booking not found' });
         }
@@ -39,18 +43,18 @@ exports.getAllBookingsByUser = async (req, res, next) => {
     }
 }
 
-// GET specific booking by user email and booking ID
-exports.getBookingByUserAndId = async (req, res, next) => {
+// GET specific booking by user email and bookingReference
+exports.getBookingByUserAndRef = async (req, res, next) => {
     const userEmail = req.params.user_email;
-    const bookingId = req.params.booking_id;
+    const bookingReference = req.params.booking_reference;
     try {
         const user = await UserModel.findOne({ email: userEmail }).populate('bookings');
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
-        const booking = user.bookings.find((booking) => booking._id.toString() === bookingId);
+        const booking = user.bookings.find((booking) => booking.bookingReference === bookingReference);
         if (!booking) {
-            return res.status(404).json({ message: 'User has no booking with this ID' });
+            return res.status(404).json({ message: 'User has no booking with this reference number' });
         }
         
         res.json({ booking });
@@ -59,41 +63,33 @@ exports.getBookingByUserAndId = async (req, res, next) => {
     }
 }
 
-// Create new booking (POST request)
-exports.createBooking = async (req, res, next) => {
-    const { user, startDate, endDate, status, content, car} = req.body;
-    
-    try {
-        const newBooking = new BookingModel({
-            user,
-            startDate,
-            endDate,
-            status,
-            content,
-            car
-        });
-        
-        await newBooking.save();
-        
-        res.status(201).json({ message: 'Booking successful'})
-    } catch (error) {
-        next(error);
-    }
-}
-
 // POST to create a new booking for a specific user
 exports.createBookingForUser = async (req, res, next) => {
-    const userEmail = req.params.user_email;
-    const { startDate, endDate, status, content, car} = req.body;
+    let { bookingReference, userEmail, startDate, endDate, status, content, carRegistration } = req.body;
     
     try {
-        const existingUser = await UserModel.findOne({ email: userEmail }).populate('bookings');
-        if (!existingUser) {
-            return res.status(404).json({ message: 'User not found' });
+        // If no bookingReference is provided create one
+        if (!bookingReference) {
+            bookingReference = shortid.generate();
         }
         
-        const user = existingUser._id.toString();
+        // Change user email to _id
+        const existingUser = await UserModel.findOne({ email: userEmail }).exec();
+        if (!existingUser) {
+            return res.status(404).json({ message: 'User doesn\'t exist' });
+        }
+        const user = existingUser._id;
+        
+        // Change car registration to _id
+        const existingCar = await CarModel.findOne({ registration: carRegistration }).exec();
+        if (!existingCar) {
+            return res.status(404).json({ message: 'Car doesn\'t exist' });
+        }
+        const car = existingCar._id;
+        
+        
         const newBooking = new BookingModel({
+            bookingReference,
             user,
             startDate,
             endDate,
@@ -107,7 +103,7 @@ exports.createBookingForUser = async (req, res, next) => {
         existingUser.bookings.push(newBooking._id);
         await existingUser.save();
         
-        res.status(201).json({ message: 'Booking successful', booking: newBooking });
+        res.status(201).json({ message: 'Booking successful', newBooking })
     } catch (error) {
         next(error);
     }
@@ -123,44 +119,24 @@ exports.removeAllBookings = async (req, res, next) => {
     }
 }
 
-// Remove booking by id
-exports.removeBookingById = async (req, res, next) => {
-    const id = req.params.booking_id;
-    
-    try {
-        const booking = await BookingModel.findById(id);
-        // Check if booking exists
-        if (!booking) {
-            return res.status(404).json( {message: 'Booking not found' });
-        }
-        
-        // Delete booking
-        await booking.deleteOne();
-        
-        return res.status(200).json({ message: 'Booking removed successfully'});
-    } catch (error) {
-        next(error);
-    }
-}
-
-// Remove booking by user and id
-exports.removeBookingByUserAndId = async (req, res, next) => {
+// Remove booking by user and bookingReference
+exports.removeBookingByUserAndRef = async (req, res, next) => {
     const userEmail = req.params.user_email;
-    const bookingId = req.params.booking_id;
-
+    const bookingReference = req.params.booking_reference;
+    
     try {
         const user = await UserModel.findOne({ email: userEmail }).populate('bookings');
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
-
-        const booking = user.bookings.find((booking) => booking._id.toString() === bookingId);
+        
+        const booking = user.bookings.find((booking) => booking.bookingReference === bookingReference);
         if (!booking) {
             return res.status(404).json({ message: 'User has no booking with this ID' });
         }
-
+        
         await booking.deleteOne();
-
+        
         return res.status(200).json({ message: 'Booking removed successfully'});
     } catch (error) {
         next(error);
