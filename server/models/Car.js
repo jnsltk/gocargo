@@ -3,9 +3,10 @@ const Schema = mongoose.Schema;
 
 // Mongoose schema
 const carSchema = new Schema({
-    image: { type: String },
-    price: { type: Number },
-    description: {type: String}
+    registration: { type: String, required: true },
+    image: { type: String, required: true },
+    price: { type: Number, required: true },
+    description: {type: String, required: true }
 });
 
 // Export mongoose model
