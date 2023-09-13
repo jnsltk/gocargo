@@ -1,6 +1,7 @@
 const Car = require('../models/Car');
 const BookingModel = require('../models/Booking');
 const UserModel = require('../models/User');
+const ManagerModel = require('../models/Manager');
 
 // Create a new car
 exports.createCar = async (req, res, next) => {
@@ -8,9 +9,40 @@ exports.createCar = async (req, res, next) => {
         const car = new Car(req.body);
         const savedCar = await car.save();
         console.log('Car saved successfully:', savedCar);
-        res.json(savedCar);
+        res.status(201).json(savedCar);
     } catch (err) {
         console.error('Failed to save car:', err);
+        res.status(400).json({error: 'Failed to save car'});
+        next(err);
+    }
+};
+
+// Create a new car by manager_email
+exports.createCarByManagerEmail = async (req, res, next) => {
+    const managerEmail = req.params.manager_email;
+    try {
+        // Find the corresponding manager by the manager's email
+        const manager = await ManagerModel.findOne({ email: managerEmail });
+        if (!manager) {
+            res.status(404).json({ message: 'Manager not found!' });
+            return;
+        }
+
+        // Create a new car and associate it with the manager
+        const car = new Car(req.body);
+        car.manager = manager; // associate car with manager
+        const savedCar = await car.save();
+
+        //Add the ID of car to the 'cars' array of manager
+        manager.cars.push(savedCar._id);
+        await manager.save();
+
+        console.log('Car saved successfully:', savedCar);
+        res.status(201).json(savedCar);
+
+    } catch (err) {
+        console.error('Failed to save car:', err);
+        res.status(400).json({ error: 'Failed to save car' });
         next(err);
     }
 };
@@ -28,7 +60,7 @@ exports.getAllCars = async (req, res, next) => {
 };
 
 // Return a sort list of all cars by price
-exports.getCarsByPriceAsc = async (req, res, next) => {
+exports.getCarsByPriceSort = async (req, res, next) => {
     try {
         const sort = parseInt(req.params.sort, 10); // Parse req to int type
         const cars = await Car.find({}).sort({ price: sort }); // asending: sort = 1 ; desending: sort = -1
