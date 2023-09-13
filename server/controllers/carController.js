@@ -100,6 +100,18 @@ exports.getCarsByColor = async (req, res, next) => {
     }
 }
 
+// return a list of cars filtered by brand
+exports.getCarByBrand = async(req, res, next) => {
+    const brand = req.params.brand;
+    try{
+        const filteredCars = await Car.find({ brand });
+        res.status(200).json(filteredCars);
+    }catch(error){
+        console.error('Error:', error);
+        res.status(500).json({error: 'Error'});
+    }
+}
+
 // Return a car associated with a booking
 exports.getCarByBookingRef = async (req, res, next) => {
     const bookingReference = req.params.booking_reference;
