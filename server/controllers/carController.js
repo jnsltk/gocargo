@@ -12,7 +12,7 @@ exports.createCar = async (req, res, next) => {
         res.status(201).json(savedCar);
     } catch (err) {
         console.error('Failed to save car:', err);
-        res.status(400).json({error: 'Failed to save car'});
+        res.status(400).json({ error: 'Failed to save car' });
         next(err);
     }
 };
@@ -59,18 +59,6 @@ exports.getAllCars = async (req, res, next) => {
     }
 };
 
-// Return a sort list of all cars by price
-exports.getCarsByPriceSort = async (req, res, next) => {
-    try {
-        const sort = parseInt(req.params.sort, 10); // Parse req to int type
-        const cars = await Car.find({}).sort({ price: sort }); // asending: sort = 1 ; desending: sort = -1
-        console.log('Cars sorted by price (ascending):', cars);
-        res.status(200).json(cars);
-    } catch (err) {
-        console.error('Error:', err);
-        res.status(500).json({ error: 'Error' });
-    }
-};
 
 // Return the car with the given registration number
 exports.getCarByReg = async (req, res, next) => {
@@ -86,6 +74,65 @@ exports.getCarByReg = async (req, res, next) => {
         next(err);
     }
 };
+
+// Return a sort list of all cars by price
+exports.getCarsByPriceSort = async (req, res, next) => {
+    try {
+        const sort = req.params.sort;
+        var code = 0;
+        if(sort == 'asc'){
+            code = 1;
+        }
+        if(sort == 'desc'){
+            code = -1;
+        }
+        const cars = await Car.find({}).sort({ price: code }); // ascending: sort = 1 ; descending: sort = -1
+        res.status(200).json(cars);
+    } catch (err) {
+        console.error('Error:', err);
+        res.status(500).json({ error: 'Error' });
+    }
+};
+
+// Return a list of cars filtered by color
+exports.getCarsByColor = async (req, res, next) => {
+    const color = req.params.color;
+    
+    try {
+        const filteredCars = await Car.find({ color });
+        res.status(200).json(filteredCars);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Error' });
+    }
+}
+
+// Return a list of cars filtered by brand
+exports.getCarsByBrand = async(req, res, next) => {
+    const brand = req.params.brand;
+
+    try{
+        const filteredCars = await Car.find({ brand });
+        res.status(200).json(filteredCars);
+    }catch(error){
+        console.error('Error:', error);
+        res.status(500).json({error: 'Error'});
+    }
+}
+
+// Return a list of cars filtered by color and brand
+exports.getCarsByColorAndBrand = async (req, res, next) => {
+    const color = req.params.color;
+    const brand = req.params.brand;
+
+    try {
+        const filteredCars = await Car.find({ color, brand });
+        res.status(200).json(filteredCars);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Error' });
+    }
+}
 
 // Return a car associated with a booking
 exports.getCarByBookingRef = async (req, res, next) => {
@@ -112,7 +159,7 @@ exports.getCarByBookingAndUser = async (req, res, next) => {
         if (!user) {
             return res.status(404).json({ 'message': 'User not found' })
         }
-        
+
         const booking = user.bookings.find((booking) => booking.bookingReference === bookingReference);
         if (!booking) {
             return res.status(404).json({ message: 'User has no booking with this ID' });

@@ -2,7 +2,7 @@ const BookingModel = require('../models/Booking');
 const UserModel = require('../models/User');
 const CarModel = require('../models/Car');
 
-const shortid = require('shortid');
+//const shortid = require('shortid');
 
 // GET all bookings
 exports.getAllBookings = async (req, res, next) => {
