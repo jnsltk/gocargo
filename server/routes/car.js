@@ -22,7 +22,10 @@ router.get('/api/cars/price/:sort', carController.getCarsByPriceSort);
 router.get('/api/cars/color/:color', carController.getCarsByColor);
 
 // Return a list of cars filtered by brand
-router.get('/api/cars/brand/:brand', carController.getCarByBrand);
+router.get('/api/cars/brand/:brand', carController.getCarsByBrand);
+
+// Return a list of cars filtered by color and brand
+router.get('/api/cars/color&brand/:color/:brand', carController.getCarsByColorAndBrand);
 
 // Return a car associated with a booking
 router.get('/api/bookings/:booking_reference/car', carController.getCarByBookingRef);

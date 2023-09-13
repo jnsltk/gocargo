@@ -78,9 +78,15 @@ exports.getCarByReg = async (req, res, next) => {
 // Return a sort list of all cars by price
 exports.getCarsByPriceSort = async (req, res, next) => {
     try {
-        const sort = parseInt(req.params.sort, 10); // Parse req to int type
-        const cars = await Car.find({}).sort({ price: sort }); // asending: sort = 1 ; desending: sort = -1
-        console.log('Cars sorted by price (ascending):', cars);
+        const sort = req.params.sort;
+        var code = 0;
+        if(sort == 'asc'){
+            code = 1;
+        }
+        if(sort == 'desc'){
+            code = -1;
+        }
+        const cars = await Car.find({}).sort({ price: code }); // ascending: sort = 1 ; descending: sort = -1
         res.status(200).json(cars);
     } catch (err) {
         console.error('Error:', err);
@@ -91,6 +97,7 @@ exports.getCarsByPriceSort = async (req, res, next) => {
 // Return a list of cars filtered by color
 exports.getCarsByColor = async (req, res, next) => {
     const color = req.params.color;
+    
     try {
         const filteredCars = await Car.find({ color });
         res.status(200).json(filteredCars);
@@ -100,15 +107,30 @@ exports.getCarsByColor = async (req, res, next) => {
     }
 }
 
-// return a list of cars filtered by brand
-exports.getCarByBrand = async(req, res, next) => {
+// Return a list of cars filtered by brand
+exports.getCarsByBrand = async(req, res, next) => {
     const brand = req.params.brand;
+
     try{
         const filteredCars = await Car.find({ brand });
         res.status(200).json(filteredCars);
     }catch(error){
         console.error('Error:', error);
         res.status(500).json({error: 'Error'});
+    }
+}
+
+// Return a list of cars filtered by color and brand
+exports.getCarsByColorAndBrand = async (req, res, next) => {
+    const color = req.params.color;
+    const brand = req.params.brand;
+
+    try {
+        const filteredCars = await Car.find({ color, brand });
+        res.status(200).json(filteredCars);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Error' });
     }
 }
 
