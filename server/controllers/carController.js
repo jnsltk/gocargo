@@ -34,7 +34,7 @@ exports.createCarByManagerEmail = async (req, res, next) => {
         const savedCar = await car.save();
 
         //Add the ID of car to the 'cars' array of manager
-        manager.cars.push(savedCar._id);
+        manager.cars.push(savedCar.registration);
         await manager.save();
 
         console.log('Car saved successfully:', savedCar);
@@ -242,4 +242,34 @@ exports.deleteAllCars = async (req, res, next) => {
     } catch (err) {
         next(err);
     }
+};
+
+// Delete car by manager email in database and remove car_registration from manager
+exports.deleteCarByManagerEmail = async (req, res, next) => {  
+    const managerEmail = req.params.manager_email;  
+    try {  
+        // Find the corresponding manager by the manager's email  
+        const manager = await ManagerModel.findOne({ email: managerEmail });  
+        if (!manager) {  
+            return res.status(404).json({ message: 'Manager not found!' });  
+        }  
+  
+        // Find the car to be deleted by the registration number in the request parameters  
+        const registration = req.params.registration;  
+        const car = await Car.findOneAndDelete({ registration: registration }).exec();
+        if (car == null) {
+            return res.status(404).json({ "message": "Car not found" });
+        }
+  
+        // Remove the car ID from the manager's 'cars' array and save the manager  
+        const carIndex = manager.cars.indexOf(car.registration);  
+        if (carIndex !== -1) {  
+            manager.cars.splice(carIndex, 1);  
+            await manager.save();  
+        }  
+  
+        res.json(car);  
+    } catch (err) {  
+        next(err);  
+    }  
 };

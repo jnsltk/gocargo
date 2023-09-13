@@ -7,7 +7,7 @@ const mangersSchema = new Schema({
     lname: { type: String, required: true },
     password: { type: String, required: true },
     balance: { type: Number, default: 0 },
-    cars: [{type: mongoose.Schema.Types.ObjectId, ref: 'Car'}],
+    cars: [{type: String}],
     address: { type: String, required: true}
  });
 
