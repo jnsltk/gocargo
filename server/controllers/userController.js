@@ -52,7 +52,7 @@ exports.registerUser = async (req, res, next) => {
         // Save the new user to the database
         await newUser.save();
         
-        res.status(201).json({ message: 'User registered successfully' });
+        res.status(201).json({ message: 'User registered successfully', newUser });
     } catch (error) {
         next(error);
     }
@@ -72,7 +72,7 @@ exports.patchUserByEmail = async (req, res, next) => {
         // Check if new email is already registered
         const existingUser = await UserModel.findOne({ email: updatedUserData.email });
         if (existingUser) {
-            return res.status(409).json({ message: 'User already exists' });
+            return res.status(409).json({ message: 'User email already in use' });
         }
         
         // Update user data with the new data
@@ -101,7 +101,7 @@ exports.modifyUserByEmail = async (req, res, next) => {
         // Check if new email is already registered
         const existingUser = await UserModel.findOne({ email: email });
         if (existingUser) {
-            return res.status(409).json({ message: 'User already exists' });
+            return res.status(409).json({ message: 'User email already in use' });
         }
 
         // Check if fields are empty, not including bookings and balance because those can be null
@@ -142,7 +142,7 @@ exports.deleteUserByEmail = async (req, res, next) => {
         // Delete user
         await user.deleteOne();
 
-        return res.json({ message: 'User removed successfully' });
+        return res.json({ message: 'User removed successfully', user });
     } catch (error) {
         next(error);
     }

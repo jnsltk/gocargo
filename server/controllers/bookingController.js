@@ -68,9 +68,14 @@ exports.createBookingForUser = async (req, res, next) => {
     let { bookingReference, userEmail, startDate, endDate, status, content, carRegistration } = req.body;
     
     try {
-        // If no bookingReference is provided create one
+        // If no bookingReference is provided create one otherwise check if booking with reference already exists
         if (!bookingReference) {
             bookingReference = shortid.generate();
+        } else {
+            const existingBooking = await BookingModel.findOne({ bookingReference: bookingReference });
+            if (existingBooking) {
+                return res.status(409).json({ "message": "There's already a booking with this reference no, please choose another one" })
+            }
         }
         
         // Change user email to _id
