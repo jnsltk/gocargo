@@ -12,11 +12,14 @@ router.post('/api/managers/:manager_email/cars', carController.createCarByManage
 // Return a list of all cars
 router.get('/api/cars', carController.getAllCars);
 
+// Return the car with the given registration
+router.get('/api/cars/:registration', carController.getCarByReg);
+
 // Return a sort list of all cars by price. asending: sort = 1 ; desending: sort = -1
 router.get('/api/cars/price/:sort', carController.getCarsByPriceSort);
 
-// Return the car with the given registration
-router.get('/api/cars/:registration', carController.getCarByReg);
+// Return a list of cars filtered by color
+router.get('/api/cars/color/:color', carController.getCarsByColor);
 
 // Return a car associated with a booking
 router.get('/api/bookings/:booking_reference/car', carController.getCarByBookingRef);
