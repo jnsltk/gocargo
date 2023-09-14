@@ -23,7 +23,21 @@ exports.getBookingByRef = async (req, res, next) => {
         if (!booking) {
             return res.status(404).json( {message: 'Booking not found' });
         }
-        res.json(booking);
+        
+        // Create HATEOAS links for booking
+        const bookingLinks = {
+            ...booking._doc,
+            links: {
+                self: {
+                    href: `/api/bookings/${bookingReference}`
+                },
+                car: {
+                    href:`/api/bookings/${bookingReference}/car`
+                }
+            }
+        };
+
+        res.json(bookingLinks);
     } catch (error) {
         next(error);
     }
@@ -56,8 +70,21 @@ exports.getBookingByUserAndRef = async (req, res, next) => {
         if (!booking) {
             return res.status(404).json({ message: 'User has no booking with this reference number' });
         }
+
+        // Create HATEOAS links for booking
+        const bookingLinks = {
+            ...booking._doc,
+            links: {
+                self: {
+                    href: `/api/users/${userEmail}/bookings/${bookingReference}`
+                },
+                car: {
+                    href:`/api/bookings/${bookingReference}/car`
+                }
+            }
+        };
         
-        res.json({ booking });
+        res.json({ bookingLinks });
     } catch (error) {
         next(error);
     }

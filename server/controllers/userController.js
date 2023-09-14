@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken'); // Introduced the jsonwebtoken library for 
 exports.getAllUsers = async (req, res, next) => {
     try {
         const users = await UserModel.find().populate('bookings');
-        res.json(users);
+        res.status(200).json(users);
     } catch (error) {
         next(error);
     }
@@ -20,7 +20,21 @@ exports.getUserByEmail = async (req, res, next) => {
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
-        res.json(user);
+
+        // Create HATEOAS links for user
+        const userLinks = {
+            ...user._doc,
+            links: {
+                self: {
+                    href: `/api/users/${userEmail}`
+                },
+                cars: {
+                    href:`/api/users/${userEmail}/bookings`
+                }
+            }
+        };
+
+        res.json(userLinks);
     } catch (error) {
         next(error);
     }
