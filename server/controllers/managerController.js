@@ -81,10 +81,15 @@ exports.updateManagerByEmail = async (req, res, next) => {
         if (!manager) {
             res.status(404).json({ message: 'manager not found !' });
         }
+
+        // Hash the password
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+
         manager.email = req.body.email;
         manager.fname = req.body.fname;
         manager.lname = req.body.lname;
-        manager.password = req.body.password;
+        manager.password = hashedPassword;
+        manager.balance = req.body.balance;
         manager.address = req.body.address;
         await manager.save();
         res.status(200).json({ massage: 'Manager updated successfully', manager });
@@ -97,6 +102,7 @@ exports.updateManagerByEmail = async (req, res, next) => {
 // PATCH to modify an existing manager by email
 exports.patchManagerByEmail = async (req, res, next) => {
     const managerEmail = req.params.manager_email;
+    const updatedManagerData = req.body;
 
     try {
         const manager = await ManagerModel.findOne({ email: managerEmail });
@@ -105,10 +111,16 @@ exports.patchManagerByEmail = async (req, res, next) => {
             res.status(404).json({ "message": "Manager not found" });
         }
 
+        // Check if new email is already registered
+        const existingManager = await ManagerModel.findOne({ email: updatedManagerData.email });
+        if (existingManager) {
+            return res.status(409).json({ message: 'Manager email already in use' });
+        }
+
         manager.email = (req.body.email || manager.email);
         manager.fname = (req.body.fname || manager.fname);
         manager.lname = (req.body.lname || manager.lname);
-        manager.password = (req.body.password || manager.password);
+        manager.password = (await bcrypt.hash(req.body.password, 10) || manager.password);
         manager.address = (req.body.address || manager.address);
         await manager.save();
         res.status(200).json({ message: 'Manager updated successfully', manager });
