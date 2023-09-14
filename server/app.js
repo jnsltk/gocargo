@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const path = require('path');
 const cors = require('cors');
 const history = require('connect-history-api-fallback');
+const httpOverride = require('./middleware/httpOverride');
 
 // Variables
 const mongoURI = process.env.MONGODB_URI || 'mongodb+srv://admin:fUUc6JIkdxqHbK17@carrentaldb.xuonflo.mongodb.net/?retryWrites=true&w=majority';
@@ -36,6 +37,9 @@ app.use(cors());
 app.get('/api', function(req, res) {
     res.json({'message': 'Car Rental Service backend API v1'});
 });
+
+// Import middleware
+app.use(httpOverride);
 
 const userRoutes = require('./routes/user'); // Import user routes
 const carRoutes = require('./routes/car'); // Import car routes
