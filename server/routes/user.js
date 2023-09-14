@@ -13,7 +13,7 @@ router.get('/api/v1/users/:user_email', UserController.getUserByEmail);
 router.post('/api/v1/users', validateUser, UserController.registerUser);
 
 // PUT to modify all fields within a user
-router.put('/api/v1/users/:user_email', UserController.modifyUserByEmail);
+router.put('/api/v1/users/:user_email', validateUser, UserController.modifyUserByEmail);
 
 // PATCH to partially modify an existing user by email
 router.patch('/api/v1/users/:user_email', UserController.patchUserByEmail);
