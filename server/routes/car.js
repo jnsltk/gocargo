@@ -45,5 +45,8 @@ router.delete('/api/cars/:registration', carController.deleteCarByReg);
 // Delete all cars
 router.delete('/api/cars', carController.deleteAllCars);
 
+// Delete car by manager email in database and remove car_registration from manager
+router.delete('/api/managers/:manager_email/cars/:registration', carController.deleteCarByManagerEmail);
+
 
 module.exports = router;
