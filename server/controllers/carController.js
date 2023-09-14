@@ -189,6 +189,8 @@ exports.updateCarByReg = async (req, res, next) => {
         car.registration = req.body.registration;
         car.image = req.body.image;
         car.price = req.body.price;
+        car.color = req.body.color;
+        car.brand = req.body.brand;
         car.description = req.body.description;
         await car.save();
         res.json(car);
@@ -209,6 +211,8 @@ exports.partiallyUpdateCarByReg = async (req, res, next) => {
         car.registration = req.body.registration || car.registration;
         car.image = req.body.image || car.image;
         car.price = req.body.price || car.price;
+        car.color = req.body.color || car.color;
+        car.brand = req.body.brand || car.brand;
         car.description = req.body.description || car.description;
         await car.save();
         res.json(car);

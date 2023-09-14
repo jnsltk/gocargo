@@ -3,24 +3,24 @@ const router = express.Router();
 const BookingController = require('../controllers/bookingController');
 
 // GET all bookings
-router.get('/api/bookings', BookingController.getAllBookings);
+router.get('/api/v1/bookings', BookingController.getAllBookings);
 
 // GET a specific booking by bookingReference
-router.get('/api/bookings/:booking_reference', BookingController.getBookingByRef);
+router.get('/api/v1/bookings/:booking_reference', BookingController.getBookingByRef);
 
 // GET all bookings of a user by user email
-router.get('/api/users/:user_email/bookings', BookingController.getAllBookingsByUser);
+router.get('/api/v1/users/:user_email/bookings', BookingController.getAllBookingsByUser);
 
 // GET specific booking by user email and bookingReference
-router.get('/api/users/:user_email/bookings/:booking_reference', BookingController.getBookingByUserAndRef);
+router.get('/api/v1/users/:user_email/bookings/:booking_reference', BookingController.getBookingByUserAndRef);
 
 // POST to create a new booking for a specific user
-router.post('/api/users/:user_email/bookings', BookingController.createBookingForUser);
+router.post('/api/v1/users/:user_email/bookings', BookingController.createBookingForUser);
 
 // DELETE all bookings
-router.delete('/api/bookings', BookingController.removeAllBookings);
+router.delete('/api/v1/bookings', BookingController.removeAllBookings);
 
 // DELETE to remove booking by user and bookingReference
-router.delete('/api/users/:user_email/bookings/:booking_reference', BookingController.removeBookingByUserAndRef);
+router.delete('/api/v1/users/:user_email/bookings/:booking_reference', BookingController.removeBookingByUserAndRef);
 
 module.exports = router;

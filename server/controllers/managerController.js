@@ -28,7 +28,7 @@ exports.registerManager = async (req, res,) => {
 
         await newManager.save();
 
-        res.status(201).json('Manager registered successfully');
+        res.status(201).json({ message: 'Manager registered successfully', newManager });
     } catch (err) {
         res.status(400).json({ message: err.message });
     }
@@ -62,7 +62,7 @@ exports.getManagerByEmail = async (req, res, next) => {
                     href: `/api/managers/${managerEmail}`
                 },
                 cars: {
-                    href:`/api/managers/${managerEmail}/cars`
+                    href: `/api/managers/${managerEmail}/cars`
                 }
             }
         };
