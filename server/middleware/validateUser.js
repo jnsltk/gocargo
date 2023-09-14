@@ -5,6 +5,7 @@ const validateUser = [
     body('fname').notEmpty().withMessage("First name cannot be empty"),
     body('lname').notEmpty().withMessage("Last name cannot be empty"),
     body('password').notEmpty().isLength({ min: 8 }).withMessage("Password has to be more than 8 characters"),
+    body().escape(),
     (req, res, next) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
