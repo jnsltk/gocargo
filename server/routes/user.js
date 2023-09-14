@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const UserController = require('../controllers/userController');
+const validateUser = require('../middleware/validateUser');
 
 // GET all users
 router.get('/api/v1/users', UserController.getAllUsers);
@@ -9,7 +10,7 @@ router.get('/api/v1/users', UserController.getAllUsers);
 router.get('/api/v1/users/:user_email', UserController.getUserByEmail);
 
 // POST to register a new user
-router.post('/api/v1/users', UserController.registerUser);
+router.post('/api/v1/users', validateUser, UserController.registerUser);
 
 // PUT to modify all fields within a user
 router.put('/api/v1/users/:user_email', UserController.modifyUserByEmail);
