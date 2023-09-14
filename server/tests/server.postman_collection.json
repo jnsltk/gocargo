@@ -1265,7 +1265,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"registration\": \"ABC123\",\n    \"image\": \"image\",\n    \"price\": 300,\n    \"color\": \"Blue\",\n    \"brand\": \"BYD\",\n    \"description\": \"This 2022 BYD Suv is perfect for weekend trips.\"\n}",
+									"raw": "{\n    \"registration\": \"ABC222\",\n    \"image\": \"image\",\n    \"price\": 300,\n    \"color\": \"Blue\",\n    \"brand\": \"BYD\",\n    \"description\": \"This 2022 BYD Suv is perfect for weekend trips.\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1307,7 +1307,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"bookingReference\": \"abc12302\",\n    \"userEmail\": \"bjorn.svensson@gmail.com\",\n    \"startDate\": \"2023-11-14\",\n    \"endDate\": \"2023-11-21\",\n    \"status\": \"Paid.\",\n    \"content\": \"Paid in advance, pick up on first day at 9:00\",\n    \"carRegistration\": \"ABC123\"\n}",
+									"raw": "{\n    \"bookingReference\": \"abc12302\",\n    \"userEmail\": \"bjorn.svensson@gmail.com\",\n    \"startDate\": \"2023-11-14\",\n    \"endDate\": \"2023-11-21\",\n    \"status\": \"Paid.\",\n    \"content\": \"Paid in advance, pick up on first day at 9:00\",\n    \"carRegistration\": \"ABC222\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1398,7 +1398,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"registration\": \"ABC123\",\n    \"image\": \"image\",\n    \"price\": 500,\n    \"color\": \"Blue\",\n    \"brand\": \"BYD\",\n    \"description\": \"This 2022 BYD Suv is perfect for weekend trips.\"\n}",
+									"raw": "{\n    \"registration\": \"ABC129\",\n    \"image\": \"image\",\n    \"price\": 500,\n    \"color\": \"Blue\",\n    \"brand\": \"BYD\",\n    \"description\": \"This 2022 BYD Suv is perfect for weekend trips.\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1415,6 +1415,92 @@
 									"path": [
 										"api",
 										"cars"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create new car",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", () => {",
+											"  pm.expect(pm.response.code).to.eql(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"registration\": \"ABC321\",\n    \"image\": \"image\",\n    \"price\": 400,\n    \"color\": \"Blue\",\n    \"brand\": \"Volvo\",\n    \"description\": \"This car is blue\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/cars/",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"cars",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create new car",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", () => {",
+											"  pm.expect(pm.response.code).to.eql(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"registration\": \"ABC322\",\n    \"image\": \"image\",\n    \"price\": 800,\n    \"color\": \"Red\",\n    \"brand\": \"Mercedes\",\n    \"description\": \"This car is red\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/cars/",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"cars",
+										""
 									]
 								}
 							},
@@ -1441,6 +1527,50 @@
 								"body": {
 									"mode": "raw",
 									"raw": "{\n    \"registration\": \"ABC124\",\n    \"image\": \"image\",\n    \"price\": 400,\n    \"color\": \"Red\",\n    \"brand\": \"BYD\",\n    \"description\": \"This 2022 BYD Suv is perfect for weekend trips.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/managers/iamtheboss@bigboss.com/cars",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"managers",
+										"iamtheboss@bigboss.com",
+										"cars"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create new car for manager Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", () => {",
+											"  pm.expect(pm.response.code).to.eql(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"registration\": \"ABC125\",\n    \"image\": \"image\",\n    \"price\": 400,\n    \"color\": \"Yellow\",\n    \"brand\": \"BYD\",\n    \"description\": \"This 2022 BYD Suv is perfect for weekend trips.\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1586,7 +1716,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/cars/ABC123",
+									"raw": "{{host}}/api/cars/ABC222",
 									
 									"host": [
 										"{{host}}"
@@ -1595,7 +1725,7 @@
 									"path": [
 										"api",
 										"cars",
-										"ABC123"
+										"ABC222"
 									]
 								}
 							},
@@ -1674,6 +1804,112 @@
 							"response": []
 						},
 						{
+							"name": "Filter cars by color",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/cars/color/Red",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"cars",
+										"color",
+										"Red"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Filter car by brand",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/cars/brand/BYD",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"cars",
+										"brand",
+										"BYD"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Filter car by brand and color",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/cars/color&brand/Red/BYD",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"cars",
+										"color&brand",
+										"Red",
+										"BYD"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Replace all car data",
 							"event": [
 								{
@@ -1701,7 +1937,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/api/cars/ABC123",
+									"raw": "{{host}}/api/cars/ABC129",
 									
 									"host": [
 										"{{host}}"
@@ -1710,7 +1946,7 @@
 									"path": [
 										"api",
 										"cars",
-										"ABC123"
+										"ABC129"
 									]
 								}
 							},
@@ -1788,6 +2024,42 @@
 										"api",
 										"cars",
 										"ABC234"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete car by manager and registration",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/managers/iamtheboss@bigboss.com/cars/ABC125",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"managers",
+										"iamtheboss@bigboss.com",
+										"cars",
+										"ABC125"
 									]
 								}
 							},
