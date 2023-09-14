@@ -52,7 +52,7 @@ exports.registerUser = async (req, res, next) => {
         // Save the new user to the database
         await newUser.save();
         
-        res.status(201).json({ message: 'User registered successfully' });
+        res.status(201).json({ message: 'User registered successfully', newUser });
     } catch (error) {
         next(error);
     }
@@ -67,6 +67,12 @@ exports.patchUserByEmail = async (req, res, next) => {
         const user = await UserModel.findOne({ email: userEmail });
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Check if new email is already registered
+        const existingUser = await UserModel.findOne({ email: updatedUserData.email });
+        if (existingUser) {
+            return res.status(409).json({ message: 'User email already in use' });
         }
         
         // Update user data with the new data
@@ -91,7 +97,15 @@ exports.modifyUserByEmail = async (req, res, next) => {
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
-        if (!Object.values({ email, fname, lname, password, balance, bookings }).every((value) => Boolean(value))) {
+
+        // Check if new email is already registered
+        const existingUser = await UserModel.findOne({ email: email });
+        if (existingUser) {
+            return res.status(409).json({ message: 'User email already in use' });
+        }
+
+        // Check if fields are empty, not including bookings and balance because those can be null
+        if (!Object.values({ email, fname, lname, password }).every((value) => Boolean(value))) {
             res.status(400).json({ message: 'One or more fields are missing' });
         }
         
@@ -128,7 +142,7 @@ exports.deleteUserByEmail = async (req, res, next) => {
         // Delete user
         await user.deleteOne();
 
-        return res.json({ message: 'User removed successfully' });
+        return res.json({ message: 'User removed successfully', user });
     } catch (error) {
         next(error);
     }

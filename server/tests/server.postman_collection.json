@@ -1,75 +1,2604 @@
 {
 	"info": {
-		"_postman_id": "f7ee95b5-9cb9-442f-a6a9-42de46138872",
-		"name": "server",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"_postman_id": "59174035-5982-4ab3-a9f5-ec26f3a77560",
+		"name": "CarRental",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29626790"
 	},
 	"item": [
 		{
-			"name": "GET /api",
-			"event": [
+			"name": "User",
+			"item": [
 				{
-					"listen": "prerequest",
-					"script": {
-						"id": "b58d92ec-5214-450c-adb0-28e068aa71b9",
-						"exec": [
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{host}}/api",
-					"host": [
-						"{{host}}"
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", () => {",
+									"  pm.expect(pm.response.code).to.eql(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
 					],
-					"path": [
-						"api"
-					]
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"example.user@gmail.com\",\n    \"fname\": \"Björn\",\n    \"lname\": \"Svensson\",\n    \"password\": \"lösenord\",\n    \"balance\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users",
+							
+							"host": [
+								"{{host}}"
+							],
+							
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", () => {",
+									"  pm.expect(pm.response.code).to.eql(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"pontus.carlson@gmail.com\",\n    \"fname\": \"Pontus\",\n    \"lname\": \"Carlson\",\n    \"password\": \"lösenord\",\n    \"balance\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users",
+							
+							"host": [
+								"{{host}}"
+							],
+							
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", () => {",
+									"  pm.expect(pm.response.code).to.eql(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"zhang.san@gmail.com\",\n    \"fname\": \"San\",\n    \"lname\": \"Zhang\",\n    \"password\": \"henanquandemima\",\n    \"balance\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users",
+							
+							"host": [
+								"{{host}}"
+							],
+							
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", () => {",
+									"  pm.expect(pm.response.code).to.eql(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"li.si@gmail.com\",\n    \"fname\": \"Si\",\n    \"lname\": \"Li\",\n    \"password\": \"henanquandemima\",\n    \"balance\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users",
+							
+							"host": [
+								"{{host}}"
+							],
+							
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Email already in use",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 409\", () => {",
+									"  pm.expect(pm.response.code).to.eql(409);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"zhang.san@gmail.com\",\n    \"fname\": \"San\",\n    \"lname\": \"Zhang\",\n    \"password\": \"henanquandemima\",\n    \"balance\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users",
+							
+							"host": [
+								"{{host}}"
+							],
+							
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"  pm.expect(pm.response.code).to.eql(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users",
+							
+							"host": [
+								"{{host}}"
+							],
+							
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user by email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"  pm.expect(pm.response.code).to.eql(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users/zhang.san@gmail.com",
+							
+							"host": [
+								"{{host}}"
+							],
+							
+							"path": [
+								"api",
+								"users",
+								"zhang.san@gmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User not found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", () => {",
+									"  pm.expect(pm.response.code).to.eql(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users/not.a.user@gmail.com",
+							
+							"host": [
+								"{{host}}"
+							],
+							
+							"path": [
+								"api",
+								"users",
+								"not.a.user@gmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Replace all user data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"  pm.expect(pm.response.code).to.eql(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"john.doe@gmail.com\",\n    \"fname\": \"John\",\n    \"lname\": \"Doe\",\n    \"password\": \"password\",\n    \"balance\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/example.user@gmail.com",
+							
+							"host": [
+								"{{host}}"
+							],
+							
+							"path": [
+								"api",
+								"users",
+								"example.user@gmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Email already in use",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 409\", () => {",
+									"  pm.expect(pm.response.code).to.eql(409);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"john.doe@gmail.com\",\n    \"fname\": \"John\",\n    \"lname\": \"Doe\",\n    \"password\": \"password\",\n    \"balance\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/zhang.san@gmail.com",
+							
+							"host": [
+								"{{host}}"
+							],
+							
+							"path": [
+								"api",
+								"users",
+								"zhang.san@gmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Partially update user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"  pm.expect(pm.response.code).to.eql(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"pontuscarlson88@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/pontus.carlson@gmail.com",
+							
+							"host": [
+								"{{host}}"
+							],
+							
+							"path": [
+								"api",
+								"users",
+								"pontus.carlson@gmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Email already in use",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 409\", () => {",
+									"  pm.expect(pm.response.code).to.eql(409);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"zhang.san@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/pontuscarlson88@gmail.com",
+							
+							"host": [
+								"{{host}}"
+							],
+							
+							"path": [
+								"api",
+								"users",
+								"pontuscarlson88@gmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authenticate user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"  pm.expect(pm.response.code).to.eql(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"pontuscarlson88@gmail.com\",\n    \"password\": \"lösenord\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/authentication",
+							
+							"host": [
+								"{{host}}"
+							],
+							
+							"path": [
+								"api",
+								"users",
+								"authentication"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user by email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"  pm.expect(pm.response.code).to.eql(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users/zhang.san@gmail.com",
+							
+							"host": [
+								"{{host}}"
+							],
+							
+							"path": [
+								"api",
+								"users",
+								"zhang.san@gmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove all users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"  pm.expect(pm.response.code).to.eql(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users",
+							
+							"host": [
+								"{{host}}"
+							],
+							
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
-		}
-	],
-	"event": [
-		{
-			"listen": "prerequest",
-			"script": {
-				"id": "05864cff-5cba-4070-bac3-a59328954ebf",
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
+			]
 		},
 		{
-			"listen": "test",
-			"script": {
-				"id": "e9c319be-3306-4fc5-ba34-fcf64391213a",
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
-		}
-	],
-	"variable": [
+			"name": "Booking",
+			"item": [
+				{
+					"name": "Initialize",
+					"item": [
+						{
+							"name": "Create user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", () => {",
+											"  pm.expect(pm.response.code).to.eql(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"pontus.carlson@gmail.com\",\n    \"fname\": \"Pontus\",\n    \"lname\": \"Carlson\",\n    \"password\": \"lösenord\",\n    \"balance\": 0\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/users",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", () => {",
+											"  pm.expect(pm.response.code).to.eql(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"zhang.san@gmail.com\",\n    \"fname\": \"San\",\n    \"lname\": \"Zhang\",\n    \"password\": \"henanquandemima\",\n    \"balance\": 0\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/users",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create car",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", () => {",
+											"  pm.expect(pm.response.code).to.eql(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"registration\": \"ABC123\",\n    \"image\": \"image\",\n    \"price\": 500,\n    \"color\": \"Blue\",\n    \"brand\": \"BYD\",\n    \"description\": \"This 2022 BYD Suv is perfect for weekend trips.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/cars",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"cars"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create car",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", () => {",
+											"  pm.expect(pm.response.code).to.eql(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"registration\": \"ABC124\",\n    \"image\": \"image\",\n    \"price\": 500,\n    \"color\": \"Blue\",\n    \"brand\": \"Volvo\",\n    \"description\": \"The perfect car for going on a road trip\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/cars",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"cars"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Booking Tests",
+					"item": [
+						{
+							"name": "Create booking for user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", () => {",
+											"  pm.expect(pm.response.code).to.eql(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"bookingReference\": \"abc12302\",\n    \"userEmail\": \"zhang.san@gmail.com\",\n    \"startDate\": \"2023-11-14\",\n    \"endDate\": \"2023-11-21\",\n    \"status\": \"Paid.\",\n    \"content\": \"Paid in advance, pick up on first day at 9:00\",\n    \"carRegistration\": \"ABC123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/users/zhang.san@gmail.com/bookings",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"users",
+										"zhang.san@gmail.com",
+										"bookings"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create booking user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", () => {",
+											"  pm.expect(pm.response.code).to.eql(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"bookingReference\": \"abc12303\",\n    \"userEmail\": \"pontus.carlson@gmail.com\",\n    \"startDate\": \"2023-10-21\",\n    \"endDate\": \"2023-10-28\",\n    \"status\": \"Paid.\",\n    \"content\": \"Paid in advance, pick up on first day at 9:00\",\n    \"carRegistration\": \"ABC124\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/users/pontus.carlson@gmail.com/bookings",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"users",
+										"pontus.carlson@gmail.com",
+										"bookings"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create booking for user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", () => {",
+											"  pm.expect(pm.response.code).to.eql(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"bookingReference\": \"abc12301\",\n    \"userEmail\": \"zhang.san@gmail.com\",\n    \"startDate\": \"2023-11-01\",\n    \"endDate\": \"2023-11-07\",\n    \"status\": \"Paid.\",\n    \"content\": \"Paid in advance, pick up on first day at 9:00\",\n    \"carRegistration\": \"ABC123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/users/zhang.san@gmail.com/bookings",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"users",
+										"zhang.san@gmail.com",
+										"bookings"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all bookings",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/bookings",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"bookings"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get booking by booking reference",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/bookings/abc12301",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"bookings",
+										"abc12301"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all bookings by user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/users/zhang.san@gmail.com/bookings",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"users",
+										"zhang.san@gmail.com",
+										"bookings"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get booking by user and booking reference",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/users/zhang.san@gmail.com/bookings/abc12301",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"users",
+										"zhang.san@gmail.com",
+										"bookings",
+										"abc12301"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete booking by user and booking reference",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/users/zhang.san@gmail.com/bookings/abc12301",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"users",
+										"zhang.san@gmail.com",
+										"bookings",
+										"abc12301"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete all bookings",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/bookings",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"bookings"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Cleanup",
+					"item": [
+						{
+							"name": "Remove all users",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/users",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove all cars",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/cars",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"cars"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
 		{
-			"id": "cd185905-a834-4211-8030-583d17702534",
-			"key": "host",
-			"value": "http://localhost:3000",
-			"type": "string"
+			"name": "Car",
+			"item": [
+				{
+					"name": "Setup",
+					"item": [
+						{
+							"name": "Create new user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", () => {",
+											"  pm.expect(pm.response.code).to.eql(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"bjorn.svensson@gmail.com\",\n    \"fname\": \"Björn\",\n    \"lname\": \"Svensson\",\n    \"password\": \"lösenord\",\n    \"balance\": 0\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/users",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create new car",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", () => {",
+											"  pm.expect(pm.response.code).to.eql(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"registration\": \"ABC222\",\n    \"image\": \"image\",\n    \"price\": 300,\n    \"color\": \"Blue\",\n    \"brand\": \"BYD\",\n    \"description\": \"This 2022 BYD Suv is perfect for weekend trips.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/cars",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"cars"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create new booking",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", () => {",
+											"  pm.expect(pm.response.code).to.eql(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"bookingReference\": \"abc12302\",\n    \"userEmail\": \"bjorn.svensson@gmail.com\",\n    \"startDate\": \"2023-11-14\",\n    \"endDate\": \"2023-11-21\",\n    \"status\": \"Paid.\",\n    \"content\": \"Paid in advance, pick up on first day at 9:00\",\n    \"carRegistration\": \"ABC222\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/users/zhang.san@gmail.com/bookings",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"users",
+										"zhang.san@gmail.com",
+										"bookings"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create new manager",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", () => {",
+											"  pm.expect(pm.response.code).to.eql(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"iamtheboss@bigboss.com\",\n    \"fname\": \"Bob\",\n    \"lname\": \"Boss\",\n    \"password\": \"bigboss123\",\n    \"balance\": 0,\n    \"address\": \"Lindholmen, Gbg\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/managers",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"managers"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Car Tests",
+					"item": [
+						{
+							"name": "Create new car",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", () => {",
+											"  pm.expect(pm.response.code).to.eql(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"registration\": \"ABC129\",\n    \"image\": \"image\",\n    \"price\": 500,\n    \"color\": \"Blue\",\n    \"brand\": \"BYD\",\n    \"description\": \"This 2022 BYD Suv is perfect for weekend trips.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/cars",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"cars"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create new car",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", () => {",
+											"  pm.expect(pm.response.code).to.eql(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"registration\": \"ABC321\",\n    \"image\": \"image\",\n    \"price\": 400,\n    \"color\": \"Blue\",\n    \"brand\": \"Volvo\",\n    \"description\": \"This car is blue\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/cars/",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"cars",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create new car",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", () => {",
+											"  pm.expect(pm.response.code).to.eql(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"registration\": \"ABC322\",\n    \"image\": \"image\",\n    \"price\": 800,\n    \"color\": \"Red\",\n    \"brand\": \"Mercedes\",\n    \"description\": \"This car is red\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/cars/",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"cars",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create new car for manager",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", () => {",
+											"  pm.expect(pm.response.code).to.eql(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"registration\": \"ABC124\",\n    \"image\": \"image\",\n    \"price\": 400,\n    \"color\": \"Red\",\n    \"brand\": \"BYD\",\n    \"description\": \"This 2022 BYD Suv is perfect for weekend trips.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/managers/iamtheboss@bigboss.com/cars",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"managers",
+										"iamtheboss@bigboss.com",
+										"cars"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create new car for manager Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", () => {",
+											"  pm.expect(pm.response.code).to.eql(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"registration\": \"ABC125\",\n    \"image\": \"image\",\n    \"price\": 400,\n    \"color\": \"Yellow\",\n    \"brand\": \"BYD\",\n    \"description\": \"This 2022 BYD Suv is perfect for weekend trips.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/managers/iamtheboss@bigboss.com/cars",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"managers",
+										"iamtheboss@bigboss.com",
+										"cars"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all cars",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/cars",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"cars"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sort all cars by price asc",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/cars/price/1",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"cars",
+										"price",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sort all cars by price desc",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/cars/price/-1",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"cars",
+										"price",
+										"-1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get car by registration",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/cars/ABC222",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"cars",
+										"ABC222"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get car by booking reference",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/bookings/abc12302/car",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"bookings",
+										"abc12302",
+										"car"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get car by user and booking",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/users/bjorn.svensson@gmail.com/bookings/abc12302/car",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"users",
+										"bjorn.svensson@gmail.com",
+										"bookings",
+										"abc12302",
+										"car"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Filter cars by color",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/cars/color/Red",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"cars",
+										"color",
+										"Red"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Filter car by brand",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/cars/brand/BYD",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"cars",
+										"brand",
+										"BYD"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Filter car by brand and color",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/cars/color&brand/Red/BYD",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"cars",
+										"color&brand",
+										"Red",
+										"BYD"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Replace all car data",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"registration\": \"ABC234\",\n    \"image\": \"image\",\n    \"price\": 400,\n    \"color\": \"Grey\",\n    \"brand\": \"Volvo\",\n    \"description\": \"A comfy and safe Volvo\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/cars/ABC129",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"cars",
+										"ABC129"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Partially update car",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"color\": \"Red\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/cars/ABC234",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"cars",
+										"ABC234"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove car by registration",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/cars/ABC234",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"cars",
+										"ABC234"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete car by manager and registration",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/managers/iamtheboss@bigboss.com/cars/ABC125",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"managers",
+										"iamtheboss@bigboss.com",
+										"cars",
+										"ABC125"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove all cars",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/cars",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"cars"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Cleanup",
+					"item": [
+						{
+							"name": "Remove all users",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/users",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove all bookings",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/bookings",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"bookings"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove all managers",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/managers",
+									
+									"host": [
+										"{{host}}"
+									],
+									
+									"path": [
+										"api",
+										"managers"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Manager",
+			"item": [
+				{
+					"name": "Create new manager",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", () => {",
+									"  pm.expect(pm.response.code).to.eql(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"iamtheboss@bigboss.com\",\n    \"fname\": \"Bob\",\n    \"lname\": \"Boss\",\n    \"password\": \"bigboss123\",\n    \"balance\": 0,\n    \"address\": \"Lindholmen, Gbg\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/managers",
+							
+							"host": [
+								"{{host}}"
+							],
+							
+							"path": [
+								"api",
+								"managers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new manager",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", () => {",
+									"  pm.expect(pm.response.code).to.eql(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"bigbossbruce@bigboss.com\",\n    \"fname\": \"Bruce\",\n    \"lname\": \"Boss\",\n    \"password\": \"bigboss1234\",\n    \"balance\": 0,\n    \"address\": \"Lindholmen, Gbg\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/managers",
+							
+							"host": [
+								"{{host}}"
+							],
+							
+							"path": [
+								"api",
+								"managers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new manager",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", () => {",
+									"  pm.expect(pm.response.code).to.eql(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"lilaoban@bigboss.com\",\n    \"fname\": \"Laoban\",\n    \"lname\": \"Li\",\n    \"password\": \"bigboss8888\",\n    \"balance\": 0,\n    \"address\": \"Lindholmen, Gbg\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/managers",
+							
+							"host": [
+								"{{host}}"
+							],
+							
+							"path": [
+								"api",
+								"managers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all managers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"  pm.expect(pm.response.code).to.eql(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/managers",
+							
+							"host": [
+								"{{host}}"
+							],
+							
+							"path": [
+								"api",
+								"managers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get manager by email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"  pm.expect(pm.response.code).to.eql(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/managers/iamtheboss@bigboss.com",
+							
+							"host": [
+								"{{host}}"
+							],
+							
+							"path": [
+								"api",
+								"managers",
+								"iamtheboss@bigboss.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Replace all manager data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"  pm.expect(pm.response.code).to.eql(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"zhang@bigboss.com\",\n    \"fname\": \"Laoban\",\n    \"lname\": \"zhang\",\n    \"password\": \"mima888\",\n    \"balance\": 200,\n    \"cars\": [],\n    \"address\": \"Malmo\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/managers/iamtheboss@bigboss.com",
+							
+							"host": [
+								"{{host}}"
+							],
+							
+							"path": [
+								"api",
+								"managers",
+								"iamtheboss@bigboss.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Partially update manager",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"  pm.expect(pm.response.code).to.eql(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"zhang.laoban@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/managers/zhang@bigboss.com",
+							
+							"host": [
+								"{{host}}"
+							],
+							
+							"path": [
+								"api",
+								"managers",
+								"zhang@bigboss.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authenticate manager",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"  pm.expect(pm.response.code).to.eql(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"lilaoban@bigboss.com\",\n    \"password\": \"bigboss8888\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/managers/authentication",
+							
+							"host": [
+								"{{host}}"
+							],
+							
+							"path": [
+								"api",
+								"managers",
+								"authentication"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete manager by email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"  pm.expect(pm.response.code).to.eql(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/managers/bigbossbruce@bigboss.com",
+							
+							"host": [
+								"{{host}}"
+							],
+							
+							"path": [
+								"api",
+								"managers",
+								"bigbossbruce@bigboss.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete all managers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {",
+									"  pm.expect(pm.response.code).to.eql(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/managers",
+							
+							"host": [
+								"{{host}}"
+							],
+							
+							"path": [
+								"api",
+								"managers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
