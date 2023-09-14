@@ -88,6 +88,14 @@ exports.patchUserByEmail = async (req, res, next) => {
         if (existingUser) {
             return res.status(409).json({ message: 'User email already in use' });
         }
+
+        // Hash the password if updating it
+        let newPassword = updatedUserData.password;
+        if(newPassword != null){
+            // Hash the new password
+            const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+            updatedUserData.password = hashedNewPassword;
+        }
         
         // Update user data with the new data
         Object.assign(user, updatedUserData);
@@ -122,8 +130,11 @@ exports.modifyUserByEmail = async (req, res, next) => {
         if (!Object.values({ email, fname, lname, password }).every((value) => Boolean(value))) {
             res.status(400).json({ message: 'One or more fields are missing' });
         }
+
+        // Hash the password
+        const hashedPassword = await bcrypt.hash(password, 10);
         
-        Object.assign(user, { email, fname, lname, password, balance, bookings });
+        Object.assign(user, { email, fname, lname, hashedPassword, balance, bookings });
         
         await user.save();
         
