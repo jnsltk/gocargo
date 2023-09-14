@@ -51,19 +51,18 @@ exports.getManagerByEmail = async (req, res, next) => {
     try {
         const manager = await ManagerModel.findOne({ email: managerEmail });
         if (!manager) {
-            res.status(404).json({ message: 'manager not found !' });
-            return;
+            return res.status(404).json({ message: 'manager not found !' });
         }
 
         // Create HATEOAS links for manager
         const managerLinks = {
             ...manager._doc,
-            _links: {
+            links: {
                 self: {
-                    href: `/api/managers/${manager.email}`
+                    href: `/api/managers/${managerEmail}`
                 },
                 cars: {
-                    href:`/api/managers/${manager.email}/cars`
+                    href:`/api/managers/${managerEmail}/cars`
                 }
             }
         };
