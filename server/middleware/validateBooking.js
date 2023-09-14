@@ -6,8 +6,7 @@ const validateBooking = [
     body('endDate').notEmpty().withMessage("Invalid return date format"),
     body('status').notEmpty().withMessage("Status cannot be empty"),
     body('content').notEmpty().withMessage("Content cannot be empty"),
-    body('registration').notEmpty().withMessage("Car registration cannot be empty"),
-    body().escape(),
+    body('carRegistration').notEmpty().withMessage("Car registration cannot be empty"),
     (req, res, next) => {
         const errors = validationResult(req);
         console.log(errors)
