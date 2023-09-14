@@ -37,7 +37,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/users",
+							"raw": "{{host}}/api/v1/users",
 							
 							"host": [
 								"{{host}}"
@@ -45,6 +45,7 @@
 							
 							"path": [
 								"api",
+								"v1",
 								"users"
 							]
 						}
@@ -79,7 +80,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/users",
+							"raw": "{{host}}/api/v1/users",
 							
 							"host": [
 								"{{host}}"
@@ -87,6 +88,7 @@
 							
 							"path": [
 								"api",
+								"v1",
 								"users"
 							]
 						}
@@ -121,7 +123,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/users",
+							"raw": "{{host}}/api/v1/users",
 							
 							"host": [
 								"{{host}}"
@@ -129,6 +131,7 @@
 							
 							"path": [
 								"api",
+								"v1",
 								"users"
 							]
 						}
@@ -163,7 +166,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/users",
+							"raw": "{{host}}/api/v1/users",
 							
 							"host": [
 								"{{host}}"
@@ -171,6 +174,7 @@
 							
 							"path": [
 								"api",
+								"v1",
 								"users"
 							]
 						}
@@ -205,7 +209,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/users",
+							"raw": "{{host}}/api/v1/users",
 							
 							"host": [
 								"{{host}}"
@@ -213,6 +217,7 @@
 							
 							"path": [
 								"api",
+								"v1",
 								"users"
 							]
 						}
@@ -238,7 +243,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/users",
+							"raw": "{{host}}/api/v1/users",
 							
 							"host": [
 								"{{host}}"
@@ -246,6 +251,7 @@
 							
 							"path": [
 								"api",
+								"v1",
 								"users"
 							]
 						}
@@ -271,7 +277,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/users/zhang.san@gmail.com",
+							"raw": "{{host}}/api/v1/users/zhang.san@gmail.com",
 							
 							"host": [
 								"{{host}}"
@@ -279,6 +285,7 @@
 							
 							"path": [
 								"api",
+								"v1",
 								"users",
 								"zhang.san@gmail.com"
 							]
@@ -305,7 +312,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/users/not.a.user@gmail.com",
+							"raw": "{{host}}/api/v1/users/not.a.user@gmail.com",
 							
 							"host": [
 								"{{host}}"
@@ -313,6 +320,7 @@
 							
 							"path": [
 								"api",
+								"v1",
 								"users",
 								"not.a.user@gmail.com"
 							]
@@ -348,7 +356,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/users/example.user@gmail.com",
+							"raw": "{{host}}/api/v1/users/example.user@gmail.com",
 							
 							"host": [
 								"{{host}}"
@@ -356,6 +364,7 @@
 							
 							"path": [
 								"api",
+								"v1",
 								"users",
 								"example.user@gmail.com"
 							]
@@ -391,7 +400,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/users/zhang.san@gmail.com",
+							"raw": "{{host}}/api/v1/users/zhang.san@gmail.com",
 							
 							"host": [
 								"{{host}}"
@@ -399,6 +408,7 @@
 							
 							"path": [
 								"api",
+								"v1",
 								"users",
 								"zhang.san@gmail.com"
 							]
@@ -434,7 +444,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/users/pontus.carlson@gmail.com",
+							"raw": "{{host}}/api/v1/users/pontus.carlson@gmail.com",
 							
 							"host": [
 								"{{host}}"
@@ -442,6 +452,7 @@
 							
 							"path": [
 								"api",
+								"v1",
 								"users",
 								"pontus.carlson@gmail.com"
 							]
@@ -477,7 +488,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/users/pontuscarlson88@gmail.com",
+							"raw": "{{host}}/api/v1/users/pontuscarlson88@gmail.com",
 							
 							"host": [
 								"{{host}}"
@@ -485,6 +496,7 @@
 							
 							"path": [
 								"api",
+								"v1",
 								"users",
 								"pontuscarlson88@gmail.com"
 							]
@@ -520,7 +532,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/users/authentication",
+							"raw": "{{host}}/api/v1/users/authentication",
 							
 							"host": [
 								"{{host}}"
@@ -528,6 +540,7 @@
 							
 							"path": [
 								"api",
+								"v1",
 								"users",
 								"authentication"
 							]
@@ -554,7 +567,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/users/zhang.san@gmail.com",
+							"raw": "{{host}}/api/v1/users/zhang.san@gmail.com",
 							
 							"host": [
 								"{{host}}"
@@ -562,6 +575,7 @@
 							
 							"path": [
 								"api",
+								"v1",
 								"users",
 								"zhang.san@gmail.com"
 							]
@@ -588,7 +602,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/users",
+							"raw": "{{host}}/api/v1/users",
 							
 							"host": [
 								"{{host}}"
@@ -596,6 +610,7 @@
 							
 							"path": [
 								"api",
+								"v1",
 								"users"
 							]
 						}
@@ -638,7 +653,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/api/users",
+									"raw": "{{host}}/api/v1/users",
 									
 									"host": [
 										"{{host}}"
@@ -646,6 +661,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"users"
 									]
 								}
@@ -680,7 +696,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/api/users",
+									"raw": "{{host}}/api/v1/users",
 									
 									"host": [
 										"{{host}}"
@@ -688,6 +704,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"users"
 									]
 								}
@@ -722,7 +739,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/api/cars",
+									"raw": "{{host}}/api/v1/cars",
 									
 									"host": [
 										"{{host}}"
@@ -730,6 +747,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"cars"
 									]
 								}
@@ -764,7 +782,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/api/cars",
+									"raw": "{{host}}/api/v1/cars",
 									
 									"host": [
 										"{{host}}"
@@ -772,6 +790,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"cars"
 									]
 								}
@@ -811,7 +830,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/api/users/zhang.san@gmail.com/bookings",
+									"raw": "{{host}}/api/v1/users/zhang.san@gmail.com/bookings",
 									
 									"host": [
 										"{{host}}"
@@ -819,6 +838,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"users",
 										"zhang.san@gmail.com",
 										"bookings"
@@ -855,7 +875,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/api/users/pontus.carlson@gmail.com/bookings",
+									"raw": "{{host}}/api/v1/users/pontus.carlson@gmail.com/bookings",
 									
 									"host": [
 										"{{host}}"
@@ -863,6 +883,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"users",
 										"pontus.carlson@gmail.com",
 										"bookings"
@@ -899,7 +920,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/api/users/zhang.san@gmail.com/bookings",
+									"raw": "{{host}}/api/v1/users/zhang.san@gmail.com/bookings",
 									
 									"host": [
 										"{{host}}"
@@ -907,6 +928,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"users",
 										"zhang.san@gmail.com",
 										"bookings"
@@ -934,7 +956,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/bookings",
+									"raw": "{{host}}/api/v1/bookings",
 									
 									"host": [
 										"{{host}}"
@@ -942,6 +964,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"bookings"
 									]
 								}
@@ -967,7 +990,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/bookings/abc12301",
+									"raw": "{{host}}/api/v1/bookings/abc12301",
 									
 									"host": [
 										"{{host}}"
@@ -975,6 +998,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"bookings",
 										"abc12301"
 									]
@@ -1001,7 +1025,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/users/zhang.san@gmail.com/bookings",
+									"raw": "{{host}}/api/v1/users/zhang.san@gmail.com/bookings",
 									
 									"host": [
 										"{{host}}"
@@ -1009,6 +1033,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"users",
 										"zhang.san@gmail.com",
 										"bookings"
@@ -1036,7 +1061,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/users/zhang.san@gmail.com/bookings/abc12301",
+									"raw": "{{host}}/api/v1/users/zhang.san@gmail.com/bookings/abc12301",
 									
 									"host": [
 										"{{host}}"
@@ -1044,6 +1069,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"users",
 										"zhang.san@gmail.com",
 										"bookings",
@@ -1072,7 +1098,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/users/zhang.san@gmail.com/bookings/abc12301",
+									"raw": "{{host}}/api/v1/users/zhang.san@gmail.com/bookings/abc12301",
 									
 									"host": [
 										"{{host}}"
@@ -1080,6 +1106,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"users",
 										"zhang.san@gmail.com",
 										"bookings",
@@ -1108,7 +1135,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/bookings",
+									"raw": "{{host}}/api/v1/bookings",
 									
 									"host": [
 										"{{host}}"
@@ -1116,6 +1143,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"bookings"
 									]
 								}
@@ -1146,7 +1174,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/users",
+									"raw": "{{host}}/api/v1/users",
 									
 									"host": [
 										"{{host}}"
@@ -1154,6 +1182,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"users"
 									]
 								}
@@ -1179,7 +1208,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/cars",
+									"raw": "{{host}}/api/v1/cars",
 									
 									"host": [
 										"{{host}}"
@@ -1187,6 +1216,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"cars"
 									]
 								}
@@ -1231,7 +1261,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/api/users",
+									"raw": "{{host}}/api/v1/users",
 									
 									"host": [
 										"{{host}}"
@@ -1239,6 +1269,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"users"
 									]
 								}
@@ -1273,7 +1304,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/api/cars",
+									"raw": "{{host}}/api/v1/cars",
 									
 									"host": [
 										"{{host}}"
@@ -1281,6 +1312,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"cars"
 									]
 								}
@@ -1315,7 +1347,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/api/users/zhang.san@gmail.com/bookings",
+									"raw": "{{host}}/api/v1/users/zhang.san@gmail.com/bookings",
 									
 									"host": [
 										"{{host}}"
@@ -1323,6 +1355,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"users",
 										"zhang.san@gmail.com",
 										"bookings"
@@ -1359,7 +1392,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/api/managers",
+									"raw": "{{host}}/api/v1/managers",
 									
 									"host": [
 										"{{host}}"
@@ -1367,6 +1400,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"managers"
 									]
 								}
@@ -1406,7 +1440,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/api/cars",
+									"raw": "{{host}}/api/v1/cars",
 									
 									"host": [
 										"{{host}}"
@@ -1414,6 +1448,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"cars"
 									]
 								}
@@ -1448,7 +1483,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/api/cars/",
+									"raw": "{{host}}/api/v1/cars/",
 									
 									"host": [
 										"{{host}}"
@@ -1456,6 +1491,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"cars",
 										""
 									]
@@ -1491,7 +1527,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/api/cars/",
+									"raw": "{{host}}/api/v1/cars/",
 									
 									"host": [
 										"{{host}}"
@@ -1499,6 +1535,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"cars",
 										""
 									]
@@ -1534,7 +1571,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/api/managers/iamtheboss@bigboss.com/cars",
+									"raw": "{{host}}/api/v1/managers/iamtheboss@bigboss.com/cars",
 									
 									"host": [
 										"{{host}}"
@@ -1542,6 +1579,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"managers",
 										"iamtheboss@bigboss.com",
 										"cars"
@@ -1578,7 +1616,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/api/managers/iamtheboss@bigboss.com/cars",
+									"raw": "{{host}}/api/v1/managers/iamtheboss@bigboss.com/cars",
 									
 									"host": [
 										"{{host}}"
@@ -1586,6 +1624,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"managers",
 										"iamtheboss@bigboss.com",
 										"cars"
@@ -1613,7 +1652,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/cars",
+									"raw": "{{host}}/api/v1/cars",
 									
 									"host": [
 										"{{host}}"
@@ -1621,6 +1660,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"cars"
 									]
 								}
@@ -1646,7 +1686,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/cars/price/1",
+									"raw": "{{host}}/api/v1/cars/price/1",
 									
 									"host": [
 										"{{host}}"
@@ -1654,6 +1694,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"cars",
 										"price",
 										"1"
@@ -1681,7 +1722,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/cars/price/-1",
+									"raw": "{{host}}/api/v1/cars/price/-1",
 									
 									"host": [
 										"{{host}}"
@@ -1689,6 +1730,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"cars",
 										"price",
 										"-1"
@@ -1716,7 +1758,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/cars/ABC222",
+									"raw": "{{host}}/api/v1/cars/ABC222",
 									
 									"host": [
 										"{{host}}"
@@ -1724,6 +1766,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"cars",
 										"ABC222"
 									]
@@ -1750,7 +1793,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/bookings/abc12302/car",
+									"raw": "{{host}}/api/v1/bookings/abc12302/car",
 									
 									"host": [
 										"{{host}}"
@@ -1758,6 +1801,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"bookings",
 										"abc12302",
 										"car"
@@ -1785,7 +1829,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/users/bjorn.svensson@gmail.com/bookings/abc12302/car",
+									"raw": "{{host}}/api/v1/users/bjorn.svensson@gmail.com/bookings/abc12302/car",
 									
 									"host": [
 										"{{host}}"
@@ -1793,6 +1837,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"users",
 										"bjorn.svensson@gmail.com",
 										"bookings",
@@ -1822,7 +1867,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/cars/color/Red",
+									"raw": "{{host}}/api/v1/cars/color/Red",
 									
 									"host": [
 										"{{host}}"
@@ -1830,6 +1875,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"cars",
 										"color",
 										"Red"
@@ -1857,7 +1903,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/cars/brand/BYD",
+									"raw": "{{host}}/api/v1/cars/brand/BYD",
 									
 									"host": [
 										"{{host}}"
@@ -1865,6 +1911,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"cars",
 										"brand",
 										"BYD"
@@ -1892,7 +1939,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/cars/color&brand/Red/BYD",
+									"raw": "{{host}}/api/v1/cars/color&brand/Red/BYD",
 									
 									"host": [
 										"{{host}}"
@@ -1900,6 +1947,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"cars",
 										"color&brand",
 										"Red",
@@ -1937,7 +1985,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/api/cars/ABC129",
+									"raw": "{{host}}/api/v1/cars/ABC129",
 									
 									"host": [
 										"{{host}}"
@@ -1945,6 +1993,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"cars",
 										"ABC129"
 									]
@@ -1980,7 +2029,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/api/cars/ABC234",
+									"raw": "{{host}}/api/v1/cars/ABC234",
 									
 									"host": [
 										"{{host}}"
@@ -1988,6 +2037,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"cars",
 										"ABC234"
 									]
@@ -2014,7 +2064,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/cars/ABC234",
+									"raw": "{{host}}/api/v1/cars/ABC234",
 									
 									"host": [
 										"{{host}}"
@@ -2022,6 +2072,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"cars",
 										"ABC234"
 									]
@@ -2048,7 +2099,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/managers/iamtheboss@bigboss.com/cars/ABC125",
+									"raw": "{{host}}/api/v1/managers/iamtheboss@bigboss.com/cars/ABC125",
 									
 									"host": [
 										"{{host}}"
@@ -2056,6 +2107,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"managers",
 										"iamtheboss@bigboss.com",
 										"cars",
@@ -2084,7 +2136,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/cars",
+									"raw": "{{host}}/api/v1/cars",
 									
 									"host": [
 										"{{host}}"
@@ -2092,6 +2144,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"cars"
 									]
 								}
@@ -2122,7 +2175,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/users",
+									"raw": "{{host}}/api/v1/users",
 									
 									"host": [
 										"{{host}}"
@@ -2130,6 +2183,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"users"
 									]
 								}
@@ -2155,7 +2209,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/bookings",
+									"raw": "{{host}}/api/v1/bookings",
 									
 									"host": [
 										"{{host}}"
@@ -2163,6 +2217,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"bookings"
 									]
 								}
@@ -2188,7 +2243,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/managers",
+									"raw": "{{host}}/api/v1/managers",
 									
 									"host": [
 										"{{host}}"
@@ -2196,6 +2251,7 @@
 									
 									"path": [
 										"api",
+										"v1",
 										"managers"
 									]
 								}
@@ -2237,7 +2293,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/managers",
+							"raw": "{{host}}/api/v1/managers",
 							
 							"host": [
 								"{{host}}"
@@ -2245,6 +2301,7 @@
 							
 							"path": [
 								"api",
+								"v1",
 								"managers"
 							]
 						}
@@ -2279,7 +2336,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/managers",
+							"raw": "{{host}}/api/v1/managers",
 							
 							"host": [
 								"{{host}}"
@@ -2287,6 +2344,7 @@
 							
 							"path": [
 								"api",
+								"v1",
 								"managers"
 							]
 						}
@@ -2321,7 +2379,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/managers",
+							"raw": "{{host}}/api/v1/managers",
 							
 							"host": [
 								"{{host}}"
@@ -2329,6 +2387,7 @@
 							
 							"path": [
 								"api",
+								"v1",
 								"managers"
 							]
 						}
@@ -2354,7 +2413,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/managers",
+							"raw": "{{host}}/api/v1/managers",
 							
 							"host": [
 								"{{host}}"
@@ -2362,6 +2421,7 @@
 							
 							"path": [
 								"api",
+								"v1",
 								"managers"
 							]
 						}
@@ -2387,7 +2447,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/managers/iamtheboss@bigboss.com",
+							"raw": "{{host}}/api/v1/managers/iamtheboss@bigboss.com",
 							
 							"host": [
 								"{{host}}"
@@ -2395,6 +2455,7 @@
 							
 							"path": [
 								"api",
+								"v1",
 								"managers",
 								"iamtheboss@bigboss.com"
 							]
@@ -2430,7 +2491,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/managers/iamtheboss@bigboss.com",
+							"raw": "{{host}}/api/v1/managers/iamtheboss@bigboss.com",
 							
 							"host": [
 								"{{host}}"
@@ -2438,6 +2499,7 @@
 							
 							"path": [
 								"api",
+								"v1",
 								"managers",
 								"iamtheboss@bigboss.com"
 							]
@@ -2473,7 +2535,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/managers/zhang@bigboss.com",
+							"raw": "{{host}}/api/v1/managers/zhang@bigboss.com",
 							
 							"host": [
 								"{{host}}"
@@ -2481,6 +2543,7 @@
 							
 							"path": [
 								"api",
+								"v1",
 								"managers",
 								"zhang@bigboss.com"
 							]
@@ -2516,7 +2579,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/managers/authentication",
+							"raw": "{{host}}/api/v1/managers/authentication",
 							
 							"host": [
 								"{{host}}"
@@ -2524,6 +2587,7 @@
 							
 							"path": [
 								"api",
+								"v1",
 								"managers",
 								"authentication"
 							]
@@ -2550,7 +2614,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/managers/bigbossbruce@bigboss.com",
+							"raw": "{{host}}/api/v1/managers/bigbossbruce@bigboss.com",
 							
 							"host": [
 								"{{host}}"
@@ -2558,6 +2622,7 @@
 							
 							"path": [
 								"api",
+								"v1",
 								"managers",
 								"bigbossbruce@bigboss.com"
 							]
@@ -2584,7 +2649,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/managers",
+							"raw": "{{host}}/api/v1/managers",
 							
 							"host": [
 								"{{host}}"
@@ -2592,6 +2657,7 @@
 							
 							"path": [
 								"api",
+								"v1",
 								"managers"
 							]
 						}
