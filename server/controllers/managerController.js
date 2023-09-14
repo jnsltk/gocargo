@@ -60,9 +60,6 @@ exports.getManagerByEmail = async (req, res, next) => {
             links: {
                 self: {
                     href: `/api/managers/${managerEmail}`
-                },
-                cars: {
-                    href: `/api/managers/${managerEmail}/cars`
                 }
             }
         };
@@ -76,10 +73,17 @@ exports.getManagerByEmail = async (req, res, next) => {
 // PUT to modify manager (replacing all fields)
 exports.updateManagerByEmail = async (req, res, next) => {
     const managerEmail = req.params.manager_email;
+    const updatedManagerData = req.body;
     try {
         const manager = await ManagerModel.findOne({ email: managerEmail });
         if (!manager) {
-            res.status(404).json({ message: 'manager not found !' });
+            res.status(404).json({ message: 'Manager not found !' });
+        }
+
+        // Check if new email is already registered
+        const existingManager = await ManagerModel.findOne({ email: updatedManagerData.email });
+        if (existingManager) {
+            return res.status(409).json({ message: 'Manager email already in use' });
         }
 
         // Hash the password
