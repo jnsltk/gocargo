@@ -75,9 +75,9 @@ exports.updateManagerByEmail = async (req, res, next) => {
     const managerEmail = req.params.manager_email;
     const updatedManagerData = req.body;
     try {
-        const manager = await ManagerModel.findOne({ email: managerEmail });
+        var manager = await ManagerModel.findOne({ email: managerEmail });
         if (!manager) {
-            res.status(404).json({ message: 'Manager not found !' });
+            return res.status(404).json({ message: 'Manager not found!' });
         }
 
         // Check if new email is already registered
@@ -96,7 +96,7 @@ exports.updateManagerByEmail = async (req, res, next) => {
         manager.balance = req.body.balance;
         manager.address = req.body.address;
         await manager.save();
-        res.status(200).json({ massage: 'Manager updated successfully', manager });
+        res.status(200).json({ message: 'Manager updated successfully', manager });
     } catch (err) {
         next(err);
     }
@@ -112,7 +112,7 @@ exports.patchManagerByEmail = async (req, res, next) => {
         const manager = await ManagerModel.findOne({ email: managerEmail });
 
         if (!manager) {
-            res.status(404).json({ "message": "Manager not found" });
+            return res.status(404).json({ "message": "Manager not found" });
         }
 
         // Check if new email is already registered
