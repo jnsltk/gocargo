@@ -1,13 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const carController = require('../controllers/carController');
+const validateCar = require('../middleware/validateCar');
 
 
 // Create a new car
-router.post('/api/v1/cars', carController.createCar);
+router.post('/api/v1/cars', validateCar, carController.createCar);
 
 // Create a new car by manager email
-router.post('/api/v1/managers/:manager_email/cars', carController.createCarByManagerEmail);
+router.post('/api/v1/managers/:manager_email/cars', validateCar, carController.createCarByManagerEmail);
 
 // Return a list of all cars
 router.get('/api/v1/cars', carController.getAllCars);
@@ -34,7 +35,7 @@ router.get('/api/v1/bookings/:booking_reference/car', carController.getCarByBook
 router.get('/api/v1/users/:user_email/bookings/:booking_reference/car', carController.getCarByBookingAndUser);
 
 // Update the car with the given registration
-router.put('/api/v1/cars/:registration', carController.updateCarByReg);
+router.put('/api/v1/cars/:registration', validateCar, carController.updateCarByReg);
 
 // Partially update the car with the given registration
 router.patch('/api/v1/cars/:registration', carController.partiallyUpdateCarByReg);

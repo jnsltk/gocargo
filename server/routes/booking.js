@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const BookingController = require('../controllers/bookingController');
+const validateBooking = require('../middleware/validateBooking');
 
 // GET all bookings
 router.get('/api/v1/bookings', BookingController.getAllBookings);
@@ -15,7 +16,7 @@ router.get('/api/v1/users/:user_email/bookings', BookingController.getAllBooking
 router.get('/api/v1/users/:user_email/bookings/:booking_reference', BookingController.getBookingByUserAndRef);
 
 // POST to create a new booking for a specific user
-router.post('/api/v1/users/:user_email/bookings', BookingController.createBookingForUser);
+router.post('/api/v1/users/:user_email/bookings', validateBooking, BookingController.createBookingForUser);
 
 // DELETE all bookings
 router.delete('/api/v1/bookings', BookingController.removeAllBookings);
