@@ -134,6 +134,26 @@ exports.getCarsByColorAndBrand = async (req, res, next) => {
     }
 }
 
+// Return a list of cars by manager email
+exports.getCarsByManagerEmail = async (req, res, next) => {
+    const managerEmail = req.params.manager_email;
+
+    try {
+        // Find the corresponding manager by the manager's email
+        const manager = await ManagerModel.findOne({ email: managerEmail }).populate('cars');
+        if (!manager) {
+            return res.status(404).json({ message: 'Manager not found!' });
+        }
+
+        // Retrieve the list of cars associated with the manager
+        const cars = manager.cars;
+
+        res.json(cars);
+    } catch (err) {
+        next(err);
+    }
+};
+
 // Return a car by manager email and car registration
 exports.getCarByManagerEmailAndReg = async (req, res, next) => {
     const managerEmail = req.params.manager_email;
