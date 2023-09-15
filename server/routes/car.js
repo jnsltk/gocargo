@@ -28,6 +28,9 @@ router.get('/api/v1/cars/brand/:brand', carController.getCarsByBrand);
 // Return a list of cars filtered by color and brand
 router.get('/api/v1/cars/color&brand/:color/:brand', carController.getCarsByColorAndBrand);
 
+// Return a car by manager email and car registration
+router.git('/api/v1/managers/:manager_email/cars/:registration', carController.getCarByManagerEmailAndReg);
+
 // Return a car associated with a booking
 router.get('/api/v1/bookings/:booking_reference/car', carController.getCarByBookingRef);
 
