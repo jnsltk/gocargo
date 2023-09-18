@@ -46,6 +46,9 @@ router.put('/api/v1/cars/:registration', validateCar, carController.updateCarByR
 // Partially update the car with the given registration
 router.patch('/api/v1/cars/:registration', carController.partiallyUpdateCarByReg);
 
+// Patch the car by manager email and car registration
+router.patch('/api/v1/managers/:manager_email/cars/:registration', carController.patchCarByEmailAndReg);
+
 // Delete the car with the given registration
 router.delete('/api/v1/cars/:registration', carController.deleteCarByReg);
 
