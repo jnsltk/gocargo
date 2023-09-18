@@ -30,11 +30,10 @@ exports.createCarByManagerEmail = async (req, res, next) => {
 
         // Create a new car and associate it with the manager
         const car = new Car(req.body);
-        car.manager = manager; // associate car with manager
         const savedCar = await car.save();
 
         //Add the ID of car to the 'cars' array of manager
-        manager.cars.push(savedCar.registration);
+        manager.cars.push(savedCar._id);
         await manager.save();
 
         console.log('Car saved successfully:', savedCar);
@@ -148,7 +147,7 @@ exports.getCarsByManagerEmail = async (req, res, next) => {
         // Retrieve the list of cars associated with the manager
         const cars = manager.cars;
 
-        res.json(cars);
+        res.status(200).json(cars);
     } catch (err) {
         next(err);
     }
@@ -172,7 +171,7 @@ exports.getCarByManagerEmailAndReg = async (req, res, next) => {
             return res.status(404).json({ message: 'Car not found for this manager' });
         }
 
-        res.json(car);
+        res.status(200).json(car);
     } catch (err) {
         next(err);
     }
@@ -187,7 +186,7 @@ exports.getCarByBookingRef = async (req, res, next) => {
         if (!booking) {
             return res.status(404).json({ 'message': 'Booking not found' });
         }
-        res.json(booking.car);
+        res.status(200).json(booking.car);
     } catch (error) {
         next(error);
     }
@@ -214,7 +213,7 @@ exports.getCarByBookingAndUser = async (req, res, next) => {
             return res.status(404).json({ "message": "Car not found" });
         }
 
-        res.json(car);
+        res.status(200).json(car);
     } catch (error) {
         next(error);
     }
@@ -237,7 +236,7 @@ exports.updateCarByReg = async (req, res, next) => {
         car.brand = req.body.brand;
         car.description = req.body.description;
         await car.save();
-        res.json(car);
+        res.status(200).json(car);
     } catch (err) {
         next(err);
     }
@@ -259,11 +258,42 @@ exports.partiallyUpdateCarByReg = async (req, res, next) => {
         car.brand = req.body.brand || car.brand;
         car.description = req.body.description || car.description;
         await car.save();
-        res.json(car);
+        res.status(200).json(car);
     } catch (err) {
         next(err);
     }
 };
+
+// Patch the car by manager email and car registration
+exports.patchCarByEmailAndReg = async (req, res, next) => {
+    const managerEmail = req.params.manager_email;
+    const registration = req.params.registration;
+
+    try {
+        // Find the corresponding manager by the manager's email
+        const manager = await ManagerModel.findOne({ email: managerEmail }).populate('cars');
+        if (!manager) {
+            return res.status(404).json({ message: 'Manager not found!' });
+        }
+
+        const car = await Car.findOne({ registration: registration }).exec();
+        if (car == null) {
+            return res.status(404).json({ "message": "Car not found" });
+        }
+
+        car.registration = req.body.registration || car.registration;
+        car.image = req.body.image || car.image;
+        car.price = req.body.price || car.price;
+        car.color = req.body.color || car.color;
+        car.brand = req.body.brand || car.brand;
+        car.description = req.body.description || car.description;
+        await car.save();
+
+        res.status(200).json(car);
+    } catch (err) {
+        next(err);
+    }
+}
 
 // Delete the car with the given registration number
 exports.deleteCarByReg = async (req, res, next) => {
@@ -273,7 +303,7 @@ exports.deleteCarByReg = async (req, res, next) => {
         if (car == null) {
             return res.status(404).json({ "message": "Car not found" });
         }
-        res.json(car);
+        res.status(200).json(car);
     } catch (err) {
         next(err);
     }
@@ -316,7 +346,7 @@ exports.deleteCarByManagerEmail = async (req, res, next) => {
             await manager.save();  
         }  
   
-        res.json(car);  
+        res.status(200).json(car);  
     } catch (err) {  
         next(err);  
     }  
