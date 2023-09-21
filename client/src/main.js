@@ -1,16 +1,15 @@
-import Vue from 'vue'
+import './assets/main.css'
+
+import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import BootstrapVue from 'bootstrap-vue'
 
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+import "bootstrap/dist/css/bootstrap.css";
 
-Vue.use(BootstrapVue)
+const app = createApp(App)
 
-Vue.config.productionTip = false
+app.use(router)
 
-new Vue({
-  router,
-  render: function (h) { return h(App) }
-}).$mount('#app')
+app.mount('#app')
+
+import "bootstrap/dist/js/bootstrap.js";
