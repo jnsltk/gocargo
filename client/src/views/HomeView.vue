@@ -1,9 +1,9 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+import LandingPageHero from '../components/LandingPageHero.vue'
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <LandingPageHero />
   </main>
 </template>
