@@ -19,9 +19,11 @@
         </div>
 
         <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
-           <div class="col" v-for="car in cars" :key="car._id">
-                <CarCard :car="car" />
-           </div> 
+            <div class="col mb-3" v-for="(car, index) in cars" :key="car._id">
+                <div class="h-100">
+                    <CarCard :car="car" :isLastCard="index === 5" />
+                </div>
+            </div> 
         </div>
     </div>
 </template>
