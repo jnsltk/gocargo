@@ -19,78 +19,31 @@
         </div>
 
         <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
-            <div class="col">
-                <div class="card mb-4 rounded-3 shadow-sm">
-                    <div class="card-header py-3">
-                        <h4 class="my-0 fw-normal">Car 1</h4>
-                        <img src="@/assets/atto3.webp" class="card-img-top" alt="Hyundai i20">
-                    </div>
-
-                    <div class="card-body">
-                        <h1 class="card-title pricing-card-title">400 SEK<small class="text-body-secondary fw-light">/day</small></h1>
-
-                        <ul class="list-unstyled mt-3 mb-4">
-                            <li>Engine: electric</li>
-                            <li>Transmission: Automatic</li>
-                            <li>Seats: 5</li>
-                            <li>Range: 450 km</li>
-                        </ul>
-
-                        <button type="button" class="w-100 btn btn-lg btn-primary">Book Now</button>
-                    </div>
-                </div>
-
-            </div>
-            <div class="col">
-                <div class="card mb-4 rounded-3 shadow-sm">
-                    <div class="card-header py-3">
-                        <h4 class="my-0 fw-normal">Car 2</h4>
-                        <img src="@/assets/atto3.webp" class="card-img-top" alt="Hyundai i20">
-                    </div>
-
-                    <div class="card-body">
-                        <h1 class="card-title pricing-card-title">650 SEK<small class="text-body-secondary fw-light">/day</small></h1>
-
-                        <ul class="list-unstyled mt-3 mb-4">
-                            <li>Engine: electric</li>
-                            <li>Transmission: Automatic</li>
-                            <li>Seats: 5</li>
-                            <li>Range: 450 km</li>
-                        </ul>
-
-                        <button type="button" class="w-100 btn btn-lg btn-primary">Book Now</button>
-                    </div>
-                </div>
-
-            </div>
-            <div class="col">
-                <div class="card mb-4 rounded-3 shadow-sm">
-                    <div class="card-header py-3">
-                        <h4 class="my-0 fw-normal">Car 3</h4>
-                        <img src="@/assets/atto3.webp" class="card-img-top" alt="Hyundai i20">
-                    </div>
-
-                    <div class="card-body">
-                        <h1 class="card-title pricing-card-title">950 SEK<small class="text-body-secondary fw-light">/day</small></h1>
-
-                        <ul class="list-unstyled mt-3 mb-4">
-                            <li>Engine: electric</li>
-                            <li>Transmission: Automatic</li>
-                            <li>Seats: 5</li>
-                            <li>Range: 450 km</li>
-                        </ul>
-
-                        <button type="button" class="w-100 btn btn-lg btn-primary">Book Now</button>
-                    </div>
-                </div>
-
-            </div>
-
-
+           <div class="col" v-for="car in cars" :key="car._id">
+                <CarCard :car="car" />
+           </div> 
         </div>
     </div>
-
-
-
 </template>
+
+<script>
+    import axios from 'axios';
+    import CarCard from './CarCard.vue';
+
+    export default {
+        components: {
+            CarCard,
+        },
+        data() {
+            return {
+                cars: [],
+            };
+        },
+        mounted() {
+            axios.get("http://localhost:3000/api/v1/cars").then((response) => {
+                this.cars = response.data;
+            });
+        },
+    };
+</script>
 
