@@ -24,9 +24,9 @@ mongoose.connect(mongoURI)
 
 // Create Express app
 const app = express();
-// Parse requests of content-type 'application/json'
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+// fixing "413 Request Entity Too Large" errors
+app.use(express.json({limit: "10mb", extended: true}))
+app.use(express.urlencoded({limit: "10mb", extended: true, parameterLimit: 50000}))
 // HTTP request logger
 app.use(morgan('dev'));
 // Enable cross-origin resource sharing for frontend must be registered before api
