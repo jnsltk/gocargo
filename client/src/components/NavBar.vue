@@ -1,26 +1,32 @@
-<script setup>
-    import { RouterLink } from 'vue-router'
-</script>
-
 <template>
-    <header class="p-3 text-bg-dark">
-        <div class="container">
-            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start px-4">
-                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><RouterLink to="/" class="nav-link px-2 text-secondary">Home</RouterLink></li>
-                    <li><RouterLink to="/about" class="nav-link px-2 text-white">About</RouterLink></li>
+    <nav id="mainNav" class="gocargo-navbar navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">GoCarGo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#fleet">Our fleet</a>
+                    </li>
                 </ul>
-
-                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                    <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
-                </form>
-
-                <div class="text-end">
-                    <button type="button" class="btn btn-outline-light me-2">Login</button>
+                <div class="col-md-3 text-end">
+                    <button type="button" class="btn btn-outline-primary me-2">Login</button>
                     <button type="button" class="btn btn-primary">Sign-up</button>
                 </div>
             </div>
         </div>
-    </header>
+    </nav>
 </template>
+
+<style scoped>
+.gocargo-navbar {
+    height: 80px;
+    padding: 10px 25px;
+}
+</style>
 
