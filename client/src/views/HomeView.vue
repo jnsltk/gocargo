@@ -3,6 +3,7 @@
     import CarFleet from '../components/CarFleet.vue'
     import NavBar from '../components/NavBar.vue'
     import AboutComponent from '../components/AboutComponent.vue'
+    import CarSelection from '../components/CarSelection.vue'
 </script>
 
 <template>
@@ -11,5 +12,6 @@
         <HeroComponent />
         <AboutComponent />
         <CarFleet />
+        <CarSelection />
     </main>
 </template>
