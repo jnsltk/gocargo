@@ -36,7 +36,7 @@
             <hr class="my-4">
             <h2 class="fs-5 fw-normal mb-3">Already have an account</h2>
             
-            <button class="w-100 py-2 mb-2 btn btn-outline-primary rounded-3" type="submit">
+            <button class="w-100 py-2 mb-2 btn btn-outline-primary rounded-3" type="submit" @click="redirectToLogin">
               <svg class="bi me-1" width="16" height="16"></svg>
               Sign up with Email
             </button>
@@ -53,4 +53,15 @@
 
 
 <script>
+
+export default {
+  methods: {
+    redirectToLogin() {
+      // use router.push Navigate to the login page
+      this.$router.push('/login');
+    },
+  },
+};
+
+
 </script>
