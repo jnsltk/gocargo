@@ -1,17 +1,26 @@
 <template>
-  <div>
-    <h1>Payment Details</h1>
-    <PaymentForm />
-  </div>
+    <BookingNav />
+    <div class='container'>
+        <h1>Payment Details</h1>
+        <PaymentForm />
+    </div>
 </template>
 
-<script>
-import PaymentForm from '@/components/PaymentForm.vue';
+<style scoped>
+.container {
+    margin-top: 100px;
+}
+</style>
 
-export default {
-  components: {
-    PaymentForm,
-  },
-};
+<script>
+    import PaymentForm from '@/components/PaymentForm.vue';
+    import BookingNav from '@/components/BookingNav.vue';
+
+    export default {
+        components: {
+            PaymentForm,
+            BookingNav
+        },
+    };
 </script>
 

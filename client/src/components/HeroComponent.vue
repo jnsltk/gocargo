@@ -8,13 +8,25 @@
                 <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Discover Freedom on Wheels!</h1>
                 <p class="lead">Unlock adventure with GoCarGo. Choose from our diverse fleet, book with ease, and hit the road confidently. Your journey starts here!</p>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                    <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Book now</button>
-                    <button type="button" class="btn btn-outline-secondary btn-lg px-4">Read more</button>
+                    <button type="button" class="btn btn-primary btn-lg px-4 me-md-2" @click="redirectToBooking">Book now</button>
+                    <a href="#about" class="btn btn-outline-secondary btn-lg px-4">Read more</a>
                 </div>
             </div>
         </div>
     </div>
 </template>
+
+<script>
+    export default {
+        methods: {
+            redirectToBooking() {
+                // Change to car selection page later!!
+                this.$router.push('/booking/user-info');
+            }
+        }
+    }
+
+</script>
 
 <style scoped>
     .container {

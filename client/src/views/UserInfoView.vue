@@ -1,17 +1,26 @@
 <template>
-  <div>
-    <h1>User Information</h1>
-    <UserInfoForm />
-  </div>
+    <BookingNav />
+    <div class='container'>
+        <h1>User Information</h1>
+        <UserInfoForm />
+    </div>
 </template>
 
-<script>
-import UserInfoForm from '@/components/UserInfoForm.vue';
+<style scoped>
+.container {
+    margin-top: 100px;
+}
+</style>
 
-export default {
-  components: {
-    UserInfoForm,
-  },
-};
+<script>
+    import UserInfoForm from '@/components/UserInfoForm.vue';
+    import BookingNav from '@/components/BookingNav.vue';
+
+    export default {
+        components: {
+            UserInfoForm,
+            BookingNav
+        },
+    };
 </script>
 
