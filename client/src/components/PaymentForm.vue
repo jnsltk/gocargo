@@ -49,6 +49,8 @@
 </template>
 
 <script>
+    import axios from 'axios';
+
     export default {
         data() {
             return {
@@ -61,15 +63,52 @@
             };
         },
         methods: {
-            submitPaymentInfo() {
+            async submitPaymentInfo() {
                 // Submit payment info data to Vuex store
                 this.$store.commit('setPaymentDetails', this.paymentData);
                 // Implement payment processing logic here (e.g., API request)
-                // After successful payment, you can navigate to the confirmation step
-                this.$router.push('/booking/confirmation');
+                const paymentSuccess = await this.simulatePayment(this.$store.state.paymentDetails);
+
+                // After payment confirmation, the data from the Vuex store is used to create a booking on the back end
+                if (paymentSuccess) {
+                    // Payment was successful, proceed with booking creation
+                    const bookingData = {
+                        userEmail: this.$store.state.userInfo.email, // Get user email from Vuex store
+                        startDate: '2023-10-01', // Replace with actual start date
+                        endDate: '2023-10-07',   // Replace with actual end date
+                        status: 'payed',         // Set the status to 'payed'
+                        content: 'Booking content placeholder', // Replace with actual content
+                        carRegistration: 'ABC129', // Replace with actual car registration
+                    };  
+
+                    try {
+                        // Make a POST request to create a booking
+                        console.log(bookingData);
+                        const response = await axios.post(`http://localhost:3000/api/v1/users/${bookingData.userEmail}/bookings`, bookingData);
+
+                        // Handle the response (e.g., show confirmation message)
+                        console.log('Booking created:', response.data);
+
+                        // Now you can navigate to the final confirmation step
+                        this.$router.push('/confirmation');
+                    } catch (error) {
+                        // Handle any errors (e.g., show an error message)
+                        console.error('Error creating booking:', error);
+                        this.$router.push('/');
+                    }
+                }
             },
             previousStep() {
                 this.$router.push('/booking/user-info');
+            },
+            simulatePayment(paymentData) {
+                console.log(paymentData);
+                return new Promise((resolve) => {
+                    // Simulate a successful payment after a short delay
+                    setTimeout(() => {
+                        resolve(true);
+                    }, 1000);
+                });
             },
         },
     };
