@@ -34,14 +34,14 @@
             <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Sign up</button>
             <small class="text-body-secondary">By clicking Sign up, you agree to the terms of use.</small>
             <hr class="my-4">
-            <h2 class="fs-5 fw-bold mb-3">Already have an account</h2>
+            <h2 class="fs-5 fw-normal mb-3">Already have an account</h2>
             
             <button class="w-100 py-2 mb-2 btn btn-outline-primary rounded-3" type="submit">
-              <svg class="bi me-1" width="16" height="16"><use xlink:href="#facebook"/></svg>
+              <svg class="bi me-1" width="16" height="16"></svg>
               Sign up with Email
             </button>
             <button class="w-100 py-2 mb-2 btn btn-outline-secondary rounded-3" type="submit">
-              <svg class="bi me-1" width="16" height="16"><use xlink:href="#github"/></svg>
+              <svg class="bi me-1" width="16" height="16"></svg>
               Cancel
             </button>
           </form>
