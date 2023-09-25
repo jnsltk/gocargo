@@ -90,7 +90,7 @@
                         console.log('Booking created:', response.data);
 
                         // Now you can navigate to the final confirmation step
-                        this.$router.push('/confirmation');
+                        this.$router.push('/booking/confirmation');
                     } catch (error) {
                         // Handle any errors (e.g., show an error message)
                         console.error('Error creating booking:', error);
