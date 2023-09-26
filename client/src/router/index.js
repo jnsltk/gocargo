@@ -4,7 +4,8 @@ import UserInfoView from '../views/UserInfoView.vue'
 import UserBookingsView from '../views/UserBookingsView.vue'
 import PaymentView from '../views/PaymentView.vue'
 import ConfirmationView from '../views/ConfirmationView.vue'
-import store from '@/store/index'
+import LoginView from '../views/LoginView.vue'
+import store from '@/store/index';
 import Login from '../components/Login.vue'
 import ManagerView from '../views/ManagerView.vue'
 import ManagerInform from '../components/ManagerInform.vue'
@@ -94,5 +95,22 @@ const router = createRouter({
         },
     ]
 })
+
+router.beforeEach((to, from, next) => {
+    if (to.matched.some((record) => record.meta.requiresAuth)) {
+        // Check if the user is authenticated
+        const token = localStorage.getItem('token');
+        console.log(token);
+
+        if (!token) {
+            return next('/login'); // Redirect to the login page if not authenticated
+        }
+
+        // Continue to the protected route
+        next();
+    } else {
+        next(); // Allow access to public routes
+    }
+});
 
 export default router

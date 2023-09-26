@@ -1,6 +1,7 @@
 <template>
+    <button class="btn btn-secondary" @click='logout'>Log out</button>
     <div id="bookings" class="row row-cols-1 row-cols-md-3 mb-3 text-center">
-        <div class="col mb-3" v-for="(booking, index) in bookings" :key="booking._id">
+        <div class="col mb-3" v-for="booking in bookings" :key="booking._id">
             <div class="h-100">
                 <h2>Booking info</h2>
                 <ul>
@@ -50,7 +51,12 @@
                     console.log("hello", err);
                 });
         },
-
+        methods: {
+            logout() {
+                localStorage.removeItem('token');
+                this.$router.push('/login');
+            }
+        }
     }
 </script>
 

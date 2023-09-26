@@ -25,6 +25,6 @@ router.delete('/api/v1/users', UserController.deleteAllUsers);
 router.delete('/api/v1/users/:user_email', UserController.deleteUserByEmail);
 
 // Authenticate the user login
-router.post('/api/v1/users/authentication', UserController.authenticateUser);
+router.post('/api/v1/users/login', UserController.authenticateUser);
 
 module.exports = router;
