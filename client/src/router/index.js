@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import UserInfoView from '../views/UserInfoView.vue'
+import UserBookingsView from '../views/UserBookingsView.vue'
 import PaymentView from '../views/PaymentView.vue'
 import ConfirmationView from '../views/ConfirmationView.vue'
 import store from '@/store/index'
@@ -69,8 +70,6 @@ const router = createRouter({
             path: '/useraccount',
             name: 'UserAccount',
             component: () => import('../components/UserAccount.vue')
-
-            
         },
         {
             path: '/manager',
