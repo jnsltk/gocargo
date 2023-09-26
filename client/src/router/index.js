@@ -1,9 +1,8 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 import UserInfoView from '../views/UserInfoView.vue'
 import PaymentView from '../views/PaymentView.vue'
 import ConfirmationView from '../views/ConfirmationView.vue'
 import store from '@/store/index';
+import Login from '../components/Login.vue'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -46,7 +45,18 @@ const router = createRouter({
                     next();
                 }
             },
-        }
+        },
+        {
+            path: '/login',
+            name: 'Login',
+            component:Login
+
+        },
+        {
+            path: '/register',
+            name: 'Register',
+            component: () => import('../components/Register.vue')
+        },
     ]
 })
 
