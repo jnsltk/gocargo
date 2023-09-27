@@ -71,7 +71,7 @@
         <div id="fleet" class="row row-cols-1 row-cols-md-3 mb-3 text-center">
             <div class="col mb-3" v-for="(car, index) in cars" :key="car._id">
                 <div class="h-100">
-                    <CarCard :car="car" :isLastCard="index === 5" />
+                    <CarCard :car="car" :isLastCard="index === car.length -1" />
                 </div>
             </div>
             <div  v-if="showNoResultsMessage" class="alert alert-warning" role="alert">
@@ -139,7 +139,13 @@ export default {
                 url = `http://localhost:3000/api/v1/cars/color/${color}`;
             }
             axios.get(url).then((response) => {
-                this.cars = response.data;
+                if (response.data.length === 0) {
+                    this.showNoResultsMessage = true;
+                    this.cars = [];
+                } else {
+                    this.showNoResultsMessage = false;
+                    this.cars = response.data;
+                }
             })
         }
     },
