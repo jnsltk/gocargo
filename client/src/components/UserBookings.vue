@@ -33,6 +33,16 @@
 
 <script>
     import axios from 'axios';
+    
+    const token = localStorage.getItem('token');
+
+    const axiosInstance = axios.create({
+        baseURL: 'http://localhost:3000/api/v1',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token,
+        },
+    });
 
     export default {
         data() {
@@ -41,7 +51,7 @@
             };
         },
         mounted() {
-            axios.get("http://localhost:3000/api/v1/users/lingwang@126.com/bookings")
+            axiosInstance.get("/users/lingwang@126.com/bookings")
                 .then((response) => {
                     this.bookings = response.data;
                     console.log(this.bookings);
