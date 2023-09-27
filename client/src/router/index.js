@@ -3,8 +3,12 @@ import HomeView from '../views/HomeView.vue'
 import UserInfoView from '../views/UserInfoView.vue'
 import PaymentView from '../views/PaymentView.vue'
 import ConfirmationView from '../views/ConfirmationView.vue'
-import store from '@/store/index';
+import store from '@/store/index'
 import Login from '../components/Login.vue'
+import ManagerView from '../views/ManagerView.vue'
+import ManagerSidebar from '../components/ManagerSidebar.vue'
+import PostCar from '../components/PostCar.vue'
+import ManageCars from '../components/ManageCars.vue'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -58,6 +62,26 @@ const router = createRouter({
             path: '/register',
             name: 'Register',
             component: () => import('../components/Register.vue')
+        },
+        {
+            path: '/manager',
+            name: 'Manager',
+            component: ManagerView
+        },
+        {
+            path: '/manager/sidebar',
+            name: 'sidebar',
+            component: ManagerSidebar
+        },
+        {
+            path: '/manager/post',
+            name: 'postCar',
+            component: PostCar
+        },
+        {
+            path: '/manager/manage',
+            name: 'manageCars',
+            component: ManageCars
         },
     ]
 })
