@@ -18,9 +18,6 @@
 
             </div>
         </div>
-        <div  v-if="showNoResultsMessage" class="alert alert-warning" role="alert">
-            No results found.
-        </div>
     </div>
 </template>
 
@@ -32,14 +29,15 @@
 
 <script>
     import axios from 'axios';
+    import { getToken } from '../utils/auth'
     
-    const token = localStorage.getItem('token');
-
+    const token = getToken();
+    
     const axiosInstance = axios.create({
         baseURL: 'http://localhost:3000/api/v1',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': token
+            'Authorization': 'Bearer: ' + token
         },
     });
 

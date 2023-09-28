@@ -1,5 +1,5 @@
 <template>
-    <BookingNav />
+    <NavBar />
     <div class='container'>
         <Register />
     </div>
@@ -12,13 +12,14 @@
 </style>
 
 <script>
-    import BookingNav from '@/components/BookingNav.vue';
+    import NavBar from '@/components/NavBar.vue';
     import Register from '@/components/Register.vue';
 
     export default {
         components: {
-            BookingNav,
+            NavBar,
             Register
         },
     };
 </script>
+

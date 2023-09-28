@@ -71,6 +71,7 @@
 <script>
     import 'bootstrap-icons/font/bootstrap-icons.css';
     import UserBookings from '@/components/UserBookings.vue'
+    import { logout } from '@/utils/auth'
 
     export default {
         components: {
@@ -78,8 +79,7 @@
         },
         methods: {
             logout() {
-                localStorage.removeItem('token');
-                this.$router.push('/login');
+                logout();
             }
         }
     }

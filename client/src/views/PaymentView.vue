@@ -1,5 +1,5 @@
 <template>
-    <BookingNav />
+    <NavBar />
     <div class='container'>
         <h1>Payment Details</h1>
         <PaymentForm />
@@ -14,12 +14,12 @@
 
 <script>
     import PaymentForm from '@/components/PaymentForm.vue';
-    import BookingNav from '@/components/BookingNav.vue';
+    import NavBar from '@/components/NavBar.vue';
 
     export default {
         components: {
             PaymentForm,
-            BookingNav
+            NavBar
         },
     };
 </script>

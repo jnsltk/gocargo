@@ -1,5 +1,5 @@
 <template>
-    <!--<BookingNav />-->
+    <!--<NavBar />-->
     <UserAccount />
 </template>
 
@@ -10,12 +10,12 @@
 </style>
 
 <script>
-    import BookingNav from '@/components/BookingNav.vue';
+    import NavBar from '@/components/NavBar.vue';
     import UserAccount from '@/components/UserAccount.vue';
 
     export default {
         components: {
-            BookingNav,
+            NavBar,
             UserAccount
         },
     };

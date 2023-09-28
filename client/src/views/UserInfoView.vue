@@ -1,5 +1,5 @@
 <template>
-    <BookingNav />
+    <NavBar />
     <div class='container'>
         <h1>User Information</h1>
         <UserInfoForm />
@@ -14,12 +14,12 @@
 
 <script>
     import UserInfoForm from '@/components/UserInfoForm.vue';
-    import BookingNav from '@/components/BookingNav.vue';
+    import NavBar from '@/components/NavBar.vue';
 
     export default {
         components: {
             UserInfoForm,
-            BookingNav
+            NavBar
         },
     };
 </script>

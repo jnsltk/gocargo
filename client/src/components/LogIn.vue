@@ -36,7 +36,7 @@
 </template>
 
 <script>
-    import axios from 'axios';
+    import { login } from '../utils/auth'
 
     export default {
         data() {
@@ -57,22 +57,7 @@
                 }
             },
             async login() {
-                const loginData = {
-                    'email': this.email,
-                    'password': this.password 
-                };
-
-                try {
-                    const response = await axios.post('http://localhost:3000/api/v1/users/login', loginData);
-                    const token = response.data.token;
-                    localStorage.setItem('token', token);
-
-                    // redirect to user bookings 
-                    this.$router.push('/useraccount');
-                } catch (err) {
-                    // handle errors like non-existing user 
-                    console.log(err);
-                }
+                login(this.email, this.password);
             }
         },
     };

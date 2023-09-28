@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import store from '@/store/index';
+import { getToken } from '../utils/auth'
 
 import HomeView from '../views/HomeView.vue'
 import UserInfoView from '../views/UserInfoView.vue'
@@ -61,7 +62,8 @@ const router = createRouter({
         {
             path: '/login',
             name: 'login',
-            component: LoginView
+            component: LoginView,
+            beforeEnter: isUserLoggedIn
 
         },
         {
@@ -103,8 +105,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
     if (to.matched.some((record) => record.meta.requiresAuth)) {
         // Check if the user is authenticated
-        const token = localStorage.getItem('token');
-        console.log(token);
+        const token = getToken();
 
         if (!token) {
             return next('/login'); // Redirect to the login page if not authenticated
@@ -116,5 +117,13 @@ router.beforeEach((to, from, next) => {
         next(); // Allow access to public routes
     }
 });
+
+function isUserLoggedIn(to, from, next) {
+    if (!getToken()) {
+        next();
+    } else {
+        next('/useraccount');
+    }
+}
 
 export default router

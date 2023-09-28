@@ -1,5 +1,5 @@
 <template>
-    <BookingNav />
+    <NavBar />
     <div class='container'>
         <LogIn />
     </div>
@@ -12,12 +12,12 @@
 </style>
 
 <script>
-    import BookingNav from '@/components/BookingNav.vue';
+    import NavBar from '@/components/NavBar.vue';
     import LogIn from '@/components/LogIn.vue';
 
     export default {
         components: {
-            BookingNav,
+            NavBar,
             LogIn
         },
     };
