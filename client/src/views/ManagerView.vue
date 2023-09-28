@@ -1,33 +1,32 @@
 <template>
-    <div class="container px-4 py-5">
+    <div class="container  col-xxl-8 px-4 py-5">
         <div class="sidebar">
             <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark account-sidebar">
-                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                    <svg class="bi pe-none me-2" width="40" height="32">
-                        <use xlink:href="#bootstrap"></use>
-                    </svg>
-
-                    <span class="fs-4">Manager</span>
-                </a>
+                <span class="fs-3 right-align">Manager</span>
                 <hr>
                 <ul class="nav nav-pills flex-column mb-auto">
-                    <li @click="showContent('information')" class="nav-item">
-                        <a href="#" class="nav-link active" aria-current="page">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link text-white fs-5" aria-current="page">
+                            Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a @click="showContent('information')"  href="#" class="nav-link text-white fs-5" aria-current="page">
                             Information
                         </a>
                     </li>
-                    <li @click="showContent('postCar')">
-                        <a href="#" class="nav-link text-white">
+                    <li class="nav-item">
+                        <a  @click="showContent('postCar')" href="#" class="nav-link text-white fs-5">
                             Post car
                         </a>
                     </li>
-                    <li>
-                        <a @click="showContent('manageCars')" href="#" class="nav-link text-white">
+                    <li class="nav-item">
+                        <a @click="showContent('manageCars')" href="#" class="nav-link text-white fs-5">
                             Manage cars
                         </a>
                     </li>
-                    <li>
-                        <a href="#" class="nav-link text-white">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link text-white fs-5">
                             Log out
                         </a>
                     </li>

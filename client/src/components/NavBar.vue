@@ -19,6 +19,7 @@
                     </li>
                 </ul>
                 <div class="col-md-3 text-end">
+                    <button type="button" @click="redirecToManager()" class="btn btn-primary me-2">Manager (Test)</button>
                     <button type="button" class="btn btn-outline-primary me-2">Login</button>
                     <button type="button" class="btn btn-primary">Sign-up</button>
                 </div>
@@ -26,6 +27,17 @@
         </div>
     </nav>
 </template>
+
+<script>
+export default {
+    methods: {
+        redirecToManager() {
+            this.$router.push('/manager');
+        }
+    }
+}
+
+</script>
 
 <style scoped>
 .gocargo-navbar {
