@@ -68,7 +68,7 @@
                     localStorage.setItem('token', token);
 
                     // redirect to user bookings 
-                    this.$router.push('/user/bookings');
+                    this.$router.push('/useraccount');
                 } catch (err) {
                     // handle errors like non-existing user 
                     console.log(err);

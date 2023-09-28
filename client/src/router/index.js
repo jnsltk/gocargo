@@ -73,7 +73,8 @@ const router = createRouter({
         {
             path: '/useraccount',
             name: 'UserAccount',
-            component: UserAccountView
+            component: UserAccountView,
+            meta: { requiresAuth: true }
         },
         {
             path: '/manager',
