@@ -6,7 +6,6 @@ import ConfirmationView from '../views/ConfirmationView.vue'
 import store from '@/store/index'
 import Login from '../components/Login.vue'
 import ManagerView from '../views/ManagerView.vue'
-import ManagerSidebar from '../components/ManagerSidebar.vue'
 import ManagerInform from '../components/ManagerInform.vue'
 import PostCar from '../components/PostCar.vue'
 import ManageCars from '../components/ManageCars.vue'
@@ -69,11 +68,7 @@ const router = createRouter({
             name: 'manager',
             component: ManagerView
         },
-        {
-            path: '/manager/sidebar',
-            name: 'sidebar',
-            component: ManagerSidebar
-        },
+        
         {
             path: '/manager/inform',
             name: 'managerInform',

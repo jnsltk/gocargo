@@ -43,50 +43,6 @@ import axios from 'axios';
 //   },
 // };
 
-export default {
-    data() {
-        return {
-            cars: [
-                {
-                    id: 1,
-                    descprition: "SUV: A versatile vehicle with ample cargo space and off-road capabilities.",
-                    image: "/src/assets/images/volvo_white.png",
-                    price: 960,
-                },
-                {
-                    id: 2,
-                    descprition: "Sedan: A four-door car with a spacious interior, suitable for families and business travelers.",
-                    image: "/src/assets/images/tesla_black.png",
-                    price: 780,
-                },
-                {
-                    id: 3,
-                    descprition: "Sedan: A four-door car with a spacious interior, suitable for families and business travelers.",
-                    image: "/src/assets/images/byd_red.png",
-                    price: 860,
-                },
-                {
-                    id: 4,
-                    descprition: "Sedan: A four-door car with a spacious interior, suitable for families and business travelers.",
-                    image: "/src/assets/images/audi_white.png",
-                    price: 900,
-                },
-                {
-                    id: 5,
-                    descprition: "SUV: A versatile vehicle with ample cargo space and off-road capabilities.",
-                    image: "/src/assets/images/volvo_blue.png",
-                    price: 890,
-                },
-                {
-                    id: 6,
-                    descprition: "SUV: A versatile vehicle with ample cargo space and off-road capabilities.",
-                    image: "/src/assets/images/bmw_red.png",
-                    price: 990,
-                },
-            ],
-        };
-    },
-};
 </script>
 
 <style scoped>
