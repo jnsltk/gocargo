@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import store from '@/store/index';
+
 import HomeView from '../views/HomeView.vue'
 import UserInfoView from '../views/UserInfoView.vue'
-import UserBookingsView from '../views/UserBookingsView.vue'
 import PaymentView from '../views/PaymentView.vue'
 import ConfirmationView from '../views/ConfirmationView.vue'
 import LoginView from '../views/LoginView.vue'
@@ -11,6 +12,8 @@ import ManagerView from '../views/ManagerView.vue'
 import ManagerInform from '../components/ManagerInform.vue'
 import PostCar from '../components/PostCar.vue'
 import ManageCars from '../components/ManageCars.vue'
+import RegisterView from '../views/RegisterView.vue'
+import UserAccountView from '../views/UserAccountView.vue'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,6 +24,7 @@ const router = createRouter({
             component: HomeView
         },
         {
+            // Modify when finishing up booking process
             path: '/booking/user-info',
             component: UserInfoView
         },
@@ -56,21 +60,20 @@ const router = createRouter({
         },
         {
             path: '/login',
-            name: 'Login',
-            component:Login
+            name: 'login',
+            component: LoginView
 
         },
         {
             path: '/register',
             name: 'Register',
-            component: () => import('../components/Register.vue')
-
+            component: RegisterView
 
         },
         {
             path: '/useraccount',
             name: 'UserAccount',
-            component: () => import('../components/UserAccount.vue')
+            component: UserAccountView
         },
         {
             path: '/manager',
