@@ -1,11 +1,10 @@
 <template>
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-        <div class="py-5">
-            <h2>Manager Information</h2>
+        <div class="py-4" style="margin-left: 20%;">
+            <h2>Information</h2>
         </div>
         <div class="row g-3">
             <div class="col-md-7 col-lg-8">
-                <h4 class="mb-3">Tom Jerry</h4>
                 <form class="needs-validation" novalidate="">
                     <div class="row g-3">
                         <div class="col-sm-6">
@@ -56,7 +55,7 @@
                 </form>
             </div>
         </div>
-        <button class="w-50 btn btn-primary btn-lg" style="margin-top: 5%;">Update Information</button>
+        <button class="w-50 btn btn-primary btn-lg" style="margin-top: 5%; margin-left: 7%;">Update Information</button>
         <div style="height: 10vh;">
 
         </div>

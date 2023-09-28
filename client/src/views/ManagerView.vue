@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container px-4 py-5">
         <div class="sidebar">
             <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark account-sidebar">
                 <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
@@ -38,13 +38,13 @@
 
 
         <div class="content">
-            <div v-if="currentContent === 'information'">
+            <div class="child" v-if="currentContent === 'information'">
                 <ManagerInform />
             </div>
-            <div v-if="currentContent === 'postCar'">
+            <div  class="child" v-if="currentContent === 'postCar'">
                 <PostCar />
             </div>
-            <div v-if="currentContent === 'manageCars'">
+            <div  class="child" v-if="currentContent === 'manageCars'">
                 <ManageCars />
             </div>
         </div>
@@ -91,9 +91,6 @@ export default {
     left: 0;
 }
 
-.container {
-    display: flex;
-}
 
 .sidebar {
     flex: 1;
@@ -102,4 +99,10 @@ export default {
 .content {
     flex: 4;
 }
+
+.child {
+    position: relative;
+    left: 6%;
+}
+
 </style>

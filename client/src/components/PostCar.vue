@@ -1,13 +1,13 @@
 <template>
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-        <div class="py-5">
+        <div class="py-4" style="margin-left: 20%;">
             <h2>Post a new car</h2>
         </div>
         <div class="row g-3">
             <div class="col-md-7 col-lg-8">
                 <form class="needs-validation" novalidate="">
                     <div class="row g-3">
-                        
+
                         <div class="col-12">
                             <label for="registraction" class="form-label">Registraction</label>
                             <input type="text" class="form-control" id="registraction" placeholder="" value="" required="">
@@ -24,25 +24,37 @@
 
                         <div class="col-12">
                             <label for="brand" class="form-label">Brand</label>
-                            <input type="text" class="form-control" id="brand" placeholder="" value="" required="">
-                            <div class="invalid-feedback">
-                                Valid brand is required.
-                            </div>
+                                <select class="form-select" id="state" required="">
+                                    <option value="">Choose...</option>
+                                    <option>Audi</option>
+                                    <option>BMW</option>
+                                    <option>BYD</option>
+                                    <option>Mercedes</option>
+                                    <option>Tesla</option>
+                                    <option>Toyota</option>
+                                    <option>Volvo</option>
+                                </select>
                         </div>
 
                         <div class="col-12">
                             <label for="color" class="form-label">Color</label>
                             <div class="input-group has-validation">
-                                <input type="text" class="form-control" id="color" placeholder="" value="" required="">
-                                <div class="invalid-feedback">
-                                    Valid color is required.
-                                </div>
+                                <select class="form-select" id="state" required="">
+                                    <option value="">Choose...</option>
+                                    <option>Black</option>
+                                    <option>Blue</option>
+                                    <option>Grayness</option>
+                                    <option>Green</option>
+                                    <option>Red</option>
+                                    <option>White</option>
+                                    <option>Yellow</option>
+                                </select>
                             </div>
                         </div>
 
                         <div class="col-12">
                             <label for="price" class="form-label">Price </label>
-                            <input type="price" class="form-control" id="email" value="">
+                            <input type="text" class="form-control" id="price" placeholder="" value="" required="">
                             <div class="invalid-feedback">
                                 Please enter a valid price.
                             </div>
@@ -62,7 +74,7 @@
                 </form>
             </div>
         </div>
-        <button class="w-50 btn btn-primary btn-lg" style="margin-top: 5%;">Post Car</button>
+        <button class="w-50 btn btn-primary btn-lg" style="margin-top: 5%; margin-left: 7%;">Post Car</button>
     </main>
 </template>
 

@@ -14,7 +14,8 @@
                 <li>{{ car.description }}</li>
             </ul>
 
-            <button type="button" class="w-100 btn btn-lg btn-primary">Book Now</button>
+            <button v-if="userType !== 'Manager'" type="button" class="w-100 btn btn-lg btn-primary">Book Now</button>
+            <button v-if="userType === 'Manager'" type="button" class="w-100 btn btn-lg btn-primary">Delete</button>
         </div>
     </div>
 </template>
@@ -30,6 +31,10 @@
                 type: Boolean,
                 required: true
             },
+            userType: {
+                type: String,
+                default: 'Customer'
+            }
         },
     };
 </script>
