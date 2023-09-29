@@ -1,8 +1,7 @@
 <template>
     <NavBar />
     <div class='container'>
-        <h1>User Information</h1>
-        <UserInfoForm />
+        <LogIn />
     </div>
 </template>
 
@@ -13,13 +12,13 @@
 </style>
 
 <script>
-    import UserInfoForm from '@/components/UserInfoForm.vue';
     import NavBar from '@/components/NavBar.vue';
+    import LogIn from '@/components/LogIn.vue';
 
     export default {
         components: {
-            UserInfoForm,
-            NavBar
+            NavBar,
+            LogIn
         },
     };
 </script>

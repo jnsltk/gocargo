@@ -1,9 +1,8 @@
 <template>
     <nav id="mainNav" class="gocargo-navbar navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">GoCarGo</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <RouterLink class="navbar-brand" to='/'>GoCarGo</RouterLink>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -20,23 +19,53 @@
                 </ul>
                 <div class="col-md-3 text-end">
                     <button type="button" @click="redirecToManager()" class="btn btn-primary me-2">Manager (Test)</button>
-                    <button type="button" class="btn btn-outline-primary me-2">Login</button>
-                    <button type="button" class="btn btn-primary">Sign-up</button>
                 </div>
+                <div v-if="!isUserLoggedIn" class="col-md-3 text-end">
+                    <button type="button" @click="redirectToLogin" class="btn btn-outline-primary me-2">Login</button>
+                    <button type="button" @click="redirectToSignUp" class="btn btn-primary">Sign-up</button>
+                </div>
+                <div v-else class="col-md-3 text-end">
+                    <a href="/useraccount" class="btn btn-primary me-2">My Account</a>
+                    <button @click="logout" class="btn btn-secondary">Log out</button>
+                </div>
+
             </div>
         </div>
     </nav>
 </template>
 
 <script>
-export default {
-    methods: {
-        redirecToManager() {
-            this.$router.push('/manager');
+    import { getToken, logout } from '../utils/auth'
+    import { RouterLink } from 'vue-router'
+
+    export default {
+        data() {
+            return {
+                isUserLoggedIn: false 
+            }
+        },
+        mounted() {
+            this.isUserLoggedIn = (getToken()) ? true : false;
+            console.log(this.isUserLoggedIn)
+        },
+        methods: {
+            logout() {
+                logout();
+            },
+            redirectToLogin() {
+                this.$router.push('/login');
+            },
+            redirectToSignUp() {
+                this.$router.push('/register');
+            },
+            redirecToManager() {
+                this.$router.push('/manager');
+            }
+        },
+        components: {
+            RouterLink 
         }
     }
-}
-
 </script>
 
 <style scoped>

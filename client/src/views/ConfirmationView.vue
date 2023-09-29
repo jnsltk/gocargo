@@ -1,5 +1,5 @@
 <template>
-    <BookingNav />
+    <NavBar />
     <div class='container'>
         <h1>Payment Successful</h1>
         <p>Order Confirmed</p>
@@ -24,7 +24,7 @@
 </style>
 
 <script>
-    import BookingNav from '@/components/BookingNav.vue';
+    import NavBar from '@/components/NavBar.vue';
 
     export default {
         data() {
@@ -50,7 +50,7 @@
                 // },
         },
         components: {
-            BookingNav
+            NavBar
         },
     };
 </script>

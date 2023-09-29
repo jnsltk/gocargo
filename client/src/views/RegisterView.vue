@@ -1,8 +1,7 @@
 <template>
     <NavBar />
     <div class='container'>
-        <h1>User Information</h1>
-        <UserInfoForm />
+        <Register />
     </div>
 </template>
 
@@ -13,13 +12,13 @@
 </style>
 
 <script>
-    import UserInfoForm from '@/components/UserInfoForm.vue';
     import NavBar from '@/components/NavBar.vue';
+    import Register from '@/components/Register.vue';
 
     export default {
         components: {
-            UserInfoForm,
-            NavBar
+            NavBar,
+            Register
         },
     };
 </script>

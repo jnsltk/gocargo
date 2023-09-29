@@ -1,9 +1,6 @@
 <template>
-    <NavBar />
-    <div class='container'>
-        <h1>Payment Details</h1>
-        <PaymentForm />
-    </div>
+    <!--<NavBar />-->
+    <UserAccount />
 </template>
 
 <style scoped>
@@ -13,13 +10,13 @@
 </style>
 
 <script>
-    import PaymentForm from '@/components/PaymentForm.vue';
     import NavBar from '@/components/NavBar.vue';
+    import UserAccount from '@/components/UserAccount.vue';
 
     export default {
         components: {
-            PaymentForm,
-            NavBar
+            NavBar,
+            UserAccount
         },
     };
 </script>

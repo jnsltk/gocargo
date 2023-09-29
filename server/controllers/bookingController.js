@@ -46,11 +46,21 @@ exports.getBookingByRef = async (req, res, next) => {
 exports.getAllBookingsByUser = async (req, res, next) => {
     const userEmail = req.params.user_email;
     try {
-        const user = await UserModel.findOne({ email: userEmail }).populate('bookings');
+        const user = await UserModel.findOne({ email: userEmail });
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
-        res.json(user.bookings);
+        if (!user.bookings) {
+            res.json(user.bookings);
+        }
+        const bookings = [];
+        
+        for (const bookingId of user.bookings) {
+            const booking = await BookingModel.findById(bookingId).populate(['user', 'car']);
+            bookings.push(booking);
+        }
+
+        res.json(bookings); 
     } catch (error) {
         next(error);
     }

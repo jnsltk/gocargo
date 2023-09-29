@@ -1,14 +1,18 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import store from '@/store/index';
+import { getToken } from '../utils/auth'
+
 import HomeView from '../views/HomeView.vue'
 import UserInfoView from '../views/UserInfoView.vue'
 import PaymentView from '../views/PaymentView.vue'
 import ConfirmationView from '../views/ConfirmationView.vue'
-import store from '@/store/index'
-import Login from '../components/Login.vue'
+import LoginView from '../views/LoginView.vue'
 import ManagerView from '../views/ManagerView.vue'
 import ManagerInform from '../components/ManagerInform.vue'
 import PostCar from '../components/PostCar.vue'
 import ManageCars from '../components/ManageCars.vue'
+import RegisterView from '../views/RegisterView.vue'
+import UserAccountView from '../views/UserAccountView.vue'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,6 +23,7 @@ const router = createRouter({
             component: HomeView
         },
         {
+            // Modify when finishing up booking process
             path: '/booking/user-info',
             component: UserInfoView
         },
@@ -54,23 +59,22 @@ const router = createRouter({
         },
         {
             path: '/login',
-            name: 'Login',
-            component:Login
+            name: 'login',
+            component: LoginView,
+            beforeEnter: isUserLoggedIn
 
         },
         {
             path: '/register',
             name: 'Register',
-            component: () => import('../components/Register.vue')
-
+            component: RegisterView
 
         },
         {
             path: '/useraccount',
             name: 'UserAccount',
-            component: () => import('../components/UserAccount.vue')
-
-            
+            component: UserAccountView,
+            meta: { requiresAuth: true }
         },
         {
             path: '/manager',
@@ -95,5 +99,29 @@ const router = createRouter({
         },
     ]
 })
+
+router.beforeEach((to, from, next) => {
+    if (to.matched.some((record) => record.meta.requiresAuth)) {
+        // Check if the user is authenticated
+        const token = getToken();
+
+        if (!token) {
+            return next('/login'); // Redirect to the login page if not authenticated
+        }
+
+        // Continue to the protected route
+        next();
+    } else {
+        next(); // Allow access to public routes
+    }
+});
+
+function isUserLoggedIn(to, from, next) {
+    if (!getToken()) {
+        next();
+    } else {
+        next('/useraccount');
+    }
+}
 
 export default router

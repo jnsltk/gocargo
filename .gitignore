@@ -142,6 +142,9 @@ typings/
 # Ignore all local history of files
 .history
 
+# Webstorm
+.idea
+
 ### Vuejs ###
 # Recommended template: Node.gitignore
 

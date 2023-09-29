@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const BookingController = require('../controllers/bookingController');
 const validateBooking = require('../middleware/validateBooking');
+const auth = require('../middleware/auth');
 
 // GET all bookings
 router.get('/api/v1/bookings', BookingController.getAllBookings);
@@ -10,7 +11,7 @@ router.get('/api/v1/bookings', BookingController.getAllBookings);
 router.get('/api/v1/bookings/:booking_reference', BookingController.getBookingByRef);
 
 // GET all bookings of a user by user email
-router.get('/api/v1/users/:user_email/bookings', BookingController.getAllBookingsByUser);
+router.get('/api/v1/users/:user_email/bookings', auth, BookingController.getAllBookingsByUser);
 
 // GET specific booking by user email and bookingReference
 router.get('/api/v1/users/:user_email/bookings/:booking_reference', BookingController.getBookingByUserAndRef);
