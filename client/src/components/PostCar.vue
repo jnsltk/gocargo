@@ -116,9 +116,10 @@ export default {
                 price: this.priceData,
                 description: this.descriptionData,
             };
-            const url = `http://localhost:3000/api/v1/managers/tomandjerry@gmail.com/cars`;
+            const url = `http://localhost:3000/api/v1/managers/${this.managerEmail}/cars`;
             axios.post(url, car).then((response) => {
                 alert('Car posted successfully!');
+                console.log(response.data);
             }).catch(error => {
                 console.error('Error:', error);
             });

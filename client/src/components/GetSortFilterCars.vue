@@ -78,7 +78,7 @@
 
 <script>
 import axios from 'axios';
-import CarCard from './CarCard.vue';
+import CarCard from '../components/CarCard.vue';
 
 export default {
     components: {
@@ -145,7 +145,7 @@ export default {
         }
     },
     props: {
-        userType:{}
+        userType:{},
     },
 };
 </script>
