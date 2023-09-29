@@ -28,10 +28,10 @@ exports.getBookingByRef = async (req, res, next) => {
             ...booking._doc,
             links: {
                 self: {
-                    href: `/api/bookings/${bookingReference}`
+                    href: `/api/v1/bookings/${bookingReference}`
                 },
                 car: {
-                    href:`/api/bookings/${bookingReference}/car`
+                    href:`/api/v1/bookings/${bookingReference}/car`
                 }
             }
         };
@@ -75,10 +75,10 @@ exports.getBookingByUserAndRef = async (req, res, next) => {
             ...booking._doc,
             links: {
                 self: {
-                    href: `/api/users/${userEmail}/bookings/${bookingReference}`
+                    href: `/api/v1/users/${userEmail}/bookings/${bookingReference}`
                 },
                 car: {
-                    href:`/api/bookings/${bookingReference}/car`
+                    href:`/api/v1/bookings/${bookingReference}/car`
                 }
             }
         };

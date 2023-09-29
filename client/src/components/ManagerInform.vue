@@ -9,7 +9,7 @@
                     <div class="row g-3">
                         <div class="col-sm-6">
                             <label for="firstName" class="form-label fs-5">First name</label>
-                            <input type="text" class="form-control" id="firstName" placeholder="" value="Tom" required="">
+                            <input type="text" class="form-control" id="firstName" placeholder="" value="Tom"  required="">
                             <div class="invalid-feedback">
                                 Valid first name is required.
                             </div>

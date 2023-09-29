@@ -59,7 +59,7 @@ exports.getManagerByEmail = async (req, res, next) => {
             ...manager._doc,
             links: {
                 self: {
-                    href: `/api/managers/${managerEmail}`
+                    href: `/api/v1/managers/${managerEmail}/cars`
                 }
             }
         };
