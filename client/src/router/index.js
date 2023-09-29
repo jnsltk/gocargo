@@ -7,8 +7,6 @@ import UserInfoView from '../views/UserInfoView.vue'
 import PaymentView from '../views/PaymentView.vue'
 import ConfirmationView from '../views/ConfirmationView.vue'
 import LoginView from '../views/LoginView.vue'
-import store from '@/store/index';
-import Login from '../components/Login.vue'
 import ManagerView from '../views/ManagerView.vue'
 import ManagerInform from '../components/ManagerInform.vue'
 import PostCar from '../components/PostCar.vue'
