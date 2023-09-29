@@ -5,16 +5,16 @@
             <p class="fs-5 lead">Discover a diverse selection of reliable vehicles in our fleet, tailored to suit your every
                 need.</p>
         </div>
-        <SortFilterCars />
+        <GetSortFilterCars />
     </div>
 </template>
 
 <script>
-import SortFilterCars from '../components/SortFilterCars.vue'
+import GetSortFilterCars from './GetSortFilterCars.vue'
 
 export default {
     components: {
-        SortFilterCars,
+        GetSortFilterCars,
     }
 }
 

@@ -3,28 +3,30 @@
         <div class="py-4" style="margin-left: 20%;">
             <h1>Post a new car</h1>
         </div>
-        <div class="row g-3">
-            <div class="col-md-7 col-lg-8">
-                <form class="needs-validation" novalidate="">
-                    <div class="row g-3">
+        <form>
+            <div class="row g-3">
+                <div class="col-md-7 col-lg-8">
+                    <form class="needs-validation" novalidate="">
+                        <div class="row g-3">
 
-                        <div class="col-12">
-                            <label for="registraction" class="form-label fs-5">Registraction</label>
-                            <input type="text" class="form-control" id="registraction" placeholder="" value="" required="">
-                            <div class="invalid-feedback">
-                                Valid registration is required.
+                            <div class="col-12">
+                                <label for="registraction" class="form-label fs-5">Registraction</label>
+                                <input type="text" class="form-control" id="registraction" placeholder=""
+                                    v-model="registrationData" required>
+                                <div class="invalid-feedback">
+                                    Valid registration is required.
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="col-12">
-                            <label for="image" class="form-label fs-5">Image</label>
-                            <input type="file" class="form-control" id="inputGroupFile04"
-                                aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                        </div>
+                            <div class="col-12">
+                                <label for="image" class="form-label fs-5">Image</label>
+                                <input type="file" class="form-control" id="image" @change="handleImageUpload"
+                                    aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                            </div>
 
-                        <div class="col-12">
-                            <label for="brand" class="form-label fs-5">Brand</label>
-                                <select class="form-select" id="state" required="">
+                            <div class="col-12">
+                                <label for="brand" class="form-label fs-5">Brand</label>
+                                <select class="form-select" id="state" v-model="brandData" required>
                                     <option value="">Choose...</option>
                                     <option>Audi</option>
                                     <option>BMW</option>
@@ -34,51 +36,95 @@
                                     <option>Toyota</option>
                                     <option>Volvo</option>
                                 </select>
-                        </div>
-
-                        <div class="col-12">
-                            <label for="color" class="form-label fs-5">Color</label>
-                            <div class="input-group has-validation">
-                                <select class="form-select" id="state" required="">
-                                    <option value="">Choose...</option>
-                                    <option>Black</option>
-                                    <option>Blue</option>
-                                    <option>Grayness</option>
-                                    <option>Green</option>
-                                    <option>Red</option>
-                                    <option>White</option>
-                                    <option>Yellow</option>
-                                </select>
                             </div>
-                        </div>
 
-                        <div class="col-12">
-                            <label for="price" class="form-label fs-5">Price </label>
-                            <input type="text" class="form-control" id="price" placeholder="" value="" required="">
-                            <div class="invalid-feedback">
-                                Please enter a valid price.
+                            <div class="col-12">
+                                <label for="color" class="form-label fs-5">Color</label>
+                                <div class="input-group has-validation">
+                                    <select class="form-select" id="state" v-model="colorData" required>
+                                        <option value="">Choose...</option>
+                                        <option>Black</option>
+                                        <option>Blue</option>
+                                        <option>Grayness</option>
+                                        <option>Green</option>
+                                        <option>Red</option>
+                                        <option>White</option>
+                                        <option>Yellow</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="col-12">
-                            <label for="address" class="form-label fs-5">Description</label>
-                            <textarea type="text" class="form-control" id="description" rows="4"
-                                placeholder="Give a discription of the car..." value="" required=""></textarea>
-                            <div class="invalid-feedback">
-                                Please enter a valid description.
+                            <div class="col-12">
+                                <label for="price" class="form-label fs-5">Price </label>
+                                <input type="text" class="form-control" id="price" placeholder="" v-model="priceData"
+                                    required>
+                                <div class="invalid-feedback">
+                                    Please enter a valid price.
+                                </div>
                             </div>
+
+                            <div class="col-12">
+                                <label for="address" class="form-label fs-5">Description</label>
+                                <textarea type="text" class="form-control" id="description" rows="4"
+                                    placeholder="Give a discription of the car..." v-model="descriptionData"
+                                    required></textarea>
+                                <div class="invalid-feedback">
+                                    Please enter a valid description.
+                                </div>
+                            </div>
+
                         </div>
 
-                    </div>
-
-                </form>
+                    </form>
+                </div>
             </div>
-        </div>
-        <button class="w-50 btn btn-primary btn-lg" style="margin-top: 5%; margin-left: 7%;">Post Car</button>
+        </form>
+        <button class="w-50 btn btn-primary btn-lg" @click="postCar" style="margin-top: 5%; margin-left: 7%;">Post Car</button>
     </main>
 </template>
 
 <script>
+import axios from 'axios';
 
+export default {
+
+    data() {
+        return {
+            managerEmail: 'tomandjerry@gmail.com',
+            registrationData: '',
+            imageData: '',
+            brandData: '',
+            colorData: '',
+            priceData: '',
+            descriptionData: '',
+        };
+    },
+    methods: {
+        handleImageUpload() {
+            const uploadedFile = event.target.files[0];
+            if (uploadedFile) {
+                const fileName = "/src/assets/images/" + uploadedFile.name;
+                this.imageData = fileName;
+            }
+        },
+        postCar() {
+            const car = {
+                registration: this.registrationData,
+                image: this.imageData,
+                brand: this.brandData,
+                color: this.colorData,
+                price: this.priceData,
+                description: this.descriptionData,
+            };
+            const url = `http://localhost:3000/api/v1/managers/tomandjerry@gmail.com/cars`;
+            axios.post(url, car).then((response) => {
+                alert('Car posted successfully!');
+            }).catch(error => {
+                console.error('Error:', error);
+            });
+        },
+    }
+
+}
 
 </script>
