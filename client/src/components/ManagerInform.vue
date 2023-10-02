@@ -94,7 +94,7 @@ export default {
                 alert('Information update successfully!');
             });
         },
-    }
+    },
 
 }
 

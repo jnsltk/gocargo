@@ -6,7 +6,7 @@
         <div id="fleet" class="row row-cols-1 row-cols-md-3 mb-3 text-center">
             <div class="col mb-3" v-for="(car, index) in cars" :key="car._id">
                 <div class="h-100">
-                    <div class="card mb-4 rounded-3 shadow-sm h-100"  :car="car" :isLastCard="index === car.length - 1">
+                    <div class="card mb-4 rounded-3 shadow-sm h-100" :car="car" :isLastCard="index === car.length - 1">
                         <div class="card-header py-3">
                             <h4 class="my-0 fw-normal">{{ car.brand }}</h4>
                             <img :src="car.image" class="card-img-top" :alt="car.brand">
@@ -20,8 +20,9 @@
                                 <li>Color: {{ car.color }}</li>
                                 <li>{{ car.description }}</li>
                             </ul>
-                            
-                            <button type="button" class="w-100 btn btn-lg btn-primary">Delete</button>
+
+                            <button type="button" @click="deleteCar(car.registration)"
+                                class="w-100 btn btn-lg btn-primary">Delete</button>
 
                         </div>
                     </div>
@@ -44,14 +45,34 @@ export default {
         return {
             cars: [],
             showNoResultsMessage: false,
+            managerEmail: 'tomandjerry@gmail.com',
         }
     },
 
     mounted() {
-        axios.get("http://localhost:3000/api/v1/cars").then((response) => {
-            this.cars = response.data;
-        });
+      this.displayCars();  
+
     },
+
+    methods: {
+        displayCars(){
+            axios.get(`http://localhost:3000/api/v1/managers/${this.managerEmail}/cars`).then((response) => {
+                this.cars = response.data;
+                if (this.cars.length === 0) {
+                    this.showNoResultsMessage = true;
+                }
+            });
+        },
+        deleteCar(registration) {
+            const deleteConfirm = window.confirm(`Are you sure you want to delete car ${registration}?`);
+            if (deleteConfirm) {
+                axios.delete(`http://localhost:3000/api/v1/managers/${this.managerEmail}/cars/${registration}`).then(() => {
+                    this.displayCars();
+                });
+            }
+
+        },
+    }
 
 }
 
