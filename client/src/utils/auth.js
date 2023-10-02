@@ -9,6 +9,15 @@ export const setToken = (token) => {
     sessionStorage.setItem('token', token);
 }
 
+export const register = async (userData) => {
+    try {
+        const response = await axios.post('http://localhost:3000/api/v1/users', userData);
+        login(response.data.newUser.email, userData.password);
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 export const login = async (email, password) => {
     const loginData = {
         'email': email,
