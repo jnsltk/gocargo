@@ -2,7 +2,7 @@
     <div class="container">
        <div class="row mt-5 mb-5">
          <div class="col-sm-12">
-            <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -45,10 +45,10 @@
 
         <div class="container">
             <img src="@/assets/car1.png" alt="car" class="bottom-image" >
-          <div class="carousel-caption text-end">
+          <div class="carousel-caption text-start">
             <h1 style="color: black;">READ MORE</h1>
             <p></p>
-            <p><a class="btn btn-lg btn-primary" href="#">About Us</a></p>
+            <p class="text-start"><a class="btn btn-lg btn-primary " href="#">About Us</a></p>
           </div>
         </div>
       </div>
@@ -86,13 +86,12 @@
         
    <style>
 .carousel-item{
-        height:32rem;
+        height:38rem;
               
         }
- 
-.bottom-image {
+    .bottom-image{
     position: absolute;
     bottom: 0;
-}
-
+    
+ }
 </style>
