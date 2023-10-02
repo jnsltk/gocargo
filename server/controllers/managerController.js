@@ -115,12 +115,6 @@ exports.patchManagerByEmail = async (req, res, next) => {
             return res.status(404).json({ "message": "Manager not found" });
         }
 
-        // Check if new email is already registered
-        const existingManager = await ManagerModel.findOne({ email: updatedManagerData.email });
-        if (existingManager) {
-            return res.status(409).json({ message: 'Manager email already in use' });
-        }
-
         manager.email = (req.body.email || manager.email);
         manager.fname = (req.body.fname || manager.fname);
         manager.lname = (req.body.lname || manager.lname);
