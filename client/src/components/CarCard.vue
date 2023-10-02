@@ -14,7 +14,7 @@
                 <li>{{ car.description }}</li>
             </ul>
 
-            <button v-if="userType !== 'Manager'" type="button" class="w-100 btn btn-lg btn-primary">Book Now</button>
+            <button v-if="userType !== 'Manager'" type="button" class="w-100 btn btn-lg btn-primary" @click="bookCar">Book Now</button>
             <button v-if="userType === 'Manager'" type="button" class="w-100 btn btn-lg btn-primary">Delete</button>
         </div>
     </div>
@@ -36,6 +36,14 @@
                 default: 'Customer'
             }
         },
+        methods: {
+            bookCar() {
+                console.log(this.car.registration);
+                this.$store.commit('setCar', this.car.registration);
+
+                this.$router.push('/booking')
+            }
+        }
     };
 </script>
 

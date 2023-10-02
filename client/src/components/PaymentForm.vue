@@ -74,11 +74,11 @@
                     // Payment was successful, proceed with booking creation
                     const bookingData = {
                         userEmail: this.$store.state.userInfo.email, // Get user email from Vuex store
-                        startDate: '2023-10-01', // Replace with actual start date
-                        endDate: '2023-10-07',   // Replace with actual end date
+                        startDate: this.$store.state.bookingData.bookingDates.startDate,
+                        endDate: this.$store.state.bookingData.bookingDates.endDate,
                         status: 'payed',         // Set the status to 'payed'
                         content: 'Booking content placeholder', // Replace with actual content
-                        carRegistration: 'ABC129', // Replace with actual car registration
+                        carRegistration: this.$store.state.bookingData.car
                     };  
 
                     try {

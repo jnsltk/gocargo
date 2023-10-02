@@ -4,6 +4,10 @@ const store = createStore({
     state: {
         userInfo: {},
         paymentDetails: {},
+        bookingData: {
+            car: '',
+            bookingDates: {},
+        }
     },
     mutations: {
         setUserInfo(state, userInfo) {
@@ -12,6 +16,12 @@ const store = createStore({
         setPaymentDetails(state, paymentDetails) {
             state.paymentDetails = paymentDetails;
         },
+        setBookingDate(state, bookingDates) {
+            state.bookingData.bookingDates = bookingDates;
+        },
+        setCar(state, carRegistration) {
+            state.bookingData.car = carRegistration;
+        }
     },
     getters: {
         isUserInfoSubmitted: (state) => {
