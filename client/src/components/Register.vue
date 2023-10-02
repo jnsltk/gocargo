@@ -9,26 +9,26 @@
         </div>
   
         <div class="modal-body p-5 pt-0">
-          <form class="">
+          <form class="" @submit.prevent="register">
             <div class="form-floating mb-3">
-              <input type="email" class="form-control rounded-3" id="floatingInput" placeholder="name@example.com">
+              <input type="email" v-model="email" class="form-control rounded-3" id="floatingInput" placeholder="name@example.com">
               <label for="floatingInput">Email address</label>
             </div>
             
             <div class="form-floating mb-3">
-              <input type="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password">
+              <input type="password" v-model="password" class="form-control rounded-3" id="floatingPassword" placeholder="Password">
               <label for="floatingPassword">Password</label>
             </div>
             <div class="form-floating mb-3">
-              <input type="text" class="form-control rounded-3" id="floatingInput" placeholder="First name">
+              <input type="text" v-model="fname" class="form-control rounded-3" id="floatingInput" placeholder="First name">
               <label for="floatingInput">First name</label>
             </div>
             <div class="form-floating mb-3">
-              <input type="text" class="form-control rounded-3" id="floatingInput" placeholder="Last name">
+              <input type="text" v-model="lname" class="form-control rounded-3" id="floatingInput" placeholder="Last name">
               <label for="floatingInput">Last name</label>
             </div>
             <div class="form-floating mb-3">
-              <input type="num" class="form-control rounded-3" id="floatingInput" placeholder="Telphone Number">
+              <input type="num" v-model="phoneNo" class="form-control rounded-3" id="floatingInput" placeholder="Telphone Number">
               <label for="floatingInput">Telphone Number</label>
             </div>
             <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Sign up</button>
@@ -53,15 +53,35 @@
 
 
 <script>
+    import { register } from '../utils/auth'
 
-export default {
-  methods: {
-    redirectToLogin() {
-      // use router.push Navigate to the login page
-      this.$router.push('/login');
-    },
-  },
-};
+    export default {
+        data() {
+            return {
+                email : '',
+                fname : '',
+                lname : '',
+                password : '',
+                phoneNo : ''
+            }
+        },
+        methods: {
+            redirectToLogin() {
+                // use router.push Navigate to the login page
+                this.$router.push('/login');
+            },
+            register() {
+                const userData = {
+                    email: this.email,
+                    fname: this.fname,
+                    lname: this.lname,
+                    password: this.password,
+                }
+
+                register(userData);
+            }
+        },
+    };
 
 
 </script>
