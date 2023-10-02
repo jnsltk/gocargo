@@ -72,7 +72,7 @@
    import "bootstrap/dist/js/bootstrap.min.js";
    import * as Bootstrap from 'bootstrap';
    
-   //import DemoComponent from "./components/DemoComponent.vue"
+   
     
    export default {
     
