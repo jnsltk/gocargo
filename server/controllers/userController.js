@@ -192,7 +192,7 @@ exports.authenticateUser = async (req, res, next) => {
 
         // else Password is valid, user is authenticated
         // Generate a JWT token
-        const token = jwt.sign({ userId: user.email }, 'your-secret-key', { expiresIn: '2h' });
+        const token = jwt.sign({ userEmail: user.email }, process.env.JWT_SECRET, { expiresIn: '2h' });
 
         // Response the token
         res.status(200).json({ message: 'Authentication successful', token });

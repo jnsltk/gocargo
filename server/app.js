@@ -5,9 +5,11 @@ const path = require('path');
 const cors = require('cors');
 const history = require('connect-history-api-fallback');
 const httpOverride = require('./middleware/httpOverride');
+const dotenv = require('dotenv');
+dotenv.config();
 
 // Variables
-const mongoURI = process.env.MONGODB_URI || 'mongodb+srv://admin:fUUc6JIkdxqHbK17@carrentaldb.xuonflo.mongodb.net/?retryWrites=true&w=majority';
+const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/GoCarGoDB';
 
 const port = process.env.PORT || 3000;
 

@@ -3,9 +3,7 @@ import store from '@/store/index';
 import { getToken } from '../utils/auth'
 
 import HomeView from '../views/HomeView.vue'
-import UserInfoView from '../views/UserInfoView.vue'
-import PaymentView from '../views/PaymentView.vue'
-import ConfirmationView from '../views/ConfirmationView.vue'
+import BookingView from '../views/BookingView.vue'
 import LoginView from '../views/LoginView.vue'
 import ManagerView from '../views/ManagerView.vue'
 import ManagerInform from '../components/ManagerInform.vue'
@@ -13,7 +11,13 @@ import PostCar from '../components/PostCar.vue'
 import ManageCars from '../components/ManageCars.vue'
 import RegisterView from '../views/RegisterView.vue'
 import UserAccountView from '../views/UserAccountView.vue'
-import HomeCarousel from '../components/HomeCarousel.vue'
+
+import PaymentForm from '../components/PaymentForm.vue'
+import BookingConfirmation from '../components/BookingConfirmation.vue'
+import LogIn from '../components/LogIn.vue'
+import DatePicker from '../components/DatePicker.vue'
+import ConfirmData from '../components/ConfirmData.vue'
+
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -24,38 +28,42 @@ const router = createRouter({
         },
         {
             // Modify when finishing up booking process
-            path: '/booking/user-info',
-            component: UserInfoView
-        },
-        {
-            path: '/booking/payment',
-            component: PaymentView,
-            beforeEnter: (to, from, next) => {
-                const userInfoCompleted = store.getters.isUserInfoSubmitted;
-
-                if (!userInfoCompleted) {
-                    next('/booking/user-info');
-                } else {
-                    next();
+            path: '/booking',
+            component: BookingView,
+            children: [{
+                path: '',
+                components: {
+                    BookingWizard: LogIn
+                },
+                beforeEnter: (to, from, next) => {
+                    if (getToken()) {
+                        next('/booking/date');
+                    } else {
+                        next();
+                    }
                 }
-            }
-        },
-        {
-            path: '/booking/confirmation',
-            component: ConfirmationView,
-            // Use a beforeEnter guard to prevent access if previous steps are incomplete
-            beforeEnter: (to, from, next) => {
-                const userInfoCompleted = store.getters.isUserInfoSubmitted;
-                const paymentCompleted = store.getters.isPaymentDetailsSubmitted;
-
-                if (!userInfoCompleted || !paymentCompleted) {
-                    // Redirect to the appropriate step if previous steps are incomplete
-                    next(userInfoCompleted ? '/booking/payment' : '/booking/user-info');
-                } else {
-                    // Allow access to the ConfirmationView
-                    next();
+            }, {
+                path: 'date', 
+                components: {
+                    BookingWizard: DatePicker
+                },
+                beforeEnter: () => { console.log('yello') }
+            }, {
+                path: 'confirm-data',
+                components: { 
+                    BookingWizard: ConfirmData
                 }
-            },
+            }, {
+                path: 'payment',
+                components: { 
+                    BookingWizard: PaymentForm
+                }
+            }, {
+                path: 'confirmation',
+                components: {
+                    BookingWizard: BookingConfirmation
+                }
+            }]
         },
         {
             path: '/login',
@@ -81,7 +89,7 @@ const router = createRouter({
             name: 'manager',
             component: ManagerView
         },
-        
+
         {
             path: '/manager/inform',
             name: 'managerInform',

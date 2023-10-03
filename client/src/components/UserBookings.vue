@@ -29,9 +29,11 @@
 
 <script>
     import axios from 'axios';
-    import { getToken } from '../utils/auth'
+    import { getToken, decodeToken } from '../utils/auth'
     
     const token = getToken();
+
+    const user = (token) ? decodeToken(token) : 'logged_out';
     
     const axiosInstance = axios.create({
         baseURL: 'http://localhost:3000/api/v1',
@@ -47,8 +49,8 @@
                 bookings: [],
             };
         },
-        mounted() {
-            axiosInstance.get("/users/lingwang@126.com/bookings")
+        async mounted() {
+            axiosInstance.get(`/users/${user.userEmail}/bookings`)
                 .then((response) => {
                     this.bookings = response.data;
                     console.log(this.bookings);
