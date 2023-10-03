@@ -1,8 +1,7 @@
 <template>
     <NavBar />
     <div class='container'>
-        <h1>User Information</h1>
-        <UserInfoForm />
+        <router-view name="BookingWizard"></router-view>
     </div>
 </template>
 
@@ -13,12 +12,12 @@
 </style>
 
 <script>
-    import UserInfoForm from '@/components/UserInfoForm.vue';
     import NavBar from '@/components/NavBar.vue';
+    import { RouterView } from 'vue-router'
 
     export default {
         components: {
-            UserInfoForm,
+            RouterView,
             NavBar
         },
     };

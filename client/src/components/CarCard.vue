@@ -14,7 +14,8 @@
                 <li>{{ car.description }}</li>
             </ul>
 
-            <button type="button" class="w-100 btn btn-lg btn-primary">Book Now</button>
+            <button type="button" class="w-100 btn btn-lg btn-primary" @click="bookCar">Book Now</button>
+            
         </div>
     </div>
 </template>
@@ -32,6 +33,14 @@
             },
         
         },
+        methods: {
+            bookCar() {
+                console.log(this.car.registration);
+                this.$store.commit('setCar', this.car.registration);
+
+                this.$router.push('/booking')
+            }
+        }
     };
 </script>
 
