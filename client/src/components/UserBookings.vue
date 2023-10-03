@@ -33,7 +33,7 @@
     
     const token = getToken();
 
-    const user = decodeToken(token)
+    const user = (token) ? decodeToken(token) : 'logged_out';
     
     const axiosInstance = axios.create({
         baseURL: 'http://localhost:3000/api/v1',
