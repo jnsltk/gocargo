@@ -69,7 +69,7 @@ const router = createRouter({
             path: '/login',
             name: 'login',
             component: LoginView,
-            beforeEnter: isUserLoggedIn
+            
 
         },
         {
@@ -82,7 +82,7 @@ const router = createRouter({
             path: '/useraccount',
             name: 'UserAccount',
             component: UserAccountView,
-            meta: { requiresAuth: true }
+           
         },
         {
             path: '/manager',
@@ -104,6 +104,11 @@ const router = createRouter({
             path: '/manager/manage',
             name: 'manageCars',
             component: ManageCars
+        },
+        {
+            path: '/homecarousel',
+            name: 'homecarousel',
+            component: HomeCarousel
         },
     ]
 })
