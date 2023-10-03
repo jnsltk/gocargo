@@ -10,45 +10,44 @@
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active" >
-        <img src="@/assets/volvo.png" alt="car" class="bottom-image" >
-       
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#d3d3d3"/></svg>
+        <img src="@/assets/32.png" alt="car" class="bottom-image img-fluid" >
+        
         <div class="container">
-          <div class="carousel-caption text-end d-flex flex-column align-items-end">
-            <h1 style="color: black;">Discover Freedom  </h1>
-            <h1 style="color: black;">on Wheels!</h1>
-            <h2  style="color: black;">Unlock adventure with </h2>
+          <div class="carousel-caption  d-flex flex-column ">
+            <div class= "text-start">
+            <h1 style="color: rgb(255, 255, 255);">Discover Freedom  </h1>
+            <h1 style="color: rgb(255, 255, 255);">on Wheels!</h1>
+            <h2  style="color: rgb(255, 255, 255);">Unlock adventure with </h2>
             <h2 style="color: black;">GoCarGo</h2>
-            <p>Choose from our diverse fleet, book with ease,</p>
-            <p>and hit the road confidently.</p>
-            <p>Your journey starts here!.</p>
-             
-            <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
+            </div>
+            <p><router-link to="/login" class="btn btn-lg btn-primary">Sign up today</router-link></p>
           </div>
         </div>
       </div>
-      <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#d3d3d3"/></svg>
-
-        <div class="container">
-            <img src="@/assets/3.png" alt="car" class="bottom-image" >
+      <div class="carousel-item" >
+        <img src="@/assets/3.png" alt="car" class="bottom-image img-fluid" >
+        
+        <div class="container" >
+            
           <div class="carousel-caption">
             
             <h1 style="color: black;">It is time to Book now.</h1>
+            <p>Choose from our diverse fleet, book with ease,</p>
+            <p>and hit the road confidently.</p>
+            <p>Your journey starts here!.</p>
             <p></p>
-            <p><a class="btn btn-lg btn-primary" href="#">BOOK NOW</a></p>
+            <button type="button" class="btn btn-lg btn-primary"  @click= "redirectToBooking">BOOK NOW</button>
           </div>
         </div>
       </div>
-      <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#d3d3d3"/></svg>
+      <div class="carousel-item" >
+        <img src="@/assets/car1.png" alt="car" class="bottom-image img-fluid" >
 
         <div class="container">
-            <img src="@/assets/car1.png" alt="car" class="bottom-image" >
           <div class="carousel-caption text-start">
             <h1 style="color: black;">READ MORE</h1>
             <p></p>
-            <p class="text-start"><a class="btn btn-lg btn-primary " href="#">About Us</a></p>
+            <p class="text-start"><a class="btn btn-lg btn-primary " href="#about">About Us</a></p>
           </div>
         </div>
       </div>
@@ -80,18 +79,34 @@
     mounted(){
        var myCarousel = document.querySelector('#myCarousel')
           new Bootstrap.Carousel(myCarousel)
+    },
+    
+
+     methods: {
+            redirectToBooking(){
+                
+                this.$router.push('/booking/user-info');
+            }
+        }
     }
-   }
    </script>
         
    <style>
-.carousel-item{
-        height:38rem;
-              
-        }
+.carousel-item {
+    height: 48rem;
+    background-size: cover;
+    background-position: center;
+}
     .bottom-image{
     position: absolute;
     bottom: 0;
     
  }
+ .img-fluid {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+
 </style>
