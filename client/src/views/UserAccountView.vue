@@ -11,7 +11,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a @click="showContent('myBookings')"  href="#" class="nav-link text-white fs-5" aria-current="page">
+                        <a @click="showContent('myBookings')" href="#" class="nav-link text-white fs-5" aria-current="page">
                             My bookings
                         </a>
                     </li>
@@ -26,7 +26,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/" class="nav-link text-white fs-5">
+                        <a href="/" @click="logout" class="nav-link text-white fs-5">
                             Sign out
                         </a>
                     </li>
@@ -40,8 +40,8 @@
             <div class="child" v-if="currentContent === 'myBookings'">
                 <UserBookings />
             </div>
-            
-            <div  class="child" v-if="currentContent === 'setting'">
+
+            <div class="child" v-if="currentContent === 'setting'">
                 <UserInfoForm />
             </div>
         </div>
@@ -53,6 +53,7 @@
 import { ref } from 'vue'
 import UserBookings from '../components/UserBookings.vue'
 import UserInfoForm from '../components/UserInfoForm.vue'
+import { logout } from '@/utils/auth'
 
 export default {
     components: {
@@ -66,11 +67,22 @@ export default {
             currentContent.value = contentName;
         };
 
+        
+
         return {
             currentContent,
             showContent,
         };
     },
+
+
+    methods: {
+
+        logout() {
+            logout();
+        }
+    }
+
 
 
 }
@@ -99,6 +111,5 @@ export default {
     position: relative;
     left: 6%;
 }
-
 </style>
 

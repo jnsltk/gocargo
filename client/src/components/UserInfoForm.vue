@@ -36,8 +36,8 @@
                         <div class="col-12">
                             <label for="phoneNumber" class="form-label fs-5">Phone Number</label>
                             <div class="input-group has-validation">
-                                <input type="text" class="form-control" id="phoneNumber" placeholder="" v-model="user.phonenumber"
-                                    required>
+                                <input type="text" class="form-control" id="phoneNumber" placeholder=""
+                                    v-model="user.phonenumber" required>
                             </div>
                         </div>
 
@@ -56,33 +56,54 @@
             style="margin-top: 5%; margin-left: 7%;">Update Information</button>
         <div style="height: 10vh;"></div>
 
-        
+
     </main>
 </template>
 
 <script>
 import axios from 'axios';
+import { getToken, decodeToken } from '../utils/auth'
+import { login } from '../utils/auth'
+
+const token = getToken();
+
+const userEmail = (token) ? decodeToken(token).userEmail : 'logged_out';
 
 export default {
     data() {
         return {
-            userEmail: 'anyone@gmail.com',
             user: {},
         };
     },
     mounted() {
 
-        axios.get(`http://localhost:3000/api/v1/users/${this.userEmail}`).then((response) => {
+        axios.get(`http://localhost:3000/api/v1/users/${userEmail}`).then((response) => {
             this.user = response.data;
         });
+
+        // Populate form fields with saved data when navigating back
+        if (this.$store.state.userInfo) {
+            this.userInfoData = { ...this.$store.state.userInfo };
+        }
     },
 
     methods: {
+        nextStep() {
+            // Submit user info data to Vuex store
+            this.$store.commit('setUserInfo', this.userInfoData);
+
+            // Navigate to the next step
+            this.$router.push('/booking/payment');
+        },
+
         updateInformation() {
-            axios.patch(`http://localhost:3000/api/v1/users/${this.user.email}`, this.user).then(() => {
+            axios.patch(`http://localhost:3000/api/v1/users/${userEmail}`, this.user).then(() => {
                 alert('Information update successfully!');
             });
         },
+        async login() {
+                login(this.email, this.password);
+            }
     },
 
 }
