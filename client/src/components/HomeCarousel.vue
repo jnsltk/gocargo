@@ -25,7 +25,7 @@
         </div>
       </div>
       <div class="carousel-item" >
-        <img src="@/assets/3.png" alt="car" class="bottom-image img-fluid" >
+        <img src="@/assets/car4.png" alt="car" class="bottom-image img-fluid" >
         
         <div class="container" >
             
@@ -41,7 +41,7 @@
         </div>
       </div>
       <div class="carousel-item" >
-        <img src="@/assets/car1.png" alt="car" class="bottom-image img-fluid" >
+        <img src="@/assets/5.png" alt="car" class="bottom-image img-fluid" >
 
         <div class="container">
           <div class="carousel-caption text-start">
