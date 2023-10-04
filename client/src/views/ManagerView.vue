@@ -66,7 +66,7 @@ export default {
     },
 
     setup() {
-        const currentContent = ref('information');
+        const currentContent = ref('manageCars');
         const showContent = (contentName) => {
             currentContent.value = contentName;
         };
