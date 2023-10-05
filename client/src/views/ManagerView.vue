@@ -16,18 +16,19 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a  @click="showContent('postCar')" href="#" class="nav-link text-white fs-5">
+                        <a @click="showContent('postCar')" href="#" class="nav-link text-white fs-5">
                             Post car
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a @click="showContent('information')"  href="#" class="nav-link text-white fs-5" aria-current="page">
+                        <a @click="showContent('information')" href="#" class="nav-link text-white fs-5"
+                            aria-current="page">
                             Setting
                         </a>
                     </li>
-                    
+
                     <li class="nav-item">
-                        <a href="/" class="nav-link text-white fs-5">
+                        <a href="/" @click="logout" class="nav-link text-white fs-5">
                             Sign out
                         </a>
                     </li>
@@ -41,10 +42,10 @@
             <div class="child" v-if="currentContent === 'information'">
                 <ManagerInform />
             </div>
-            <div  class="child" v-if="currentContent === 'postCar'">
+            <div class="child" v-if="currentContent === 'postCar'">
                 <PostCar />
             </div>
-            <div  class="child" v-if="currentContent === 'manageCars'">
+            <div class="child" v-if="currentContent === 'manageCars'">
                 <ManageCars />
             </div>
         </div>
@@ -57,6 +58,7 @@ import { ref } from 'vue'
 import ManagerInform from '../components/ManagerInform.vue'
 import PostCar from '../components/PostCar.vue'
 import ManageCars from '../components/ManageCars.vue'
+import { logout } from '@/utils/auth'
 
 export default {
     components: {
@@ -76,6 +78,13 @@ export default {
             showContent,
         };
     },
+
+    methods: {
+
+        logout() {
+            logout();
+        }
+    }
 
 
 }
@@ -104,5 +113,4 @@ export default {
     position: relative;
     left: 6%;
 }
-
 </style>

@@ -175,7 +175,7 @@ exports.authenticateManager = async (req, res, next) => {
 
         // else Password is valid, manager is authenticated
         // Generate a JWT token
-        const token = jwt.sign({ managerId: manager._id }, process.env.JWT_SECRET, { expiresIn: '2h' });
+        const token = jwt.sign({ managerEmail: manager.email }, process.env.JWT_SECRET, { expiresIn: '2h' });
 
         // Response the token
         res.status(200).json({ message: 'Authentication successful', token });

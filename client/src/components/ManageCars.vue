@@ -37,6 +37,18 @@
 
 <script>
 import axios from 'axios';
+import { getToken, decodeToken } from '../utils/auth'
+
+const token = getToken();
+const manager = (token) ? decodeToken(token) : 'logged_out';
+const axiosInstance = axios.create({
+    baseURL: 'http://localhost:3000/api/v1',
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer: ' + token
+    },
+});
+
 export default {
     components: {
     },
@@ -45,7 +57,6 @@ export default {
         return {
             cars: [],
             showNoResultsMessage: false,
-            managerEmail: 'tomandjerry@gmail.com',
         }
     },
 
@@ -56,7 +67,7 @@ export default {
 
     methods: {
         displayCars(){
-            axios.get(`http://localhost:3000/api/v1/managers/${this.managerEmail}/cars`).then((response) => {
+            axiosInstance.get(`/managers/${manager.managerEmail}/cars`).then((response) => {
                 this.cars = response.data;
                 if (this.cars.length === 0) {
                     this.showNoResultsMessage = true;
@@ -66,7 +77,7 @@ export default {
         deleteCar(registration) {
             const deleteConfirm = window.confirm(`Are you sure you want to delete car ${registration}?`);
             if (deleteConfirm) {
-                axios.delete(`http://localhost:3000/api/v1/managers/${this.managerEmail}/cars/${registration}`).then(() => {
+                axiosInstance.delete(`/managers/${manager.managerEmail}/cars/${registration}`).then(() => {
                     this.displayCars();
                 });
             }
