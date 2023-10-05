@@ -22,7 +22,7 @@
                     <button type="button" @click="redirectToSignUp" class="btn btn-outline-primary me-2">Sign-up</button>
                 </div>
                 <div v-else class="col-md-3 text-end">
-                    <a href="/useraccount" class="btn btn-primary me-2">My Account</a>
+                    <a href="/useraccount" class="btn btn-primary me-2">Account</a>
                     <button @click="logout" class="btn btn-outline-primary">Log out</button>
                 </div>
 

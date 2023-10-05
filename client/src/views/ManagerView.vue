@@ -6,11 +6,6 @@
                 <hr>
                 <ul class="nav nav-pills flex-column mb-auto">
                     <li class="nav-item">
-                        <a href="/" class="nav-link text-white fs-5" aria-current="page">
-                            Home
-                        </a>
-                    </li>
-                    <li class="nav-item">
                         <a @click="showContent('manageCars')" href="#" class="nav-link text-white fs-5">
                             Manage cars
                         </a>
