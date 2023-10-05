@@ -14,6 +14,7 @@ import ManageCars from '../components/ManageCars.vue'
 import RegisterView from '../views/RegisterView.vue'
 import UserAccountView from '../views/UserAccountView.vue'
 import HomeCarousel from '../components/HomeCarousel.vue'
+
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -102,6 +103,8 @@ const router = createRouter({
             name: 'homecarousel',
             component: HomeCarousel
         },
+       
+
     ]
 })
 
