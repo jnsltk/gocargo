@@ -1354,7 +1354,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/api/v1/managers/authentication",
+									"raw": "{{host}}/api/v1/managers/login",
 									"host": [
 										"{{host}}"
 									],
@@ -1362,7 +1362,7 @@
 										"api",
 										"v1",
 										"managers",
-										"authentication"
+										"login"
 									]
 								}
 							},
@@ -2799,7 +2799,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/v1/managers/authentication",
+							"raw": "{{host}}/api/v1/managers/login",
 							"host": [
 								"{{host}}"
 							],
@@ -2807,7 +2807,7 @@
 								"api",
 								"v1",
 								"managers",
-								"authentication"
+								"login"
 							]
 						}
 					},
