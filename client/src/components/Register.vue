@@ -28,7 +28,7 @@
               <label for="floatingInput">Last name</label>
             </div>
             <div class="form-floating mb-3">
-              <input type="num" v-model="phoneNo" class="form-control rounded-3" id="floatingInput" placeholder="Telphone Number">
+              <input type="num" v-model="phonenumber" class="form-control rounded-3" id="floatingInput" placeholder="Telphone Number">
               <label for="floatingInput">Telphone Number</label>
             </div>
             <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Sign up</button>
@@ -62,7 +62,7 @@
                 fname : '',
                 lname : '',
                 password : '',
-                phoneNo : ''
+                phonenumber : ''
             }
         },
         methods: {
@@ -76,6 +76,7 @@
                     fname: this.fname,
                     lname: this.lname,
                     password: this.password,
+                    phonenumber: this.phonenumber,
                 }
 
                 register(userData);

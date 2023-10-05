@@ -42,7 +42,7 @@ exports.getUserByEmail = async (req, res, next) => {
 
 // POST to register a new user
 exports.registerUser = async (req, res, next) => {
-    const { email, fname, lname, password, balance } = req.body;
+    const { email, fname, lname, phonenumber, password, balance } = req.body;
     
     try {
         // Check if the user already exists
@@ -59,6 +59,7 @@ exports.registerUser = async (req, res, next) => {
             email,
             fname,
             lname,
+            phonenumber,
             password: hashedPassword,
             balance,
         });
@@ -81,12 +82,6 @@ exports.patchUserByEmail = async (req, res, next) => {
         const user = await UserModel.findOne({ email: userEmail });
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
-        }
-
-        // Check if new email is already registered
-        const existingUser = await UserModel.findOne({ email: updatedUserData.email });
-        if (existingUser) {
-            return res.status(409).json({ message: 'User email already in use' });
         }
 
         // Hash the password if updating it
@@ -112,7 +107,7 @@ exports.patchUserByEmail = async (req, res, next) => {
 // PUT to modify user (replacing all fields)
 exports.modifyUserByEmail = async (req, res, next) => {
     const userEmail = req.params.user_email;
-    const { email, fname, lname, password, balance, bookings } = req.body;
+    const { email, fname, lname, phonenumber, password, balance, bookings } = req.body;
     
     try {
         const user = await UserModel.findOne({ email: userEmail });
@@ -127,14 +122,14 @@ exports.modifyUserByEmail = async (req, res, next) => {
         }
 
         // Check if fields are empty, not including bookings and balance because those can be null
-        if (!Object.values({ email, fname, lname, password }).every((value) => Boolean(value))) {
+        if (!Object.values({ email, fname, lname, phonenumber, password }).every((value) => Boolean(value))) {
             res.status(400).json({ message: 'One or more fields are missing' });
         }
 
         // Hash the password
         const hashedPassword = await bcrypt.hash(password, 10);
         
-        Object.assign(user, { email, fname, lname, hashedPassword, balance, bookings });
+        Object.assign(user, { email, fname, lname, phonenumber, hashedPassword, balance, bookings });
         
         await user.save();
         

@@ -39,7 +39,7 @@ export const login = async (email, password) => {
         const token = response.data.token;
         sessionStorage.setItem('token', token);
 
-        // redirect to user bookings 
+        // redirect to user account 
         Router.push('/useraccount');
     } catch (err) {
         // handle errors like non-existing user 

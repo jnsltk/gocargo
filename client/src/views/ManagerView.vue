@@ -11,8 +11,8 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a @click="showContent('information')"  href="#" class="nav-link text-white fs-5" aria-current="page">
-                            Information
+                        <a @click="showContent('manageCars')" href="#" class="nav-link text-white fs-5">
+                            Manage cars
                         </a>
                     </li>
                     <li class="nav-item">
@@ -21,13 +21,14 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a @click="showContent('manageCars')" href="#" class="nav-link text-white fs-5">
-                            Manage cars
+                        <a @click="showContent('information')"  href="#" class="nav-link text-white fs-5" aria-current="page">
+                            Setting
                         </a>
                     </li>
+                    
                     <li class="nav-item">
                         <a href="/" class="nav-link text-white fs-5">
-                            Log out
+                            Sign out
                         </a>
                     </li>
                 </ul>
@@ -65,7 +66,7 @@ export default {
     },
 
     setup() {
-        const currentContent = ref('information');
+        const currentContent = ref('manageCars');
         const showContent = (contentName) => {
             currentContent.value = contentName;
         };

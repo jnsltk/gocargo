@@ -65,9 +65,7 @@
         </div>
         <button class="w-50 btn btn-primary btn-lg" @click="updateInformation"
             style="margin-top: 5%; margin-left: 7%;">Update Information</button>
-        <div style="height: 10vh;">
-
-        </div>
+        <div style="height: 10vh;"></div>
     </main>
 </template>
 
