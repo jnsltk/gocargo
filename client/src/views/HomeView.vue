@@ -11,6 +11,5 @@
         <HeroComponent />
         <AboutComponent />
         <CarFleet />
-        <CarSelection />
     </main>
 </template>

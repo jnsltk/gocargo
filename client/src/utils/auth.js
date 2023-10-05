@@ -28,19 +28,27 @@ export const register = async (userData) => {
     }
 }
 
-export const login = async (email, password) => {
+export const login = async (email, password, userType) => {
     const loginData = {
         'email': email,
-        'password': password 
+        'password': password,
+        'userType': userType,
     };
 
     try {
-        const response = await axios.post('http://localhost:3000/api/v1/users/login', loginData);
-        const token = response.data.token;
-        sessionStorage.setItem('token', token);
-
-        // redirect to user account 
-        Router.push('/useraccount');
+        if(userType === 'User'){
+            const response = await axios.post('http://localhost:3000/api/v1/users/login', loginData);
+            const token = response.data.token;
+            sessionStorage.setItem('token', token);
+            // redirect to user account 
+            Router.push('/useraccount');
+        }else if(userType === 'Manager'){
+            const response = await axios.post('http://localhost:3000/api/v1/managers/login', loginData);
+            const token = response.data.token;
+            sessionStorage.setItem('token', token);
+            Router.push('/manager');
+        }
+        
     } catch (err) {
         // handle errors like non-existing user 
         console.log(err);

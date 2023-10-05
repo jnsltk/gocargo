@@ -121,6 +121,7 @@ exports.patchManagerByEmail = async (req, res, next) => {
         if(req.body.password){
             manager.password = await bcrypt.hash(req.body.password, 10);
         }
+        manager.balance = (req.body.balance || manager.balance);
         manager.address = (req.body.address || manager.address);
         await manager.save();
         res.status(200).json({ message: 'Manager updated successfully', manager });
@@ -174,7 +175,7 @@ exports.authenticateManager = async (req, res, next) => {
 
         // else Password is valid, manager is authenticated
         // Generate a JWT token
-        const token = jwt.sign({ managerId: manager._id }, process.env.JWT_SECRET, { expiresIn: '2h' });
+        const token = jwt.sign({ managerEmail: manager.email }, process.env.JWT_SECRET, { expiresIn: '2h' });
 
         // Response the token
         res.status(200).json({ message: 'Authentication successful', token });

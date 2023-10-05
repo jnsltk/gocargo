@@ -78,7 +78,7 @@
 
 <script>
 import axios from 'axios';
-import CarCard from '../components/CarCard.vue';
+import CarCard from './CarCard.vue';
 
 export default {
     components: {
