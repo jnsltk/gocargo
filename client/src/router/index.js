@@ -12,6 +12,7 @@ import ManageCars from '../components/ManageCars.vue'
 import RegisterView from '../views/RegisterView.vue'
 import UserAccountView from '../views/UserAccountView.vue'
 
+import HomeCarousel from '../components/HomeCarousel.vue'
 import PaymentForm from '../components/PaymentForm.vue'
 import BookingConfirmation from '../components/BookingConfirmation.vue'
 import LogIn from '../components/LogIn.vue'
@@ -110,6 +111,8 @@ const router = createRouter({
             name: 'homecarousel',
             component: HomeCarousel
         },
+       
+
     ]
 })
 
