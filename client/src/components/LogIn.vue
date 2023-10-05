@@ -58,6 +58,7 @@
             },
             async login() {
                 login(this.email, this.password);
+
             }
         },
     };

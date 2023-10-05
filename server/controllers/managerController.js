@@ -115,12 +115,6 @@ exports.patchManagerByEmail = async (req, res, next) => {
             return res.status(404).json({ "message": "Manager not found" });
         }
 
-        // Check if new email is already registered
-        const existingManager = await ManagerModel.findOne({ email: updatedManagerData.email });
-        if (existingManager) {
-            return res.status(409).json({ message: 'Manager email already in use' });
-        }
-
         manager.email = (req.body.email || manager.email);
         manager.fname = (req.body.fname || manager.fname);
         manager.lname = (req.body.lname || manager.lname);
@@ -180,7 +174,7 @@ exports.authenticateManager = async (req, res, next) => {
 
         // else Password is valid, manager is authenticated
         // Generate a JWT token
-        const token = jwt.sign({ managerId: manager._id }, 'your-secret-key', { expiresIn: '2h' });
+        const token = jwt.sign({ managerId: manager._id }, process.env.JWT_SECRET, { expiresIn: '2h' });
 
         // Response the token
         res.status(200).json({ message: 'Authentication successful', token });
