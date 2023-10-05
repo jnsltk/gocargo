@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "59174035-5982-4ab3-a9f5-ec26f3a77560",
+		"_postman_id": "c20e41a6-9ee5-4f9b-852c-ba92b7100877",
 		"name": "CarRental",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "29626790"
@@ -16,6 +16,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"let jsonData = pm.response.json();",
+									"let userEmail = jsonData.newUser.email;",
+									"pm.environment.set(\"user_email\", userEmail);",
+									"",
 									"pm.test(\"Status code is 201\", () => {",
 									"  pm.expect(pm.response.code).to.eql(201);",
 									"});"
@@ -29,7 +33,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"example.user@gmail.com\",\n    \"fname\": \"Björn\",\n    \"lname\": \"Svensson\",\n    \"password\": \"lösenord\",\n    \"balance\": 0\n}",
+							"raw": "{\n    \"email\": \"pontus.carlson@gmail.com\",\n    \"fname\": \"Pontus\",\n    \"lname\": \"Carlson\",\n    \"password\": \"{{user_password}}\",\n    \"phonenumber\": \"0791234567\",\n    \"balance\": 0\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -38,11 +42,9 @@
 						},
 						"url": {
 							"raw": "{{host}}/api/v1/users",
-							
 							"host": [
 								"{{host}}"
 							],
-							
 							"path": [
 								"api",
 								"v1",
@@ -59,6 +61,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"let jsonData = pm.response.json();",
+									"let userEmail = jsonData.newUser.email;",
+									"pm.environment.set(\"user_email\", userEmail);",
+									"",
 									"pm.test(\"Status code is 201\", () => {",
 									"  pm.expect(pm.response.code).to.eql(201);",
 									"});"
@@ -72,7 +78,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"pontus.carlson@gmail.com\",\n    \"fname\": \"Pontus\",\n    \"lname\": \"Carlson\",\n    \"password\": \"lösenord\",\n    \"balance\": 0\n}",
+							"raw": "{\n    \"email\": \"li.si@gmail.com\",\n    \"fname\": \"Si\",\n    \"lname\": \"Li\",\n    \"password\": \"{{user_password}}\",\n    \"phonenumber\": \"0791234567\",\n    \"balance\": 0\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -81,97 +87,9 @@
 						},
 						"url": {
 							"raw": "{{host}}/api/v1/users",
-							
 							"host": [
 								"{{host}}"
 							],
-							
-							"path": [
-								"api",
-								"v1",
-								"users"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create User",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 201\", () => {",
-									"  pm.expect(pm.response.code).to.eql(201);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"zhang.san@gmail.com\",\n    \"fname\": \"San\",\n    \"lname\": \"Zhang\",\n    \"password\": \"henanquandemima\",\n    \"balance\": 0\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{host}}/api/v1/users",
-							
-							"host": [
-								"{{host}}"
-							],
-							
-							"path": [
-								"api",
-								"v1",
-								"users"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create User",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 201\", () => {",
-									"  pm.expect(pm.response.code).to.eql(201);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"li.si@gmail.com\",\n    \"fname\": \"Si\",\n    \"lname\": \"Li\",\n    \"password\": \"henanquandemima\",\n    \"balance\": 0\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{host}}/api/v1/users",
-							
-							"host": [
-								"{{host}}"
-							],
-							
 							"path": [
 								"api",
 								"v1",
@@ -201,7 +119,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"zhang.san@gmail.com\",\n    \"fname\": \"San\",\n    \"lname\": \"Zhang\",\n    \"password\": \"henanquandemima\",\n    \"balance\": 0\n}",
+							"raw": "{\n    \"email\": \"{{user_email}}\",\n    \"fname\": \"Si\",\n    \"lname\": \"Li\",\n    \"password\": \"henanquandemima\",\n    \"balance\": 0\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -210,15 +128,59 @@
 						},
 						"url": {
 							"raw": "{{host}}/api/v1/users",
-							
 							"host": [
 								"{{host}}"
 							],
-							
 							"path": [
 								"api",
 								"v1",
 								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authenticate user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();",
+									"let token = jsonData.token;",
+									"pm.environment.set(\"token\", token);",
+									"",
+									"pm.test(\"Status code is 200\", () => {",
+									"  pm.expect(pm.response.code).to.eql(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"{{user_email}}\",\n    \"password\": \"{{user_password}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/users/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"login"
 							]
 						}
 					},
@@ -240,15 +202,23 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
 							"raw": "{{host}}/api/v1/users",
-							
 							"host": [
 								"{{host}}"
 							],
-							
 							"path": [
 								"api",
 								"v1",
@@ -274,20 +244,28 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/v1/users/zhang.san@gmail.com",
-							
+							"raw": "{{host}}/api/v1/users/{{user_email}}",
 							"host": [
 								"{{host}}"
 							],
-							
 							"path": [
 								"api",
 								"v1",
 								"users",
-								"zhang.san@gmail.com"
+								"{{user_email}}"
 							]
 						}
 					},
@@ -309,15 +287,23 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
 							"raw": "{{host}}/api/v1/users/not.a.user@gmail.com",
-							
 							"host": [
 								"{{host}}"
 							],
-							
 							"path": [
 								"api",
 								"v1",
@@ -335,6 +321,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"let jsonData = pm.response.json();",
+									"let userEmail = jsonData.user.email;",
+									"pm.environment.set(\"user_email\", userEmail);",
+									"",
 									"pm.test(\"Status code is 200\", () => {",
 									"  pm.expect(pm.response.code).to.eql(200);",
 									"});"
@@ -344,11 +334,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"john.doe@gmail.com\",\n    \"fname\": \"John\",\n    \"lname\": \"Doe\",\n    \"password\": \"password\",\n    \"balance\": 0\n}",
+							"raw": "{\n    \"email\": \"john.doe@gmail.com\",\n    \"fname\": \"John\",\n    \"lname\": \"Doe\",\n    \"password\": \"{{user_password}}\",\n    \"phonenumber\": \"0791234567\",\n    \"balance\": 0\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -356,17 +356,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/v1/users/example.user@gmail.com",
-							
+							"raw": "{{host}}/api/v1/users/{{user_email}}",
 							"host": [
 								"{{host}}"
 							],
-							
 							"path": [
 								"api",
 								"v1",
 								"users",
-								"example.user@gmail.com"
+								"{{user_email}}"
 							]
 						}
 					},
@@ -388,11 +386,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"john.doe@gmail.com\",\n    \"fname\": \"John\",\n    \"lname\": \"Doe\",\n    \"password\": \"password\",\n    \"balance\": 0\n}",
+							"raw": "{\n    \"email\": \"{{user_email}}\",\n    \"fname\": \"John\",\n    \"lname\": \"Doe\",\n    \"password\": \"{{user_password}}\",\n    \"balance\": 0\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -400,17 +408,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/v1/users/zhang.san@gmail.com",
-							
+							"raw": "{{host}}/api/v1/users/{{user_email}}",
 							"host": [
 								"{{host}}"
 							],
-							
 							"path": [
 								"api",
 								"v1",
 								"users",
-								"zhang.san@gmail.com"
+								"{{user_email}}"
 							]
 						}
 					},
@@ -423,6 +429,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"let jsonData = pm.response.json();",
+									"let userEmail = jsonData.user.email;",
+									"pm.environment.set(\"user_email\", userEmail);",
+									"",
 									"pm.test(\"Status code is 200\", () => {",
 									"  pm.expect(pm.response.code).to.eql(200);",
 									"});"
@@ -432,6 +442,16 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PATCH",
 						"header": [],
 						"body": {
@@ -444,105 +464,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/v1/users/pontus.carlson@gmail.com",
-							
+							"raw": "{{host}}/api/v1/users/{{user_email}}",
 							"host": [
 								"{{host}}"
 							],
-							
 							"path": [
 								"api",
 								"v1",
 								"users",
-								"pontus.carlson@gmail.com"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Email already in use",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 409\", () => {",
-									"  pm.expect(pm.response.code).to.eql(409);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"zhang.san@gmail.com\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{host}}/api/v1/users/pontuscarlson88@gmail.com",
-							
-							"host": [
-								"{{host}}"
-							],
-							
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"pontuscarlson88@gmail.com"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Authenticate user",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", () => {",
-									"  pm.expect(pm.response.code).to.eql(200);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"pontuscarlson88@gmail.com\",\n    \"password\": \"lösenord\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{host}}/api/v1/users/authentication",
-							
-							"host": [
-								"{{host}}"
-							],
-							
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"authentication"
+								"{{user_email}}"
 							]
 						}
 					},
@@ -564,20 +494,28 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/v1/users/zhang.san@gmail.com",
-							
+							"raw": "{{host}}/api/v1/users/{{user_email}}",
 							"host": [
 								"{{host}}"
 							],
-							
 							"path": [
 								"api",
 								"v1",
 								"users",
-								"zhang.san@gmail.com"
+								"{{user_email}}"
 							]
 						}
 					},
@@ -599,15 +537,23 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
 							"raw": "{{host}}/api/v1/users",
-							
 							"host": [
 								"{{host}}"
 							],
-							
 							"path": [
 								"api",
 								"v1",
@@ -632,6 +578,10 @@
 									"listen": "test",
 									"script": {
 										"exec": [
+											"let jsonData = pm.response.json();",
+											"let userEmail = jsonData.newUser.email;",
+											"pm.environment.set(\"user_email\", userEmail);",
+											"",
 											"pm.test(\"Status code is 201\", () => {",
 											"  pm.expect(pm.response.code).to.eql(201);",
 											"});"
@@ -645,7 +595,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"email\": \"pontus.carlson@gmail.com\",\n    \"fname\": \"Pontus\",\n    \"lname\": \"Carlson\",\n    \"password\": \"lösenord\",\n    \"balance\": 0\n}",
+									"raw": "{\n    \"email\": \"pontus.carlson@gmail.com\",\n    \"fname\": \"Pontus\",\n    \"lname\": \"Carlson\",\n    \"password\": \"{{user_password}}\",\n    \"phonenumber\": \"0791234567\",\n    \"balance\": 0\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -654,54 +604,9 @@
 								},
 								"url": {
 									"raw": "{{host}}/api/v1/users",
-									
 									"host": [
 										"{{host}}"
 									],
-									
-									"path": [
-										"api",
-										"v1",
-										"users"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Create user",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 201\", () => {",
-											"  pm.expect(pm.response.code).to.eql(201);",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"email\": \"zhang.san@gmail.com\",\n    \"fname\": \"San\",\n    \"lname\": \"Zhang\",\n    \"password\": \"henanquandemima\",\n    \"balance\": 0\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{host}}/api/v1/users",
-									
-									"host": [
-										"{{host}}"
-									],
-									
 									"path": [
 										"api",
 										"v1",
@@ -718,49 +623,10 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"pm.test(\"Status code is 201\", () => {",
-											"  pm.expect(pm.response.code).to.eql(201);",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"registration\": \"ABC123\",\n    \"image\": \"image\",\n    \"price\": 500,\n    \"color\": \"Blue\",\n    \"brand\": \"BYD\",\n    \"description\": \"This 2022 BYD Suv is perfect for weekend trips.\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{host}}/api/v1/cars",
-									
-									"host": [
-										"{{host}}"
-									],
-									
-									"path": [
-										"api",
-										"v1",
-										"cars"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Create car",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
+											"let jsonData = pm.response.json();",
+											"let carRegistration = jsonData.registration;",
+											"pm.environment.set(\"car_registration\", carRegistration);",
+											"",
 											"pm.test(\"Status code is 201\", () => {",
 											"  pm.expect(pm.response.code).to.eql(201);",
 											"});"
@@ -783,15 +649,59 @@
 								},
 								"url": {
 									"raw": "{{host}}/api/v1/cars",
-									
 									"host": [
 										"{{host}}"
 									],
-									
 									"path": [
 										"api",
 										"v1",
 										"cars"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Authenticate user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let jsonData = pm.response.json();",
+											"let token = jsonData.token;",
+											"pm.environment.set(\"token\", token);",
+											"",
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"{{user_email}}\",\n    \"password\": \"{{user_password}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/users/login",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"login"
 									]
 								}
 							},
@@ -809,6 +719,10 @@
 									"listen": "test",
 									"script": {
 										"exec": [
+											"let jsonData = pm.response.json();",
+											"let bookingRef = jsonData.newBooking.bookingReference;",
+											"pm.environment.set(\"booking_reference\", bookingRef);",
+											"",
 											"pm.test(\"Status code is 201\", () => {",
 											"  pm.expect(pm.response.code).to.eql(201);",
 											"});"
@@ -818,56 +732,21 @@
 								}
 							],
 							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"bookingReference\": \"abc12302\",\n    \"userEmail\": \"zhang.san@gmail.com\",\n    \"startDate\": \"2023-11-14\",\n    \"endDate\": \"2023-11-21\",\n    \"status\": \"Paid.\",\n    \"content\": \"Paid in advance, pick up on first day at 9:00\",\n    \"carRegistration\": \"ABC123\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
 										}
-									}
-								},
-								"url": {
-									"raw": "{{host}}/api/v1/users/zhang.san@gmail.com/bookings",
-									
-									"host": [
-										"{{host}}"
-									],
-									
-									"path": [
-										"api",
-										"v1",
-										"users",
-										"zhang.san@gmail.com",
-										"bookings"
 									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Create booking user",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 201\", () => {",
-											"  pm.expect(pm.response.code).to.eql(201);",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"bookingReference\": \"abc12303\",\n    \"userEmail\": \"pontus.carlson@gmail.com\",\n    \"startDate\": \"2023-10-21\",\n    \"endDate\": \"2023-10-28\",\n    \"status\": \"Paid.\",\n    \"content\": \"Paid in advance, pick up on first day at 9:00\",\n    \"carRegistration\": \"ABC124\"\n}",
+									"raw": "{\n    \"userEmail\": \"{{user_email}}\",\n    \"startDate\": \"2023-11-14\",\n    \"endDate\": \"2023-11-21\",\n    \"status\": \"Paid.\",\n    \"content\": \"Paid in advance, pick up on first day at 9:00\",\n    \"carRegistration\": \"{{car_registration}}\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -875,17 +754,15 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/api/v1/users/pontus.carlson@gmail.com/bookings",
-									
+									"raw": "{{host}}/api/v1/users/{{user_email}}/bookings",
 									"host": [
 										"{{host}}"
 									],
-									
 									"path": [
 										"api",
 										"v1",
 										"users",
-										"pontus.carlson@gmail.com",
+										"{{user_email}}",
 										"bookings"
 									]
 								}
@@ -899,6 +776,10 @@
 									"listen": "test",
 									"script": {
 										"exec": [
+											"let jsonData = pm.response.json();",
+											"let bookingRef = jsonData.newBooking.bookingReference;",
+											"pm.environment.set(\"booking_reference\", bookingRef);",
+											"",
 											"pm.test(\"Status code is 201\", () => {",
 											"  pm.expect(pm.response.code).to.eql(201);",
 											"});"
@@ -908,11 +789,21 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"bookingReference\": \"abc12301\",\n    \"userEmail\": \"zhang.san@gmail.com\",\n    \"startDate\": \"2023-11-01\",\n    \"endDate\": \"2023-11-07\",\n    \"status\": \"Paid.\",\n    \"content\": \"Paid in advance, pick up on first day at 9:00\",\n    \"carRegistration\": \"ABC123\"\n}",
+									"raw": "{\n    \"userEmail\": \"{{user_email}}\",\n    \"startDate\": \"2023-11-01\",\n    \"endDate\": \"2023-11-07\",\n    \"status\": \"Paid.\",\n    \"content\": \"Paid in advance, pick up on first day at 9:00\",\n    \"carRegistration\": \"{{car_registration}}\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -921,11 +812,9 @@
 								},
 								"url": {
 									"raw": "{{host}}/api/v1/users/zhang.san@gmail.com/bookings",
-									
 									"host": [
 										"{{host}}"
 									],
-									
 									"path": [
 										"api",
 										"v1",
@@ -953,15 +842,23 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
 									"raw": "{{host}}/api/v1/bookings",
-									
 									"host": [
 										"{{host}}"
 									],
-									
 									"path": [
 										"api",
 										"v1",
@@ -987,20 +884,28 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/v1/bookings/abc12301",
-									
+									"raw": "{{host}}/api/v1/bookings/{{booking_reference}}",
 									"host": [
 										"{{host}}"
 									],
-									
 									"path": [
 										"api",
 										"v1",
 										"bookings",
-										"abc12301"
+										"{{booking_reference}}"
 									]
 								}
 							},
@@ -1022,20 +927,28 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/v1/users/zhang.san@gmail.com/bookings",
-									
+									"raw": "{{host}}/api/v1/users/{{user_email}}/bookings",
 									"host": [
 										"{{host}}"
 									],
-									
 									"path": [
 										"api",
 										"v1",
 										"users",
-										"zhang.san@gmail.com",
+										"{{user_email}}",
 										"bookings"
 									]
 								}
@@ -1058,22 +971,30 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/v1/users/zhang.san@gmail.com/bookings/abc12301",
-									
+									"raw": "{{host}}/api/v1/users/{{user_email}}/bookings/{{booking_reference}}",
 									"host": [
 										"{{host}}"
 									],
-									
 									"path": [
 										"api",
 										"v1",
 										"users",
-										"zhang.san@gmail.com",
+										"{{user_email}}",
 										"bookings",
-										"abc12301"
+										"{{booking_reference}}"
 									]
 								}
 							},
@@ -1095,22 +1016,30 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/v1/users/zhang.san@gmail.com/bookings/abc12301",
-									
+									"raw": "{{host}}/api/v1/users/{{user_email}}/bookings/{{booking_reference}}",
 									"host": [
 										"{{host}}"
 									],
-									
 									"path": [
 										"api",
 										"v1",
 										"users",
-										"zhang.san@gmail.com",
+										"{{user_email}}",
 										"bookings",
-										"abc12301"
+										"{{booking_reference}}"
 									]
 								}
 							},
@@ -1132,15 +1061,23 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "DELETE",
 								"header": [],
 								"url": {
 									"raw": "{{host}}/api/v1/bookings",
-									
 									"host": [
 										"{{host}}"
 									],
-									
 									"path": [
 										"api",
 										"v1",
@@ -1171,15 +1108,23 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "DELETE",
 								"header": [],
 								"url": {
 									"raw": "{{host}}/api/v1/users",
-									
 									"host": [
 										"{{host}}"
 									],
-									
 									"path": [
 										"api",
 										"v1",
@@ -1205,15 +1150,23 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "DELETE",
 								"header": [],
 								"url": {
 									"raw": "{{host}}/api/v1/cars",
-									
 									"host": [
 										"{{host}}"
 									],
-									
 									"path": [
 										"api",
 										"v1",
@@ -1240,6 +1193,10 @@
 									"listen": "test",
 									"script": {
 										"exec": [
+											"let jsonData = pm.response.json();",
+											"let userEmail = jsonData.newUser.email;",
+											"pm.environment.set(\"user_email\", userEmail);",
+											"",
 											"pm.test(\"Status code is 201\", () => {",
 											"  pm.expect(pm.response.code).to.eql(201);",
 											"});"
@@ -1253,7 +1210,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"email\": \"bjorn.svensson@gmail.com\",\n    \"fname\": \"Björn\",\n    \"lname\": \"Svensson\",\n    \"password\": \"lösenord\",\n    \"balance\": 0\n}",
+									"raw": "{\n    \"email\": \"bjorn.svensson@gmail.com\",\n    \"fname\": \"Björn\",\n    \"lname\": \"Svensson\",\n    \"password\": \"{{user_password}}\",\n    \"phonenumber\": \"0791234567\",\n    \"balance\": 0\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1262,15 +1219,150 @@
 								},
 								"url": {
 									"raw": "{{host}}/api/v1/users",
-									
 									"host": [
 										"{{host}}"
 									],
-									
 									"path": [
 										"api",
 										"v1",
 										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Authenticate user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let jsonData = pm.response.json();",
+											"let token = jsonData.token;",
+											"pm.environment.set(\"token\", token);",
+											"",
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"{{user_email}}\",\n    \"password\": \"{{user_password}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/users/login",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create new manager",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let jsonData = pm.response.json();",
+											"let managerEmail = jsonData.newManager.email;",
+											"pm.environment.set(\"manager_email\", managerEmail);",
+											"",
+											"pm.test(\"Status code is 201\", () => {",
+											"  pm.expect(pm.response.code).to.eql(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"iamtheboss@bigboss.com\",\n    \"fname\": \"Bob\",\n    \"lname\": \"Boss\",\n    \"password\": \"{{manager_password}}\",\n    \"balance\": 0,\n    \"address\": \"Lindholmen, Gbg\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/managers",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"managers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Authenticate manager",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let jsonData = pm.response.json();",
+											"let token = jsonData.token;",
+											"pm.environment.set(\"manager_token\", token);",
+											"",
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"{{manager_email}}\",\n    \"password\": \"{{manager_password}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/managers/authentication",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"managers",
+										"authentication"
 									]
 								}
 							},
@@ -1283,6 +1375,10 @@
 									"listen": "test",
 									"script": {
 										"exec": [
+											"let jsonData = pm.response.json();",
+											"let carRegistration = jsonData.registration;",
+											"pm.environment.set(\"car_registration\", carRegistration);",
+											"",
 											"pm.test(\"Status code is 201\", () => {",
 											"  pm.expect(pm.response.code).to.eql(201);",
 											"});"
@@ -1292,6 +1388,16 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{manager_token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
@@ -1305,11 +1411,9 @@
 								},
 								"url": {
 									"raw": "{{host}}/api/v1/cars",
-									
 									"host": [
 										"{{host}}"
 									],
-									
 									"path": [
 										"api",
 										"v1",
@@ -1326,6 +1430,10 @@
 									"listen": "test",
 									"script": {
 										"exec": [
+											"let jsonData = pm.response.json();",
+											"let bookingRef = jsonData.newBooking.bookingReference;",
+											"pm.environment.set(\"booking_reference\", bookingRef);",
+											"",
 											"pm.test(\"Status code is 201\", () => {",
 											"  pm.expect(pm.response.code).to.eql(201);",
 											"});"
@@ -1335,11 +1443,21 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"bookingReference\": \"abc12302\",\n    \"userEmail\": \"bjorn.svensson@gmail.com\",\n    \"startDate\": \"2023-11-14\",\n    \"endDate\": \"2023-11-21\",\n    \"status\": \"Paid.\",\n    \"content\": \"Paid in advance, pick up on first day at 9:00\",\n    \"carRegistration\": \"ABC222\"\n}",
+									"raw": "{\n    \"userEmail\": \"{{user_email}}\",\n    \"startDate\": \"2023-11-14\",\n    \"endDate\": \"2023-11-21\",\n    \"status\": \"Paid.\",\n    \"content\": \"Paid in advance, pick up on first day at 9:00\",\n    \"carRegistration\": \"{{car_registration}}\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1347,61 +1465,16 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/api/v1/users/zhang.san@gmail.com/bookings",
-									
+									"raw": "{{host}}/api/v1/users/{{user_email}}/bookings",
 									"host": [
 										"{{host}}"
 									],
-									
 									"path": [
 										"api",
 										"v1",
 										"users",
-										"zhang.san@gmail.com",
+										"{{user_email}}",
 										"bookings"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Create new manager",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 201\", () => {",
-											"  pm.expect(pm.response.code).to.eql(201);",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"email\": \"iamtheboss@bigboss.com\",\n    \"fname\": \"Bob\",\n    \"lname\": \"Boss\",\n    \"password\": \"bigboss123\",\n    \"balance\": 0,\n    \"address\": \"Lindholmen, Gbg\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{host}}/api/v1/managers",
-									
-									"host": [
-										"{{host}}"
-									],
-									
-									"path": [
-										"api",
-										"v1",
-										"managers"
 									]
 								}
 							},
@@ -1419,6 +1492,10 @@
 									"listen": "test",
 									"script": {
 										"exec": [
+											"let jsonData = pm.response.json();",
+											"let carRegistration = jsonData.registration;",
+											"pm.environment.set(\"car_registration_1\", carRegistration);",
+											"",
 											"pm.test(\"Status code is 201\", () => {",
 											"  pm.expect(pm.response.code).to.eql(201);",
 											"});"
@@ -1428,6 +1505,16 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{manager_token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
@@ -1441,11 +1528,9 @@
 								},
 								"url": {
 									"raw": "{{host}}/api/v1/cars",
-									
 									"host": [
 										"{{host}}"
 									],
-									
 									"path": [
 										"api",
 										"v1",
@@ -1462,6 +1547,10 @@
 									"listen": "test",
 									"script": {
 										"exec": [
+											"let jsonData = pm.response.json();",
+											"let carRegistration = jsonData.registration;",
+											"pm.environment.set(\"car_registration\", carRegistration);",
+											"",
 											"pm.test(\"Status code is 201\", () => {",
 											"  pm.expect(pm.response.code).to.eql(201);",
 											"});"
@@ -1471,11 +1560,21 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{manager_token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"registration\": \"ABC321\",\n    \"image\": \"image\",\n    \"price\": 400,\n    \"color\": \"Blue\",\n    \"brand\": \"Volvo\",\n    \"description\": \"This car is blue\"\n}",
+									"raw": "{\n    \"registration\": \"ABC321\",\n    \"image\": \"image\",\n    \"price\": 400,\n    \"color\": \"Red\",\n    \"brand\": \"Volvo\",\n    \"description\": \"This car is red\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1484,11 +1583,9 @@
 								},
 								"url": {
 									"raw": "{{host}}/api/v1/cars/",
-									
 									"host": [
 										"{{host}}"
 									],
-									
 									"path": [
 										"api",
 										"v1",
@@ -1506,6 +1603,10 @@
 									"listen": "test",
 									"script": {
 										"exec": [
+											"let jsonData = pm.response.json();",
+											"let carRegistration = jsonData.registration;",
+											"pm.environment.set(\"car_registration\", carRegistration);",
+											"",
 											"pm.test(\"Status code is 201\", () => {",
 											"  pm.expect(pm.response.code).to.eql(201);",
 											"});"
@@ -1515,6 +1616,16 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{manager_token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
@@ -1528,11 +1639,9 @@
 								},
 								"url": {
 									"raw": "{{host}}/api/v1/cars/",
-									
 									"host": [
 										"{{host}}"
 									],
-									
 									"path": [
 										"api",
 										"v1",
@@ -1550,6 +1659,10 @@
 									"listen": "test",
 									"script": {
 										"exec": [
+											"let jsonData = pm.response.json();",
+											"let carRegistration = jsonData.registration;",
+											"pm.environment.set(\"car_registration\", carRegistration);",
+											"",
 											"pm.test(\"Status code is 201\", () => {",
 											"  pm.expect(pm.response.code).to.eql(201);",
 											"});"
@@ -1559,11 +1672,21 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{manager_token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"registration\": \"ABC124\",\n    \"image\": \"image\",\n    \"price\": 400,\n    \"color\": \"Red\",\n    \"brand\": \"BYD\",\n    \"description\": \"This 2022 BYD Suv is perfect for weekend trips.\"\n}",
+									"raw": "{\n    \"registration\": \"ABC124\",\n    \"image\": \"image\",\n    \"price\": 900,\n    \"color\": \"Gray\",\n    \"brand\": \"BYD\",\n    \"description\": \"This 2022 BYD Suv is perfect for weekend trips.\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1571,17 +1694,15 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/api/v1/managers/iamtheboss@bigboss.com/cars",
-									
+									"raw": "{{host}}/api/v1/managers/{{manager_email}}/cars",
 									"host": [
 										"{{host}}"
 									],
-									
 									"path": [
 										"api",
 										"v1",
 										"managers",
-										"iamtheboss@bigboss.com",
+										"{{manager_email}}",
 										"cars"
 									]
 								}
@@ -1589,12 +1710,16 @@
 							"response": []
 						},
 						{
-							"name": "Create new car for manager Copy",
+							"name": "Create new car for manager",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
 										"exec": [
+											"let jsonData = pm.response.json();",
+											"let carRegistration = jsonData.registration;",
+											"pm.environment.set(\"car_registration\", carRegistration);",
+											"",
 											"pm.test(\"Status code is 201\", () => {",
 											"  pm.expect(pm.response.code).to.eql(201);",
 											"});"
@@ -1604,11 +1729,21 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{manager_token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"registration\": \"ABC125\",\n    \"image\": \"image\",\n    \"price\": 400,\n    \"color\": \"Yellow\",\n    \"brand\": \"BYD\",\n    \"description\": \"This 2022 BYD Suv is perfect for weekend trips.\"\n}",
+									"raw": "{\n    \"registration\": \"ABC125\",\n    \"image\": \"image\",\n    \"price\": 750,\n    \"color\": \"Yellow\",\n    \"brand\": \"BYD\",\n    \"description\": \"This 2022 BYD Suv is perfect for weekend trips.\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1616,17 +1751,15 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/api/v1/managers/iamtheboss@bigboss.com/cars",
-									
+									"raw": "{{host}}/api/v1/managers/{{manager_email}}/cars",
 									"host": [
 										"{{host}}"
 									],
-									
 									"path": [
 										"api",
 										"v1",
 										"managers",
-										"iamtheboss@bigboss.com",
+										"{{manager_email}}",
 										"cars"
 									]
 								}
@@ -1649,19 +1782,70 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
 									"raw": "{{host}}/api/v1/cars",
-									
 									"host": [
 										"{{host}}"
 									],
-									
 									"path": [
 										"api",
 										"v1",
 										"cars"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get car by registration",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/v1/cars/{{car_registration}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cars",
+										"{{car_registration}}"
 									]
 								}
 							},
@@ -1683,15 +1867,23 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
 									"raw": "{{host}}/api/v1/cars/price/1",
-									
 									"host": [
 										"{{host}}"
 									],
-									
 									"path": [
 										"api",
 										"v1",
@@ -1719,15 +1911,23 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
 									"raw": "{{host}}/api/v1/cars/price/-1",
-									
 									"host": [
 										"{{host}}"
 									],
-									
 									"path": [
 										"api",
 										"v1",
@@ -1740,7 +1940,7 @@
 							"response": []
 						},
 						{
-							"name": "Get car by registration",
+							"name": "Filter car based on color",
 							"event": [
 								{
 									"listen": "test",
@@ -1755,20 +1955,207 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/v1/cars/ABC222",
-									
+									"raw": "{{host}}/api/v1/cars/color/Red",
 									"host": [
 										"{{host}}"
 									],
-									
 									"path": [
 										"api",
 										"v1",
 										"cars",
-										"ABC222"
+										"color",
+										"Red"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Filter car based on brand",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/v1/cars/brand/Volvo",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cars",
+										"brand",
+										"Volvo"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Filter car based on color and brand",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/v1/cars/color&brand/Gray/BYD",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cars",
+										"color&brand",
+										"Gray",
+										"BYD"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all cars by manager",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{manager_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/v1/managers/{{manager_email}}/cars",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"managers",
+										"{{manager_email}}",
+										"cars"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get car by manager and registration",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{manager_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/v1/managers/{{manager_email}}/cars/{{car_registration}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"managers",
+										"{{manager_email}}",
+										"cars",
+										"{{car_registration}}"
 									]
 								}
 							},
@@ -1790,20 +2177,28 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/v1/bookings/abc12302/car",
-									
+									"raw": "{{host}}/api/v1/bookings/{{booking_reference}}/car",
 									"host": [
 										"{{host}}"
 									],
-									
 									"path": [
 										"api",
 										"v1",
 										"bookings",
-										"abc12302",
+										"{{booking_reference}}",
 										"car"
 									]
 								}
@@ -1826,132 +2221,31 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/v1/users/bjorn.svensson@gmail.com/bookings/abc12302/car",
-									
+									"raw": "{{host}}/api/v1/users/{{user_email}}/bookings/{{booking_reference}}/car",
 									"host": [
 										"{{host}}"
 									],
-									
 									"path": [
 										"api",
 										"v1",
 										"users",
-										"bjorn.svensson@gmail.com",
+										"{{user_email}}",
 										"bookings",
-										"abc12302",
+										"{{booking_reference}}",
 										"car"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Filter cars by color",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 200\", () => {",
-											"  pm.expect(pm.response.code).to.eql(200);",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{host}}/api/v1/cars/color/Red",
-									
-									"host": [
-										"{{host}}"
-									],
-									
-									"path": [
-										"api",
-										"v1",
-										"cars",
-										"color",
-										"Red"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Filter car by brand",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 200\", () => {",
-											"  pm.expect(pm.response.code).to.eql(200);",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{host}}/api/v1/cars/brand/BYD",
-									
-									"host": [
-										"{{host}}"
-									],
-									
-									"path": [
-										"api",
-										"v1",
-										"cars",
-										"brand",
-										"BYD"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Filter car by brand and color",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 200\", () => {",
-											"  pm.expect(pm.response.code).to.eql(200);",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{host}}/api/v1/cars/color&brand/Red/BYD",
-									
-									"host": [
-										"{{host}}"
-									],
-									
-									"path": [
-										"api",
-										"v1",
-										"cars",
-										"color&brand",
-										"Red",
-										"BYD"
 									]
 								}
 							},
@@ -1964,6 +2258,10 @@
 									"listen": "test",
 									"script": {
 										"exec": [
+											"let jsonData = pm.response.json();",
+											"let carRegistration = jsonData.registration;",
+											"pm.environment.set(\"car_registration\", carRegistration);",
+											"",
 											"pm.test(\"Status code is 200\", () => {",
 											"  pm.expect(pm.response.code).to.eql(200);",
 											"});"
@@ -1973,6 +2271,16 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{manager_token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "PUT",
 								"header": [],
 								"body": {
@@ -1985,17 +2293,15 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/api/v1/cars/ABC129",
-									
+									"raw": "{{host}}/api/v1/cars/{{car_registration}}",
 									"host": [
 										"{{host}}"
 									],
-									
 									"path": [
 										"api",
 										"v1",
 										"cars",
-										"ABC129"
+										"{{car_registration}}"
 									]
 								}
 							},
@@ -2017,11 +2323,21 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{manager_token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "PATCH",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"color\": \"Red\"\n}",
+									"raw": "{\n    \"image\": \"new_image\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2029,17 +2345,69 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/api/v1/cars/ABC234",
-									
+									"raw": "{{host}}/api/v1/cars/{{car_registration}}",
 									"host": [
 										"{{host}}"
 									],
-									
 									"path": [
 										"api",
 										"v1",
 										"cars",
-										"ABC234"
+										"{{car_registration}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Partially update car by manager",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", () => {",
+											"  pm.expect(pm.response.code).to.eql(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{manager_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"image\": \"new_image\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/managers/{{manager_email}}/cars/{{car_registration}}",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"managers",
+										"{{manager_email}}",
+										"cars",
+										"{{car_registration}}"
 									]
 								}
 							},
@@ -2061,20 +2429,28 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{manager_token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/v1/cars/ABC234",
-									
+									"raw": "{{host}}/api/v1/cars/{{car_registration_1}}",
 									"host": [
 										"{{host}}"
 									],
-									
 									"path": [
 										"api",
 										"v1",
 										"cars",
-										"ABC234"
+										"{{car_registration_1}}"
 									]
 								}
 							},
@@ -2096,22 +2472,30 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{manager_token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/api/v1/managers/iamtheboss@bigboss.com/cars/ABC125",
-									
+									"raw": "{{host}}/api/v1/managers/{{manager_email}}/cars/{{car_registration}}",
 									"host": [
 										"{{host}}"
 									],
-									
 									"path": [
 										"api",
 										"v1",
 										"managers",
-										"iamtheboss@bigboss.com",
+										"{{manager_email}}",
 										"cars",
-										"ABC125"
+										"{{car_registration}}"
 									]
 								}
 							},
@@ -2133,15 +2517,23 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{manager_token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "DELETE",
 								"header": [],
 								"url": {
 									"raw": "{{host}}/api/v1/cars",
-									
 									"host": [
 										"{{host}}"
 									],
-									
 									"path": [
 										"api",
 										"v1",
@@ -2172,15 +2564,23 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{manager_token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "DELETE",
 								"header": [],
 								"url": {
 									"raw": "{{host}}/api/v1/users",
-									
 									"host": [
 										"{{host}}"
 									],
-									
 									"path": [
 										"api",
 										"v1",
@@ -2206,15 +2606,23 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{manager_token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "DELETE",
 								"header": [],
 								"url": {
 									"raw": "{{host}}/api/v1/bookings",
-									
 									"host": [
 										"{{host}}"
 									],
-									
 									"path": [
 										"api",
 										"v1",
@@ -2240,15 +2648,23 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{manager_token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "DELETE",
 								"header": [],
 								"url": {
 									"raw": "{{host}}/api/v1/managers",
-									
 									"host": [
 										"{{host}}"
 									],
-									
 									"path": [
 										"api",
 										"v1",
@@ -2272,6 +2688,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"let jsonData = pm.response.json();",
+									"let managerEmail = jsonData.newManager.email;",
+									"pm.environment.set(\"manager_email\", managerEmail);",
+									"",
 									"pm.test(\"Status code is 201\", () => {",
 									"  pm.expect(pm.response.code).to.eql(201);",
 									"});"
@@ -2285,7 +2705,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"iamtheboss@bigboss.com\",\n    \"fname\": \"Bob\",\n    \"lname\": \"Boss\",\n    \"password\": \"bigboss123\",\n    \"balance\": 0,\n    \"address\": \"Lindholmen, Gbg\"\n}",
+							"raw": "{\n    \"email\": \"iamtheboss@bigboss.com\",\n    \"fname\": \"Bob\",\n    \"lname\": \"Boss\",\n    \"password\": \"{{manager_password}}\",\n    \"balance\": 0,\n    \"address\": \"Lindholmen, Gbg\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2294,11 +2714,9 @@
 						},
 						"url": {
 							"raw": "{{host}}/api/v1/managers",
-							
 							"host": [
 								"{{host}}"
 							],
-							
 							"path": [
 								"api",
 								"v1",
@@ -2328,7 +2746,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"bigbossbruce@bigboss.com\",\n    \"fname\": \"Bruce\",\n    \"lname\": \"Boss\",\n    \"password\": \"bigboss1234\",\n    \"balance\": 0,\n    \"address\": \"Lindholmen, Gbg\"\n}",
+							"raw": "{\n    \"email\": \"lilaoban@bigboss.com\",\n    \"fname\": \"Laoban\",\n    \"lname\": \"Li\",\n    \"password\": \"{{manager_password}}\",\n    \"balance\": 0,\n    \"address\": \"Lindholmen, Gbg\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2337,11 +2755,9 @@
 						},
 						"url": {
 							"raw": "{{host}}/api/v1/managers",
-							
 							"host": [
 								"{{host}}"
 							],
-							
 							"path": [
 								"api",
 								"v1",
@@ -2352,14 +2768,18 @@
 					"response": []
 				},
 				{
-					"name": "Create new manager",
+					"name": "Authenticate manager",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 201\", () => {",
-									"  pm.expect(pm.response.code).to.eql(201);",
+									"let jsonData = pm.response.json();",
+									"let token = jsonData.token;",
+									"pm.environment.set(\"manager_token\", token);",
+									"",
+									"pm.test(\"Status code is 200\", () => {",
+									"  pm.expect(pm.response.code).to.eql(200);",
 									"});"
 								],
 								"type": "text/javascript"
@@ -2371,7 +2791,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"lilaoban@bigboss.com\",\n    \"fname\": \"Laoban\",\n    \"lname\": \"Li\",\n    \"password\": \"bigboss8888\",\n    \"balance\": 0,\n    \"address\": \"Lindholmen, Gbg\"\n}",
+							"raw": "{\n    \"email\": \"{{manager_email}}\",\n    \"password\": \"{{manager_password}}\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2379,16 +2799,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/v1/managers",
-							
+							"raw": "{{host}}/api/v1/managers/authentication",
 							"host": [
 								"{{host}}"
 							],
-							
 							"path": [
 								"api",
 								"v1",
-								"managers"
+								"managers",
+								"authentication"
 							]
 						}
 					},
@@ -2410,15 +2829,23 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{manager_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
 							"raw": "{{host}}/api/v1/managers",
-							
 							"host": [
 								"{{host}}"
 							],
-							
 							"path": [
 								"api",
 								"v1",
@@ -2444,20 +2871,28 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{manager_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/v1/managers/iamtheboss@bigboss.com",
-							
+							"raw": "{{host}}/api/v1/managers/{{manager_email}}",
 							"host": [
 								"{{host}}"
 							],
-							
 							"path": [
 								"api",
 								"v1",
 								"managers",
-								"iamtheboss@bigboss.com"
+								"{{manager_email}}"
 							]
 						}
 					},
@@ -2470,6 +2905,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"let jsonData = pm.response.json();",
+									"let managerEmail = jsonData.manager.email;",
+									"pm.environment.set(\"manager_email\", managerEmail);",
+									"",
 									"pm.test(\"Status code is 200\", () => {",
 									"  pm.expect(pm.response.code).to.eql(200);",
 									"});"
@@ -2479,11 +2918,21 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{manager_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"zhang@bigboss.com\",\n    \"fname\": \"Laoban\",\n    \"lname\": \"zhang\",\n    \"password\": \"mima888\",\n    \"balance\": 200,\n    \"cars\": [],\n    \"address\": \"Malmo\"\n}",
+							"raw": "{\n    \"email\": \"zhang@bigboss.com\",\n    \"fname\": \"Laoban\",\n    \"lname\": \"zhang\",\n    \"password\": \"{{manager_password}}\",\n    \"balance\": 200,\n    \"cars\": [],\n    \"address\": \"Malmo\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2491,17 +2940,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/v1/managers/iamtheboss@bigboss.com",
-							
+							"raw": "{{host}}/api/v1/managers/{{manager_email}}",
 							"host": [
 								"{{host}}"
 							],
-							
 							"path": [
 								"api",
 								"v1",
 								"managers",
-								"iamtheboss@bigboss.com"
+								"{{manager_email}}"
 							]
 						}
 					},
@@ -2514,6 +2961,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"let jsonData = pm.response.json();",
+									"let managerEmail = jsonData.manager.email;",
+									"pm.environment.set(\"manager_email\", managerEmail);",
+									"",
 									"pm.test(\"Status code is 200\", () => {",
 									"  pm.expect(pm.response.code).to.eql(200);",
 									"});"
@@ -2523,6 +2974,16 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{manager_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PATCH",
 						"header": [],
 						"body": {
@@ -2535,61 +2996,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/api/v1/managers/zhang@bigboss.com",
-							
+							"raw": "{{host}}/api/v1/managers/{{manager_email}}",
 							"host": [
 								"{{host}}"
 							],
-							
 							"path": [
 								"api",
 								"v1",
 								"managers",
-								"zhang@bigboss.com"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Authenticate manager",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", () => {",
-									"  pm.expect(pm.response.code).to.eql(200);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"lilaoban@bigboss.com\",\n    \"password\": \"bigboss8888\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{host}}/api/v1/managers/authentication",
-							
-							"host": [
-								"{{host}}"
-							],
-							
-							"path": [
-								"api",
-								"v1",
-								"managers",
-								"authentication"
+								"{{manager_email}}"
 							]
 						}
 					},
@@ -2611,20 +3026,28 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{manager_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/v1/managers/bigbossbruce@bigboss.com",
-							
+							"raw": "{{host}}/api/v1/managers/{{manager_email}}",
 							"host": [
 								"{{host}}"
 							],
-							
 							"path": [
 								"api",
 								"v1",
 								"managers",
-								"bigbossbruce@bigboss.com"
+								"{{manager_email}}"
 							]
 						}
 					},
@@ -2646,15 +3069,23 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{manager_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
 							"raw": "{{host}}/api/v1/managers",
-							
 							"host": [
 								"{{host}}"
 							],
-							
 							"path": [
 								"api",
 								"v1",
