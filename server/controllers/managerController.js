@@ -121,6 +121,7 @@ exports.patchManagerByEmail = async (req, res, next) => {
         if(req.body.password){
             manager.password = await bcrypt.hash(req.body.password, 10);
         }
+        manager.balance = (req.body.balance || manager.balance);
         manager.address = (req.body.address || manager.address);
         await manager.save();
         res.status(200).json({ message: 'Manager updated successfully', manager });
