@@ -2,9 +2,9 @@
     <nav id="mainNav" class="gocargo-navbar navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
             <RouterLink class="navbar-brand" to='/'>GoCarGo</RouterLink>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <button class="navbar-toggler" type="button" @click="toggleNavbar">
+               <span class="navbar-toggler-icon"></span>
+          </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
@@ -34,11 +34,16 @@
 <script>
     import { getToken, logout } from '../utils/auth'
     import { RouterLink } from 'vue-router'
+   
+    import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
+
 
     export default {
         data() {
             return {
-                isUserLoggedIn: false 
+                isUserLoggedIn: false ,
+                navbarCollapsed: true 
             }
         },
         mounted() {
@@ -57,7 +62,19 @@
             },
             redirecToManager() {
                 this.$router.push('/manager');
+            },
+            toggleNavbar() {  
+            this.navbarCollapsed = !this.navbarCollapsed;
+            const bsCollapse = new bootstrap.Collapse(document.getElementById('navbarCollapse'), {
+                toggle: false
+            });
+            if (this.navbarCollapsed) {
+                bsCollapse.hide();
+            } else {
+                bsCollapse.show();
             }
+        }
+            
         },
         components: {
             RouterLink 
@@ -67,8 +84,18 @@
 
 <style scoped>
 .gocargo-navbar {
-    height: 80px;
     padding: 10px 25px;
 }
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+    .gocargo-navbar {
+        height: auto; /* Allow the navbar to expand vertically */
+    }
+
+    
+}
+
 </style>
+
 
