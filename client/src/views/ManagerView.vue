@@ -85,9 +85,13 @@ export default {
         },
 
         deleteAllCars() {
-            axios.delete('http://localhost:3000/api//v1/cars').then((response) => {
-                console.log(response.data);
-            });
+            const deleteConfirm = window.confirm(`Are you sure you want to delete all cars?`);
+            if (deleteConfirm) {
+                axios.delete('http://localhost:3000/api//v1/cars').then((response) => {
+                    console.log(response.data);
+                });
+            }
+
         }
 
     }
