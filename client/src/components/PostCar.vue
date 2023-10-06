@@ -19,7 +19,8 @@
                             </div>
 
                             <div class="col-12">
-                                <label for="image" class="form-label fs-5">Image</label>
+                                <div><label for="image" class="form-label fs-5">Image</label></div>
+                                <img :src="imageData" class="max-image-size">
                                 <input type="file" class="form-control" id="image" @change="handleImageUpload"
                                     aria-describedby="inputGroupFileAddon04" aria-label="Upload">
                             </div>
@@ -146,3 +147,10 @@ export default {
 }
 
 </script>
+
+<style scoped>
+.max-image-size {
+    max-width: 100%;
+    max-height: 100%;
+}
+</style>

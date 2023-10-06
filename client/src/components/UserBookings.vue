@@ -28,7 +28,7 @@
             <div class="pricing-header pb-md-4 mx-auto">
                 <a href="/#fleet">Create a booking now</a>
             </div>
-            <div style="height: 45vh;"></div>
+            <div style="height: 60vh;"></div>
         </div>
 
     </div>

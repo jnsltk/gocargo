@@ -17,7 +17,12 @@
                     </li>
                     <li class="nav-item">
                         <a href="/#fleet" class="nav-link text-white fs-5">
-                            Create new booking
+                            Create booking
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a @click="accountCancellation" href="#" class="nav-link text-white fs-5">
+                            Cancellation
                         </a>
                     </li>
                     <li class="nav-item">
@@ -54,6 +59,20 @@ import { ref } from 'vue'
 import UserBookings from '../components/UserBookings.vue'
 import UserInfoForm from '../components/UserInfoForm.vue'
 import { logout } from '@/utils/auth'
+import axios from 'axios'
+import { getToken, decodeToken } from '../utils/auth'
+
+const token = getToken();
+
+const user = (token) ? decodeToken(token) : 'logged_out';
+
+const axiosInstance = axios.create({
+    baseURL: 'http://localhost:3000/api/v1',
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer: ' + token
+    },
+});
 
 export default {
     components: {
@@ -77,6 +96,16 @@ export default {
 
 
     methods: {
+
+        accountCancellation() {
+            const deleteConfirm = window.confirm(`Are you sure you want to cancel your account?`);
+            if (deleteConfirm) {
+                axiosInstance.delete(`/users/${user.userEmail}`).then((response) => {
+                    console.log(response.data);
+                })
+            }
+            
+        },
 
         logout() {
             logout();
