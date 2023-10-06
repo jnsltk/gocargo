@@ -1,52 +1,72 @@
 <template>
-    <form @submit.prevent="submitPaymentInfo">
-        <div class="mb-3">
-            <label for="cardNumber" class="form-label">Card Number</label>
-            <input
-            type="text"
-            class="form-control"
-            id="cardNumber"
-            v-model="paymentData.cardNumber"
-            required
-            />
-        </div>
-        <div class="mb-3">
-            <label for="cardHolder" class="form-label">Cardholder's Name</label>
-            <input
-            type="text"
-            class="form-control"
-            id="cardHolder"
-            v-model="paymentData.cardHolder"
-            required
-            />
-        </div>
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <label for="expiryDate" class="form-label">Expiry Date</label>
-                <input
-                type="text"
-                class="form-control"
-                id="expiryDate"
-                placeholder="MM/YY"
-                v-model="paymentData.expiryDate"
-                required
-                />
+    <div class="container col-xxl-8 px-4 py-5">
+        <div class="row flex-lg-row align-items-center g-5 py-5 mb-5">
+            <div class="col-10 col-sm-8 col-lg-6">
+                <h1 class="display-5 fw-bold text-body-emphasis">
+                    Almost there!
+                </h1>
+                <p class="lead">Please provide your card details to continue to the payment.</p>
             </div>
-            <div class="col-md-6 mb-3">
-                <label for="cvv" class="form-label">CVV</label>
-                <input
-                type="text"
-                class="form-control"
-                id="cvv"
-                v-model="paymentData.cvv"
-                required
-                />
+            <div class="col-lg-6">
+                <form class="form" @submit.prevent="submitPaymentInfo">
+                    <div class="col-md-12 mb-3">
+                        <label for="cardNumber" class="form-label lead">Card Number</label>
+                        <input
+                        type="text"
+                        class="form-control"
+                        id="cardNumber"
+                        v-model="paymentData.cardNumber"
+                        required
+                        />
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="cardHolder" class="form-label lead">Cardholder's Name</label>
+                        <input
+                        type="text"
+                        class="form-control"
+                        id="cardHolder"
+                        v-model="paymentData.cardHolder"
+                        required
+                        />
+                    </div>
+                    <div class="col-md-12 row mb-5">
+                        <div class="col">
+                            <label for="expiryDate" class="form-label lead">Expiry Date</label>
+                            <input
+                            type="text"
+                            class="form-control"
+                            id="expiryDate"
+                            placeholder="MM/YY"
+                            v-model="paymentData.expiryDate"
+                            required
+                            />
+                        </div>
+                        <div class="col">
+                            <label for="cvv" class="form-label lead">CVV</label>
+                            <input
+                            type="text"
+                            class="form-control"
+                            id="cvv"
+                            v-model="paymentData.cvv"
+                            required
+                            />
+                        </div>
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button @click="previousStep" class="btn btn-secondary">Previous</button>
+                        <button type="submit" class="btn btn-primary">Submit Payment</button>
+                    </div>
+                </form>
             </div>
         </div>
-        <button @click="previousStep" class="btn btn-secondary">Previous</button>
-        <button type="submit" class="btn btn-primary">Submit Payment</button>
-    </form>
+    </div>
 </template>
+
+<style scoped>
+.container {
+    margin-bottom: 50vh;
+}
+</style>
 
 <script>
     import axios from 'axios';
