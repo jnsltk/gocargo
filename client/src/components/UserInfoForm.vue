@@ -63,7 +63,6 @@
 <script>
 import axios from 'axios';
 import { getToken, decodeToken } from '../utils/auth'
-import { login } from '../utils/auth'
 
 const token = getToken();
 
@@ -101,9 +100,7 @@ export default {
                 alert('Information update successfully!');
             });
         },
-        async login() {
-                login(this.email, this.password);
-            }
+        
     },
 
 }

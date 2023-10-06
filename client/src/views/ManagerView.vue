@@ -15,9 +15,9 @@
                             Post car
                         </a>
                     </li>
+
                     <li class="nav-item">
-                        <a @click="showContent('information')" href="#" class="nav-link text-white fs-5"
-                            aria-current="page">
+                        <a @click="showContent('information')" href="#" class="nav-link text-white fs-5">
                             Setting
                         </a>
                     </li>
@@ -27,8 +27,11 @@
                             Sign out
                         </a>
                     </li>
+
+
                 </ul>
                 <hr>
+                <a @click="deleteAllCars" href="#" class="nav-link text-white fs-5">Delete all cars</a>
             </div>
         </div>
 
@@ -54,6 +57,7 @@ import ManagerInform from '../components/ManagerInform.vue'
 import PostCar from '../components/PostCar.vue'
 import ManageCars from '../components/ManageCars.vue'
 import { logout } from '@/utils/auth'
+import axios from 'axios'
 
 export default {
     components: {
@@ -78,7 +82,14 @@ export default {
 
         logout() {
             logout();
+        },
+
+        deleteAllCars() {
+            axios.delete('http://localhost:3000/api//v1/cars').then((response) => {
+                console.log(response.data);
+            });
         }
+
     }
 
 
