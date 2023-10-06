@@ -79,18 +79,30 @@
                 </div>
             </div>
         </form>
-        <button class="w-50 btn btn-primary btn-lg" @click="postCar" style="margin-top: 5%; margin-left: 7%;">Post Car</button>
+        <button class="w-50 btn btn-primary btn-lg" @click="postCar" style="margin-top: 5%; margin-left: 7%;">Post
+            Car</button>
     </main>
 </template>
 
 <script>
 import axios from 'axios';
+import { getToken, decodeToken } from '../utils/auth'
+
+const token = getToken();
+const manager = (token) ? decodeToken(token) : 'logged_out';
+const axiosInstance = axios.create({
+    baseURL: 'http://localhost:3000/api/v1',
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer: ' + token
+    },
+});
 
 export default {
 
     data() {
         return {
-            managerEmail: 'tomandjerry@gmail.com',
+            managerEmail: manager.managerEmail,
             registrationData: '',
             imageData: '',
             brandData: '',
@@ -100,11 +112,16 @@ export default {
         };
     },
     methods: {
-        handleImageUpload() {
+        handleImageUpload(event) {
             const uploadedFile = event.target.files[0];
             if (uploadedFile) {
-                const fileName = "/src/assets/images/" + uploadedFile.name;
-                this.imageData = fileName;
+                const reader = new FileReader();
+
+                reader.onload = (e) => {
+                    this.imageData = e.target.result;
+                };
+
+                reader.readAsDataURL(uploadedFile);
             }
         },
         postCar() {
@@ -116,8 +133,8 @@ export default {
                 price: this.priceData,
                 description: this.descriptionData,
             };
-            const url = `http://localhost:3000/api/v1/managers/${this.managerEmail}/cars`;
-            axios.post(url, car).then((response) => {
+            const url = `/managers/${this.managerEmail}/cars`;
+            axiosInstance.post(url, car).then((response) => {
                 alert('Car posted successfully!');
                 console.log(response.data);
             }).catch(error => {

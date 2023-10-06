@@ -1,5 +1,4 @@
 <template>
-    <NavBar />
     <div class='container'>
         <h1>Payment Successful</h1>
         <p>Order Confirmed</p>
@@ -24,8 +23,6 @@
 </style>
 
 <script>
-    import NavBar from '@/components/NavBar.vue';
-
     export default {
         data() {
             return {
@@ -48,9 +45,6 @@
                         //     console.error('Failed to fetch booking info:', error);
                         //   }
                 // },
-        },
-        components: {
-            NavBar
         },
     };
 </script>
