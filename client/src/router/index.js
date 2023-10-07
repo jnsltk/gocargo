@@ -48,21 +48,56 @@ const router = createRouter({
                 components: {
                     BookingWizard: DatePicker
                 },
-                beforeEnter: () => { console.log('yello') }
+                beforeEnter: (to, from, next) => {
+                    if (!store.state.bookingData.car) {
+                        next('/#fleet');
+                    } else {
+                        next();
+                    }
+                }
             }, {
                 path: 'confirm-data',
                 components: { 
                     BookingWizard: ConfirmData
+                },
+                beforeEnter: (to, from, next) => {
+                    if (!store.state.bookingData.car) {
+                        next('/#fleet');
+                    } else if(!store.state.bookingData.bookingDates) {
+                        next('date');
+                    } else {
+                        next();
+                    }
                 }
             }, {
                 path: 'payment',
                 components: { 
                     BookingWizard: PaymentForm
+                },
+                beforeEnter: (to, from, next) => {
+                    if (!store.state.bookingData.car) {
+                        next('/#fleet');
+                    } else if(!store.state.bookingData.bookingDates) {
+                        next('date');
+                    } else {
+                        next();
+                    }
                 }
             }, {
                 path: 'confirmation',
                 components: {
                     BookingWizard: BookingConfirmation
+                },
+                beforeEnter: (to, from, next) => {
+                    if (!store.state.bookingData.car) {
+                        next('/#fleet');
+                    } else if(!store.state.bookingData.bookingDates) {
+                        next('date');
+                    } else if(!store.state.finalBooking) {
+                        next('payment');
+                    } else {
+                        next();
+                    }
                 }
             }]
         },

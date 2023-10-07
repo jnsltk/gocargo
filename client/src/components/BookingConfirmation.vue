@@ -53,7 +53,6 @@
         },
  
         mounted() {
-            console.log(this.$store.state.finalBooking);
             this.userInfo.email = this.$store.state.finalBooking.user.email;
             this.userInfo.firstName = this.$store.state.finalBooking.user.fname;
             this.userInfo.lastName = this.$store.state.finalBooking.user.lname;

@@ -84,44 +84,38 @@
         },
         methods: {
             async submitPaymentInfo() {
-                // Submit payment info data to Vuex store
                 this.$store.commit('setPaymentDetails', this.paymentData);
-                // Implement payment processing logic here (e.g., API request)
                 const paymentSuccess = await this.simulatePayment(this.$store.state.paymentDetails);
 
                 // After payment confirmation, the data from the Vuex store is used to create a booking on the back end
                 if (paymentSuccess) {
                     // Payment was successful, proceed with booking creation
                     const bookingData = {
-                        userEmail: this.$store.state.userInfo.email, // Get user email from Vuex store
+                        userEmail: this.$store.state.userInfo.email, 
                         startDate: this.$store.state.bookingData.bookingDates.startDate,
                         endDate: this.$store.state.bookingData.bookingDates.endDate,
-                        status: 'payed',         // Set the status to 'payed'
-                        content: 'Booking content placeholder', // Replace with actual content
+                        status: 'payed',         
+                        content: 'Booking content placeholder', 
                         carRegistration: this.$store.state.bookingData.car
                     };  
 
                     try {
                         // Make a POST request to create a booking
-                        console.log(bookingData);
                         const response = await axios.post(`http://localhost:3000/api/v1/users/${bookingData.userEmail}/bookings`, bookingData);
 
-                        // Handle the response (e.g., show confirmation message)
-                        console.log('Booking created:', response.data);
+                        alert('Successfully created booking!');
 
                         this.$store.commit('setFinalBooking', response.data.booking);
 
-                        // Now you can navigate to the final confirmation step
                         this.$router.push('/booking/confirmation');
                     } catch (error) {
-                        // Handle any errors (e.g., show an error message)
                         console.error('Error creating booking:', error);
                         this.$router.push('/');
                     }
                 }
             },
             previousStep() {
-                this.$router.push('/booking/user-info');
+                this.$router.push('/booking/confirm-data');
             },
             simulatePayment(paymentData) {
                 console.log(paymentData);

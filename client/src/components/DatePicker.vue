@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button type="submit" class="btn btn-outline-secondary btn-lg px-4">Previous</button>
+            <a href="/#fleet" class="btn btn-outline-secondary btn-lg px-4">Select a different car</a>
             <button type="submit" class="btn btn-primary btn-lg px-4">Next</button>
         </div>
     </form>
@@ -53,6 +53,9 @@
                     endDate: ''
                 }
             }
+        },
+        mounted() {
+            this.bookingData = this.$store.state.bookingData.bookingDates;
         },
         methods: {
             nextStep() {

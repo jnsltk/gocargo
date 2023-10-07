@@ -35,7 +35,6 @@
         },
         methods: {
             bookCar() {
-                console.log(this.car.registration);
                 this.$store.commit('setCar', this.car.registration);
 
                 this.$router.push('/booking')

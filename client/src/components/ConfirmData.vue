@@ -22,7 +22,7 @@
     </div>
 
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <button @click="previousStep" class="btn btn-outline-secondary">Previous</button>
+        <button @click="prevStep" class="btn btn-outline-secondary">Previous</button>
         <button @click="nextStep" class="btn btn-primary">Confirm and continue to payment</button>
     </div>
 </template>
@@ -82,8 +82,6 @@
 
                 this.carInfo = carRes.data;
 
-                console.log(this.carInfo);
-
                 this.$store.commit('setUserInfo', this.userInfo);
 
             } catch (err) {
@@ -94,6 +92,9 @@
         methods: {
             nextStep() {
                 this.$router.push('/booking/payment');
+            },
+            prevStep() {
+                this.$router.push('/booking/date');
             }
         }
     }
