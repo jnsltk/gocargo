@@ -339,12 +339,9 @@ exports.deleteCarByManagerEmail = async (req, res, next) => {
             return res.status(404).json({ "message": "Car not found" });
         }
   
-        // Remove the car ID from the manager's 'cars' array and save the manager  
-        const carIndex = manager.cars.indexOf(car.registration);  
-        if (carIndex !== -1) {  
-            manager.cars.splice(carIndex, 1);  
-            await manager.save();  
-        }  
+        // Remove the car reference from the manager's 'cars' array and save the manager  
+        manager.cars.pull(car._id);  
+        await manager.save();  
   
         res.status(200).json(car);  
     } catch (err) {  
