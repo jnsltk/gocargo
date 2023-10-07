@@ -143,8 +143,10 @@ exports.createBookingForUser = async (req, res, next) => {
         
         existingUser.bookings.push(newBooking._id);
         await existingUser.save();
-        
-        res.status(201).json({ message: 'Booking successful', newBooking })
+
+        const booking = await BookingModel.findById(newBooking._id).populate(['user', 'car']);
+
+        res.status(201).json({ message: 'Booking successful', booking })
     } catch (error) {
         next(error);
     }
@@ -164,20 +166,20 @@ exports.removeAllBookings = async (req, res, next) => {
 exports.removeBookingByUserAndRef = async (req, res, next) => {
     const userEmail = req.params.user_email;
     const bookingReference = req.params.booking_reference;
-    
+
     try {
         const user = await UserModel.findOne({ email: userEmail }).populate('bookings');
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
-        
+
         const booking = user.bookings.find((booking) => booking.bookingReference === bookingReference);
         if (!booking) {
             return res.status(404).json({ message: 'User has no booking with this ID' });
         }
-        
+
         await booking.deleteOne();
-        
+
         return res.status(200).json({ message: 'Booking removed successfully'});
     } catch (error) {
         next(error);

@@ -7,7 +7,8 @@ const store = createStore({
         bookingData: {
             car: '',
             bookingDates: {},
-        }
+        },
+        finalBooking: {}
     },
     mutations: {
         setUserInfo(state, userInfo) {
@@ -21,6 +22,9 @@ const store = createStore({
         },
         setCar(state, carRegistration) {
             state.bookingData.car = carRegistration;
+        },
+        setFinalBooking(state, finalBooking) {
+            state.finalBooking = finalBooking;
         }
     },
     getters: {
