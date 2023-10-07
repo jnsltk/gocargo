@@ -111,16 +111,34 @@ export default {
 }
 
 
-.sidebar {
-    flex: 1;
-}
+
 
 .content {
-    flex: 4;
+    margin-left:20%;
 }
 
 .child {
     position: relative;
     left: 6%;
+}
+
+@media (max-width: 767.98px) {
+    .account-sidebar {
+        position: static;  
+        width: 100%;  
+        height: auto;  
+    }
+    .content {
+        margin-left: 0;  
+    }
+    .account-sidebar .fs-3 {
+        font-size: 1.0rem !important;
+        
+        
+    }
+    .account-sidebar .fs-5 {
+        font-size: 0.8rem !important; 
+    
+    }
 }
 </style>

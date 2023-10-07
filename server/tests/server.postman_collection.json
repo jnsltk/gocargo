@@ -720,7 +720,7 @@
 									"script": {
 										"exec": [
 											"let jsonData = pm.response.json();",
-											"let bookingRef = jsonData.newBooking.bookingReference;",
+											"let bookingRef = jsonData.booking.bookingReference;",
 											"pm.environment.set(\"booking_reference\", bookingRef);",
 											"",
 											"pm.test(\"Status code is 201\", () => {",
@@ -777,7 +777,7 @@
 									"script": {
 										"exec": [
 											"let jsonData = pm.response.json();",
-											"let bookingRef = jsonData.newBooking.bookingReference;",
+											"let bookingRef = jsonData.booking.bookingReference;",
 											"pm.environment.set(\"booking_reference\", bookingRef);",
 											"",
 											"pm.test(\"Status code is 201\", () => {",
@@ -1431,7 +1431,7 @@
 									"script": {
 										"exec": [
 											"let jsonData = pm.response.json();",
-											"let bookingRef = jsonData.newBooking.bookingReference;",
+											"let bookingRef = jsonData.booking.bookingReference;",
 											"pm.environment.set(\"booking_reference\", bookingRef);",
 											"",
 											"pm.test(\"Status code is 201\", () => {",

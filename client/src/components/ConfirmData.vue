@@ -1,28 +1,31 @@
 <template>
-    <h1>Order data</h1>
-    <p>Please check and confirm your order</p>
-    <h2>User details</h2>
-    <p>User email: {{ userInfo.email }}</p>
-    <p>First name: {{ userInfo.firstName }}</p>
-    <p>Last name: {{ userInfo.lastName }}</p>
-    <h2>Booking</h2>
-    <p>Start date: {{ bookingInfo.startDate }}</p>
-    <p>End date: {{ bookingInfo.endDate }}</p>
-    <h2>Car</h2>
-    <img :src="carInfo.image" :alt="carInfo.description" class="car-image">
-    <p>Brand: {{ carInfo.brand }}</p>
-    <p>Color: {{ carInfo.color }}</p>
-    <p>Description: {{ carInfo.description }}</p>
+    <div class="row flex-lg-row-reverse align-items-center py-5 mb-2">
+        <div class="col-10 col-sm-8 col-lg-6">
+            <img :src="carInfo.image" :alt="carInfo.description" class="d-block mx-lg-auto img-fluid">
+        </div>
+        <div class="col-10 col-sm-8 col-lg-6">
+            <h1 class="display-5 fw-bold text-body-emphasis">Your Order</h1>
+            <p class="lead">Please make sure all information below is correct.</p>
+            <h2 class="fw-bold text-body-emphasis">User details</h2>
+            <p class="lead"><strong>User email: </strong> {{ userInfo.email }}</p>
+            <p class="lead"><strong>First name: </strong>{{ userInfo.firstName }}</p>
+            <p class="lead"><strong>Last name:</strong> {{ userInfo.lastName }}</p>
+            <p class="lead"><strong>Phone number:</strong> {{ userInfo.phoneNumber }}</p>
+            <h2 class="fw-bold text-body-emphasis">Booking</h2>
+            <p class="lead"><strong>Start date:</strong> {{ bookingInfo.startDate }}</p>
+            <p class="lead"><strong>End date:</strong> {{ bookingInfo.endDate }}</p>
+            <h2 class="fw-bold text-body-emphasis">Car</h2>
+            <p class="lead"><strong>Brand:</strong> {{ carInfo.brand }}</p>
+            <p class="lead"><strong>Color:</strong> {{ carInfo.color }}</p>
+            <p class="lead"><strong>Description:</strong> {{ carInfo.description }}</p>
+        </div>
+    </div>
 
-    <button @click="previousStep" class="btn btn-secondary">Previous</button>
-    <button @click="nextStep" class="btn btn-primary">Confirm and continue to payment</button>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button @click="prevStep" class="btn btn-outline-secondary">Previous</button>
+        <button @click="nextStep" class="btn btn-primary">Confirm and continue to payment</button>
+    </div>
 </template>
-
-<style scoped>
-    .car-image {
-        width: 300px;
-    }
-</style>
 
 <script>
     import { decodeToken, getToken } from '../utils/auth'
@@ -61,12 +64,12 @@
             try {
 
                 const response = await axiosInstance.get(`/users/${userEmail}`) 
-                
+
                 this.userInfo = {
                     email: response.data.email,
                     firstName: response.data.fname,
                     lastName: response.data.lname,
-                    phoneNumber: response.data.phoneNo,
+                    phoneNumber: response.data.phonenumber,
                 }
 
                 this.bookingInfo = {
@@ -79,8 +82,6 @@
 
                 this.carInfo = carRes.data;
 
-                console.log(this.carInfo);
-
                 this.$store.commit('setUserInfo', this.userInfo);
 
             } catch (err) {
@@ -91,6 +92,9 @@
         methods: {
             nextStep() {
                 this.$router.push('/booking/payment');
+            },
+            prevStep() {
+                this.$router.push('/booking/date');
             }
         }
     }
