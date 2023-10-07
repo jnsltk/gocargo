@@ -27,11 +27,6 @@
     </div>
 </template>
 
-<style scoped>
-.car-image {
-}
-</style>
-
 <script>
     import { decodeToken, getToken } from '../utils/auth'
     import axios from 'axios'

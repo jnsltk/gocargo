@@ -109,6 +109,8 @@
                         // Handle the response (e.g., show confirmation message)
                         console.log('Booking created:', response.data);
 
+                        this.$store.commit('setFinalBooking', response.data.booking);
+
                         // Now you can navigate to the final confirmation step
                         this.$router.push('/booking/confirmation');
                     } catch (error) {
