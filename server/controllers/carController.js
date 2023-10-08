@@ -68,7 +68,17 @@ exports.getCarByReg = async (req, res, next) => {
         if (car == null) {
             return res.status(404).json({ "message": "Car not found" });
         }
-        res.json(car);
+        // Create HATEOAS links for booking
+        const carLinks = {
+            ...car._doc,
+            links: {
+                cars: {
+                    href:`http://localhost:5173/#fleet`
+                },
+            }
+        };
+
+        res.status(200).json(carLinks);
     } catch (err) {
         next(err);
     }
