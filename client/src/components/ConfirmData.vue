@@ -91,9 +91,37 @@
         },
         methods: {
             async nextStep() {
-                // this.$router.push('/booking/payment');
+                // First save the booking with 'unpaid' status
+                    const bookingData = {
+                        userEmail: this.$store.state.userInfo.email, 
+                        startDate: this.$store.state.bookingData.bookingDates.startDate,
+                        endDate: this.$store.state.bookingData.bookingDates.endDate,
+                        status: 'unpaid',
+                        content: 'Booking has been saved, but not yet paid', 
+                        carRegistration: this.$store.state.bookingData.car
+                    };  
+
                 try {
-                    const response = await axiosInstance.post('/create-checkout-session', { "bookingInfo": this.bookingInfo, "car": this.carInfo });
+                    // Make a POST request to create a booking
+                    const response = await axios.post(`http://localhost:3000/api/v1/users/${bookingData.userEmail}/bookings`, bookingData);
+
+                    this.$store.commit('setFinalBooking', response.data.booking);
+
+                    this.$router.push('/booking/confirmation');
+                } catch (error) {
+                    console.error('Error creating booking:', error);
+                    this.$router.push('/');
+                }
+
+                console.log("Booking saved with unpaid status, redirecting to Stripe for payment");
+
+                // Handle payment with Stripe
+                try {
+                    const response = await axiosInstance
+                        .post('/create-checkout-session', { 
+                            "bookingInfo": this.bookingInfo,
+                            "car": this.carInfo 
+                        });
                     window.location.href = response.data.url;
                 } catch (err) {
                     console.error(err);
