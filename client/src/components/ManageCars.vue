@@ -18,7 +18,7 @@
 
                             <ul class="list-unstyled mt-3 mb-4">
                                 <li>Color: {{ car.color }}</li>
-                                <li>{{ car.description }}</li>
+                                <li class="description-ellipsis">{{ car.description }}</li>
                             </ul>
 
                             <button type="button" @click="deleteCar(car.registration)"
@@ -88,3 +88,12 @@ export default {
 }
 
 </script>
+
+<style scoped>
+.description-ellipsis {
+  white-space: nowrap;      
+  overflow: hidden;          
+  text-overflow: ellipsis;   
+  max-width: 100%;           
+}
+</style>
