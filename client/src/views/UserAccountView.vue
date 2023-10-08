@@ -100,6 +100,7 @@ export default {
         accountCancellation() {
             const deleteConfirm = window.confirm(`Are you sure you want to cancel your account?`);
             if (deleteConfirm) {
+                this.logout();
                 axiosInstance.delete(`/users/${user.userEmail}`).then((response) => {
                     console.log(response.data);
                 })
