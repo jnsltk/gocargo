@@ -68,7 +68,17 @@ exports.getCarByReg = async (req, res, next) => {
         if (car == null) {
             return res.status(404).json({ "message": "Car not found" });
         }
-        res.json(car);
+        // Create HATEOAS links for booking
+        const carLinks = {
+            ...car._doc,
+            links: {
+                cars: {
+                    href:`http://localhost:5173/#fleet`
+                },
+            }
+        };
+
+        res.status(200).json(carLinks);
     } catch (err) {
         next(err);
     }
@@ -339,12 +349,9 @@ exports.deleteCarByManagerEmail = async (req, res, next) => {
             return res.status(404).json({ "message": "Car not found" });
         }
   
-        // Remove the car ID from the manager's 'cars' array and save the manager  
-        const carIndex = manager.cars.indexOf(car.registration);  
-        if (carIndex !== -1) {  
-            manager.cars.splice(carIndex, 1);  
-            await manager.save();  
-        }  
+        // Remove the car reference from the manager's 'cars' array and save the manager  
+        manager.cars.pull(car._id);  
+        await manager.save();  
   
         res.status(200).json(car);  
     } catch (err) {  

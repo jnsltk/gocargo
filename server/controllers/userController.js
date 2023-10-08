@@ -26,10 +26,10 @@ exports.getUserByEmail = async (req, res, next) => {
             ...user._doc,
             links: {
                 self: {
-                    href: `/api/v1/users/${userEmail}`
+                    href: `http://localhost:3000/api/v1/users/${userEmail}`
                 },
-                cars: {
-                    href:`/api/v1/users/${userEmail}/bookings`
+                bookings: {
+                    href:`http://localhost:5173/useraccount`
                 }
             }
         };
