@@ -351,3 +351,23 @@ exports.deleteCarByManagerEmail = async (req, res, next) => {
         next(err);  
     }  
 };
+
+exports.getCarImage = async (req, res, next) => {
+    const registration = req.params.car_registration;
+    try {
+        const car = await Car.findOne({ registration: registration }).exec();
+        if (!car) {
+            return res.status(404).json({ "message": "Car not found" });
+        }
+        const base64Data = car.image.split(',')[1]
+        const img = Buffer.from(base64Data, 'base64');
+
+        res.writeHead(200, {
+            'Content-Type': 'image/png',
+            'Content-Length': img.length
+        });
+        res.end(img)
+    } catch (err) {
+        next(err);
+    }
+}

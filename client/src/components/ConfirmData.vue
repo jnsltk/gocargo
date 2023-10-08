@@ -90,8 +90,14 @@
 
         },
         methods: {
-            nextStep() {
-                this.$router.push('/booking/payment');
+            async nextStep() {
+                // this.$router.push('/booking/payment');
+                try {
+                    const response = await axiosInstance.post('/create-checkout-session', { "bookingInfo": this.bookingInfo, "car": this.carInfo });
+                    window.location.href = response.data.url;
+                } catch (err) {
+                    console.error(err);
+                }
             },
             prevStep() {
                 this.$router.push('/booking/date');

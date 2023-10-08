@@ -25,4 +25,7 @@ router.delete('/api/v1/bookings', BookingController.removeAllBookings);
 // DELETE to remove booking by user and bookingReference
 router.delete('/api/v1/users/:user_email/bookings/:booking_reference', BookingController.removeBookingByUserAndRef);
 
+// POST to create checkout session for booking
+router.post('/api/v1/create-checkout-session', BookingController.createCheckoutSession);
+
 module.exports = router;

@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "bootstrap-icons": "^1.11.1",
+    "stripe": "^13.9.0",
     "vuex": "^4.0.2"
   }
 }
