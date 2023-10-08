@@ -26,6 +26,9 @@ mongoose.connect(mongoURI)
 
 // Create Express app
 const app = express();
+
+// Fix stripe webhook validation issues by using express.raw for the webhook endpoint
+app.use('/api/v1/stripe-webhook', express.raw({ type: 'application/json' }));
 // fixing "413 Request Entity Too Large" errors
 app.use(express.json({limit: "10mb", extended: true}))
 app.use(express.urlencoded({limit: "10mb", extended: true, parameterLimit: 50000}))

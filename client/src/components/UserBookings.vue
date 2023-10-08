@@ -10,6 +10,7 @@
                     <li>Booking reference: {{ booking.bookingReference }}</li>
                     <li>Starting date: {{ booking.startDate }}</li>
                     <li>Ending date: {{ booking.endDate }}</li>
+                    <li>Status: {{ booking.content }}</li>
                 </ul>
                 <h3>Car data:</h3>
                 <img :src="booking.car.image" :alt="booking.car.brand" class="car-image">

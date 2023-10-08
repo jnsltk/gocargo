@@ -104,10 +104,7 @@
                 try {
                     // Make a POST request to create a booking
                     const response = await axios.post(`http://localhost:3000/api/v1/users/${bookingData.userEmail}/bookings`, bookingData);
-
                     this.$store.commit('setFinalBooking', response.data.booking);
-
-                    this.$router.push('/booking/confirmation');
                 } catch (error) {
                     console.error('Error creating booking:', error);
                     this.$router.push('/');
@@ -117,8 +114,10 @@
 
                 // Handle payment with Stripe
                 try {
+                    console.log(this.$store.state.finalBooking)
                     const response = await axiosInstance
                         .post('/create-checkout-session', { 
+                            "bookingRef": this.$store.state.finalBooking.bookingReference,
                             "bookingInfo": this.bookingInfo,
                             "car": this.carInfo 
                         });
