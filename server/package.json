@@ -33,7 +33,8 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^7.4.4",
     "morgan": "^1.10.0",
-    "shortid": "^2.2.16"
+    "shortid": "^2.2.16",
+    "stripe": "^13.9.0"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
