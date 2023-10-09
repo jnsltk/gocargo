@@ -11,6 +11,10 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a @click="deleteAllCars" href="#" class="nav-link text-white fs-5">Delete all cars</a>
+                    </li>
+                    
+                    <li class="nav-item">
                         <a @click="showContent('postCar')" href="#" class="nav-link text-white fs-5">
                             Post car
                         </a>
@@ -31,7 +35,7 @@
 
                 </ul>
                 <hr>
-                <a @click="deleteAllCars" href="#" class="nav-link text-white fs-5">Delete all cars</a>
+
             </div>
         </div>
 
@@ -105,7 +109,7 @@ export default {
 <style>
 .account-sidebar {
     height: 100vh;
-    width: 20%;
+    width: 20vh;
     position: fixed;
     top: 0;
     left: 0;
@@ -115,31 +119,29 @@ export default {
 
 
 .content {
-    margin-left:20%;
+    margin-left: 10%;
 }
 
 .child {
     position: relative;
-    left: 6%;
 }
 
 @media (max-width: 767.98px) {
     .account-sidebar {
-        position: static;  
-        width: 100%;  
-        height: auto;  
+        position: static;
+        width: 100%;
+        height: auto;
     }
-    .content {
-        margin-left: 0;  
-    }
+
     .account-sidebar .fs-3 {
         font-size: 1.0rem !important;
-        
-        
+
+
     }
+
     .account-sidebar .fs-5 {
-        font-size: 0.8rem !important; 
-    
+        font-size: 0.8rem !important;
+
     }
 }
 </style>

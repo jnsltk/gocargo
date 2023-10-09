@@ -21,11 +21,6 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a @click="accountCancellation" href="#" class="nav-link text-white fs-5">
-                            Cancellation
-                        </a>
-                    </li>
-                    <li class="nav-item">
                         <a @click="showContent('setting')" href="#" class="nav-link text-white fs-5">
                             Setting
                         </a>
@@ -33,6 +28,11 @@
                     <li class="nav-item">
                         <a href="/" @click="logout" class="nav-link text-white fs-5">
                             Sign out
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a @click="accountCancellation" href="#" class="nav-link text-white fs-5">
+                            Delete account
                         </a>
                     </li>
                 </ul>
