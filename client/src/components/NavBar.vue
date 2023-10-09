@@ -35,7 +35,6 @@
     import { getToken, logout } from '../utils/auth'
     import { RouterLink } from 'vue-router'
    
-    import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 
 

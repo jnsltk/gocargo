@@ -89,6 +89,7 @@ export default {
             if (deleteConfirm) {
                 axios.delete('http://localhost:3000/api//v1/cars').then((response) => {
                     console.log(response.data);
+                    this.$router.push('/manager');
                 });
             }
 
