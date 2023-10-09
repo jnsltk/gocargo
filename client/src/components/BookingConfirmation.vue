@@ -60,18 +60,8 @@
             this.bookingInfo.startDate = this.$store.state.finalBooking.startDate.substring(0, 10);
             this.bookingInfo.endDate = this.$store.state.finalBooking.endDate.substring(0, 10);
             this.carInfo = this.$store.state.finalBooking.car;
-        },
-        methods: {
-            // Future Feature: Implement a method to fetch booking details from the backend
-            // async fetchBookingInfo() {
-                //   try {
-                    //     const response = await yourApi.getBookingInfo(); // Replace with actual API call
-                    //     this.bookingInfo = response.data; // Update with the actual data structure
-                    //   } catch (error) {
-                        //     console.error('Failed to fetch booking info:', error);
-                        //   }
-                // },
-        },
+            localStorage.clear();
+        }
     };
 </script>
 

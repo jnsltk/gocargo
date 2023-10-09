@@ -65,18 +65,17 @@ export default {
         };
     },
     async mounted() {
-        axiosInstance.get(`/users/${user.userEmail}/bookings`)
-            .then((response) => {
-                this.bookings = response.data;
-                console.log(this.bookings);
-                if (this.bookings.length === 0) {
-                    this.showNoResultsMessage = true;
-                }
-            })
-            .catch((err) => {
-                // Add proper error handling <later></later>;
-                console.log("hello", err);
-            });
+        try {
+            const response = await axiosInstance.get(`/users/${user.userEmail}/bookings`)
+            console.log(response);
+            this.bookings = response.data;
+            console.log(this.bookings);
+            if (!this.bookings || this.bookings.length === 0) {
+                this.showNoResultsMessage = true;
+            }
+        } catch (err) { 
+            console.log("hello", err);
+        }
     },
 }
 </script>
