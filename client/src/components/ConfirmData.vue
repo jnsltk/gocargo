@@ -46,14 +46,89 @@ const axiosInstance = axios.create({
 });
 
 
-export default {
-    data() {
-        return {
-            userInfo: {
-                email: '',
-                firstName: '',
-                lastName: '',
-                phoneNumber: ''
+    export default {
+        data() {
+            return {
+                userInfo: {
+                    email: '',
+                    firstName: '',
+                    lastName: '',
+                    phoneNumber: ''
+                },
+                bookingInfo: {
+                    car: '',
+                    startDate: '',
+                    endDate: ''
+                },
+                carInfo: {}
+            }
+        },
+        async mounted() {
+            const userEmail = decodeToken(token).userEmail;
+            try {
+
+                const response = await axiosInstance.get(`/users/${userEmail}`) 
+
+                this.userInfo = {
+                    email: response.data.email,
+                    firstName: response.data.fname,
+                    lastName: response.data.lname,
+                    phoneNumber: response.data.phonenumber,
+                }
+
+                this.bookingInfo = {
+                    car: this.$store.state.bookingData.car,
+                    startDate: this.$store.state.bookingData.bookingDates.startDate,
+                    endDate: this.$store.state.bookingData.bookingDates.endDate,
+                }
+
+                const carRes = await axiosInstance.get(`/cars/${this.bookingInfo.car}`);
+
+                this.carInfo = carRes.data;
+
+                this.$store.commit('setUserInfo', this.userInfo);
+
+            } catch (err) {
+                console.log(err);
+            }
+
+        },
+        methods: {
+            async nextStep() {
+                // First save the booking with 'unpaid' status
+                    const bookingData = {
+                        userEmail: this.$store.state.userInfo.email, 
+                        startDate: this.$store.state.bookingData.bookingDates.startDate,
+                        endDate: this.$store.state.bookingData.bookingDates.endDate,
+                        status: 'unpaid',
+                        content: 'Booking has been saved, but not yet paid', 
+                        carRegistration: this.$store.state.bookingData.car
+                    };  
+
+                try {
+                    // Make a POST request to create a booking
+                    const response = await axios.post(`http://localhost:3000/api/v1/users/${bookingData.userEmail}/bookings`, bookingData);
+                    this.$store.commit('setFinalBooking', response.data.booking);
+                } catch (error) {
+                    console.error('Error creating booking:', error);
+                    this.$router.push('/');
+                }
+
+                console.log("Booking saved with unpaid status, redirecting to Stripe for payment");
+
+                // Handle payment with Stripe
+                try {
+                    console.log(this.$store.state.finalBooking)
+                    const response = await axiosInstance
+                        .post('/create-checkout-session', { 
+                            "bookingRef": this.$store.state.finalBooking.bookingReference,
+                            "bookingInfo": this.bookingInfo,
+                            "car": this.carInfo 
+                        });
+                    window.location.href = response.data.url;
+                } catch (err) {
+                    console.error(err);
+                }
             },
             bookingInfo: {
                 car: '',

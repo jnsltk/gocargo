@@ -186,3 +186,4 @@ exports.removeBookingByUserAndRef = async (req, res, next) => {
         next(error);
     }
 }
+

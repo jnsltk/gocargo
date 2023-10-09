@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "bootstrap-icons": "^1.11.1",
-    "vuex": "^4.0.2"
+    "stripe": "^13.9.0",
+    "vuex": "^4.0.2",
+    "vuex-persist": "^3.1.3"
   }
 }

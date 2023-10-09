@@ -13,7 +13,6 @@ import RegisterView from '../views/RegisterView.vue'
 import UserAccountView from '../views/UserAccountView.vue'
 
 import HomeCarousel from '../components/HomeCarousel.vue'
-import PaymentForm from '../components/PaymentForm.vue'
 import BookingConfirmation from '../components/BookingConfirmation.vue'
 import LogIn from '../components/LogIn.vue'
 import DatePicker from '../components/DatePicker.vue'
@@ -70,20 +69,6 @@ const router = createRouter({
                     }
                 }
             }, {
-                path: 'payment',
-                components: { 
-                    BookingWizard: PaymentForm
-                },
-                beforeEnter: (to, from, next) => {
-                    if (!store.state.bookingData.car) {
-                        next('/#fleet');
-                    } else if(!store.state.bookingData.bookingDates) {
-                        next('date');
-                    } else {
-                        next();
-                    }
-                }
-            }, {
                 path: 'confirmation',
                 components: {
                     BookingWizard: BookingConfirmation
@@ -94,7 +79,7 @@ const router = createRouter({
                     } else if(!store.state.bookingData.bookingDates) {
                         next('date');
                     } else if(!store.state.finalBooking) {
-                        next('payment');
+                        next('confirm-data');
                     } else {
                         next();
                     }
