@@ -122,7 +122,7 @@ export default {
 <style>
 .account-sidebar {
     height: 100vh;
-    width: 20%;
+    width: 23%;
     position: fixed;
     top: 0;
     left: 0;
@@ -133,13 +133,14 @@ export default {
     flex: 1;
 }
 
-.content {
-    flex: 4;
-}
 
+.content {
+    margin-left:20%;
+    margin-right :6%;
+}
 .child {
     position: relative;
-    left: 6%;
+    left: 8%;
 }
 </style>
-
+ 
