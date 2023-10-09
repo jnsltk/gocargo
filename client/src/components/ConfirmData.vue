@@ -60,7 +60,8 @@ const axiosInstance = axios.create({
                     startDate: '',
                     endDate: ''
                 },
-                carInfo: {}
+                carInfo: {},
+                carsHref: ''
             }
         },
         async mounted() {
@@ -85,6 +86,7 @@ const axiosInstance = axios.create({
                 const carRes = await axiosInstance.get(`/cars/${this.bookingInfo.car}`);
 
                 this.carInfo = carRes.data;
+                this.carsHref = this.carInfo.links.cars.href;
 
                 this.$store.commit('setUserInfo', this.userInfo);
 
@@ -96,14 +98,14 @@ const axiosInstance = axios.create({
         methods: {
             async nextStep() {
                 // First save the booking with 'unpaid' status
-                    const bookingData = {
-                        userEmail: this.$store.state.userInfo.email, 
-                        startDate: this.$store.state.bookingData.bookingDates.startDate,
-                        endDate: this.$store.state.bookingData.bookingDates.endDate,
-                        status: 'unpaid',
-                        content: 'Booking has been saved, but not yet paid', 
-                        carRegistration: this.$store.state.bookingData.car
-                    };  
+                const bookingData = {
+                    userEmail: this.$store.state.userInfo.email, 
+                    startDate: this.$store.state.bookingData.bookingDates.startDate,
+                    endDate: this.$store.state.bookingData.bookingDates.endDate,
+                    status: 'unpaid',
+                    content: 'Booking has been saved, but not yet paid', 
+                    carRegistration: this.$store.state.bookingData.car
+                };  
 
                 try {
                     // Make a POST request to create a booking
@@ -130,54 +132,7 @@ const axiosInstance = axios.create({
                     console.error(err);
                 }
             },
-            bookingInfo: {
-                car: '',
-                startDate: '',
-                endDate: ''
-            },
-            carInfo: {},
-            carsHref: '',
-        }
-    },
-    async mounted() {
-        const userEmail = decodeToken(token).userEmail;
-        try {
-
-            const response = await axiosInstance.get(`/users/${userEmail}`)
-
-            this.userInfo = {
-                email: response.data.email,
-                firstName: response.data.fname,
-                lastName: response.data.lname,
-                phoneNumber: response.data.phonenumber,
-            }
-
-            this.bookingInfo = {
-                car: this.$store.state.bookingData.car,
-                startDate: this.$store.state.bookingData.bookingDates.startDate,
-                endDate: this.$store.state.bookingData.bookingDates.endDate,
-            }
-
-            const carRes = await axiosInstance.get(`/cars/${this.bookingInfo.car}`);
-
-            this.carInfo = carRes.data;
-            this.carsHref = this.carInfo.links.cars.href;
-
-            this.$store.commit('setUserInfo', this.userInfo);
-
-        } catch (err) {
-            console.log(err);
-        }
-
-    },
-    methods: {
-        nextStep() {
-            this.$router.push('/booking/payment');
-        },
-        prevStep() {
-            this.$router.push('/booking/date');
         }
     }
-}
 </script>
 
