@@ -40,9 +40,9 @@ publish:
   tags:
     - docker
   script: 
-    - docker build . -t $DOCKER_USERNAME/gocargo
-    - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-    - docker push $DOCKER_USERNAME/gocargo
+    - docker build . -t guwebgroup8/gocargo
+    - docker login -u guwebgroup8 -p $DOCKER_PASSWORD
+    - docker push guwebgroup8/gocargo
   environment:
     name: production
   only:
@@ -57,8 +57,8 @@ deploy:
   script:
     - chmod og= $ID_RSA
     - apk update && apk add openssh-client
-    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD"
-    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker pull $DOCKER_USERNAME/gocargo:latest"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker login -u guwebgroup8 -p $DOCKER_PASSWORD"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker pull guwebgroup8/gocargo:latest"
     - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker container rm -f gocargo || true"
     - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker run -d -p 127.0.0.1:3000:3000 --restart unless-stopped --name gocargo $DOCKER_USERNAME/gocargo" 
   environment:
