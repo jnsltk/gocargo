@@ -37,6 +37,8 @@ test:
 publish:
   image: docker:latest
   stage: publish
+  tags:
+    - docker
   services: 
     - docker:dind
   script: 
