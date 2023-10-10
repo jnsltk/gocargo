@@ -9,6 +9,7 @@ cache:
 stages:
   - build
   - test
+  - publish
   - deploy
 
 build:
@@ -33,21 +34,36 @@ test:
     - cd server
     - npm run ci-test
 
+publish:
+  image: docker:latest
+  stage: publish
+  services: 
+    - docker:dind
+  script: 
+    - docker build . -t $DOCKER_USERNAME/gocargo
+    - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+    - docker push $DOCKER_USERNAME/gocargo
+  environment:
+    name: production
+  only:
+    refs:
+      - 76-deploy-project-to-vps
+
 deploy:
   stage: deploy
   tags:
     - docker
-  image: ruby:alpine
+  image: alpine:latest
   script:
-    - apk update && apk add git curl
-    - gem install dpl
-    - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
+    - chmod og= $ID_RSA
+    - apk update && apk add openssh-client
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker pull $DOCKER_USERNAME/gocargo:latest"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker container rm -f gocargo || true"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker run -d -p 127.0.0.1:3000:3000 --restart unless-stopped --name gocargo $DOCKER_USERNAME/gocargo" 
   environment:
     name: production
-    url: https://$HEROKU_APP_NAME.herokuapp.com/
+    url: https://gocargo.jnsl.tk
   only:
     refs:
-      - master
-    variables:
-      - $HEROKU_APP_NAME
-      - $HEROKU_API_KEY
+      - 76-deploy-project-to-vps
