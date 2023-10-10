@@ -39,6 +39,8 @@ publish:
   stage: publish
   tags:
     - docker
+  services:
+    - name: docker:dind
   script: 
     - docker build . -t guwebgroup8/gocargo
     - docker login -u guwebgroup8 -p $DOCKER_PASSWORD
