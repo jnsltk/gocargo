@@ -39,8 +39,6 @@ publish:
   stage: publish
   tags:
     - docker
-  services: 
-    - docker:dind
   script: 
     - docker build . -t $DOCKER_USERNAME/gocargo
     - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
