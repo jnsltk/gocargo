@@ -35,7 +35,6 @@ test:
     - npm run ci-test
 
 publish:
-  image: docker:latest
   stage: publish
   tags:
     - docker
@@ -55,7 +54,6 @@ deploy:
   stage: deploy
   tags:
     - docker
-  image: alpine:latest
   script:
     - chmod og= $ID_RSA
     - apk update && apk add openssh-client
