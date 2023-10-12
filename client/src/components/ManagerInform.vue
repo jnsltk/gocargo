@@ -88,7 +88,9 @@ export default {
 
     methods: {
         updateInformation() {
-            axios.patch(`http://localhost:3000/api/v1/managers/${this.manager.email}`, this.manager).then(() => {
+            const managerDataWithoutPassword = { ...this.user };
+            delete managerDataWithoutPassword.password;
+            axios.patch(`http://localhost:3000/api/v1/managers/${this.manager.email}`, managerDataWithoutPassword).then(() => {
                 alert('Information update successfully!');
             }).catch(error => {
                 alert('Information update failed!');

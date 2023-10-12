@@ -87,14 +87,14 @@ exports.updateManagerByEmail = async (req, res, next) => {
         }
 
         // Hash the password
-        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        const hashedPassword = await bcrypt.hash(updatedManagerData.password, 10);
 
-        manager.email = req.body.email;
-        manager.fname = req.body.fname;
-        manager.lname = req.body.lname;
+        manager.email = updatedManagerData.email;
+        manager.fname = updatedManagerData.fname;
+        manager.lname = updatedManagerData.lname;
         manager.password = hashedPassword;
-        manager.balance = req.body.balance;
-        manager.address = req.body.address;
+        manager.balance = updatedManagerData.balance;
+        manager.address = updatedManagerData.address;
         await manager.save();
         res.status(200).json({ message: 'Manager updated successfully', manager });
     } catch (err) {
@@ -115,14 +115,14 @@ exports.patchManagerByEmail = async (req, res, next) => {
             return res.status(404).json({ "message": "Manager not found" });
         }
 
-        manager.email = (req.body.email || manager.email);
-        manager.fname = (req.body.fname || manager.fname);
-        manager.lname = (req.body.lname || manager.lname);
-        if(req.body.password){
-            manager.password = await bcrypt.hash(req.body.password, 10);
+        manager.email = (updatedManagerData.email || manager.email);
+        manager.fname = (updatedManagerData.fname || manager.fname);
+        manager.lname = (updatedManagerData.lname || manager.lname);
+        if(updatedManagerData.password){
+            manager.password = await bcrypt.hash(updatedManagerData.password, 10);
         }
-        manager.balance = (req.body.balance || manager.balance);
-        manager.address = (req.body.address || manager.address);
+        manager.balance = (updatedManagerData.balance || manager.balance);
+        manager.address = (updatedManagerData.address || manager.address);
         await manager.save();
         res.status(200).json({ message: 'Manager updated successfully', manager });
     } catch (err) {
