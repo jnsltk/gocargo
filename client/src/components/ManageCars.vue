@@ -37,7 +37,7 @@
     </div>
 
     <main v-if="isUpdateCar" class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-        <div class="py-4" >
+        <div class="py-4">
             <h1>Update the car</h1>
         </div>
         <form>
@@ -94,8 +94,8 @@
 
                             <div class="col-12">
                                 <label for="price" class="form-label fs-5">Price </label>
-                                <input type="text" class="form-control" id="price" placeholder="" v-model="updateCarData.price"
-                                    required>
+                                <input type="text" class="form-control" id="price" placeholder=""
+                                    v-model="updateCarData.price" required>
                                 <div class="invalid-feedback">
                                     Please enter a valid price.
                                 </div>
@@ -147,17 +147,17 @@ export default {
             isUpdateCar: false,
             updateCarRegistration: '',
             updateCarData: {},
-            
+
         }
     },
 
     mounted() {
-      this.displayCars();  
+        this.displayCars();
 
     },
 
     methods: {
-        displayCars(){
+        displayCars() {
             axiosInstance.get(`/managers/${manager.managerEmail}/cars`).then((response) => {
                 this.cars = response.data;
                 if (this.cars.length === 0) {
@@ -190,6 +190,9 @@ export default {
             if (deleteConfirm) {
                 axiosInstance.delete(`/managers/${manager.managerEmail}/cars/${registration}`).then(() => {
                     this.displayCars();
+                }).catch(error => {
+                    alert('Failed to delete car.');
+                    console.error('Error:', error);
                 });
             }
 
@@ -220,10 +223,10 @@ export default {
 }
 
 .description-ellipsis {
-  white-space: nowrap;      
-  overflow: hidden;          
-  text-overflow: ellipsis;   
-  max-width: 100%;           
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
 }
 
 .max-image-size {

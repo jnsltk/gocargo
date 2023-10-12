@@ -91,9 +91,13 @@ export default {
         deleteAllCars() {
             const deleteConfirm = window.confirm(`Are you sure you want to delete all cars?`);
             if (deleteConfirm) {
-                axios.delete('http://localhost:3000/api//v1/cars').then((response) => {
+                axios.delete('http://localhost:3000/api/v1/cars').then((response) => {
+                    alert('Cars delete successfully.');
                     console.log(response.data);
                     this.$router.push('/manager');
+                }).catch(error => {
+                    alert('Failed to delete all cars.');
+                    console.error('Error:', error);
                 });
             }
 
