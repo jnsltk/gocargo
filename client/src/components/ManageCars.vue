@@ -163,6 +163,9 @@ export default {
                 if (this.cars.length === 0) {
                     this.showNoResultsMessage = true;
                 }
+            }).catch(error => {
+                console.error('Error:', error);
+                window.location.reload();
             });
         },
 

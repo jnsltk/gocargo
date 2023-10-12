@@ -82,7 +82,8 @@ export default {
                 this.showNoResultsMessage = true;
             }
         } catch (err) {
-            console.log("hello", err);
+            console.log("Error", err);
+            window.location.reload();
         }
     },
 }
