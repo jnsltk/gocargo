@@ -127,3 +127,8 @@ const token = getToken();
     }
 </script>
 
+<style scoped>
+a:hover {
+    color: blue;
+}
+</style>

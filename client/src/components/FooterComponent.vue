@@ -14,12 +14,14 @@
 <style>
 
 
-@media (max-width: 576px) {
+@media (max-width: 767.98px) {
     .responsive-text{
-        font-size: 0.7rem;
+        font-size: 0.6rem;
+        margin-left: 45px;
     }
     .copyright-text{
         font-size:0.7rem;
+        margin-left: 20px;
     }
 }
 </style>
