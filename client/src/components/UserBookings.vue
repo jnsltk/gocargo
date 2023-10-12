@@ -41,6 +41,12 @@
 .car-image {
     width: 300px;
 }
+@media (max-width: 767.98px) {
+    .car-image {
+        width: 230px;
+    
+    }
+}
 </style>
 
 <script>
@@ -81,4 +87,3 @@ export default {
     },
 }
 </script>
-
