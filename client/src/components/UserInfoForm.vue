@@ -76,7 +76,7 @@ export default {
     },
     mounted() {
 
-        axios.get(`http://localhost:3000/api/v1/users/${userEmail}`).then((response) => {
+        axios.get(`http://localhost:3000/api/v1/users/${this.user.email}`).then((response) => {
             this.user = response.data;
         });
 
@@ -98,6 +98,9 @@ export default {
         updateInformation() {
             axios.patch(`http://localhost:3000/api/v1/users/${userEmail}`, this.user).then(() => {
                 alert('Information update successfully!');
+            }).catch(error => {
+                alert('Information update failed!');
+                console.error('Error:', error);
             });
         },
         

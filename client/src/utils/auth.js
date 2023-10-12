@@ -22,9 +22,11 @@ export const decodeToken = (token) => {
 export const register = async (userData) => {
     try {
         const response = await axios.post('http://localhost:3000/api/v1/users', userData);
-        login(response.data.newUser.email, userData.password);
+        login(response.data.newUser.email, userData.password, 'User');
+        
     } catch (err) {
         console.log(err);
+        alert('This email has already been registered. Please select another email.');
     }
 }
 
@@ -32,7 +34,6 @@ export const login = async (email, password, userType) => {
     const loginData = {
         'email': email,
         'password': password,
-        'userType': userType,
     };
 
     try {
@@ -52,6 +53,7 @@ export const login = async (email, password, userType) => {
     } catch (err) {
         // handle errors like non-existing user 
         console.log(err);
+        alert('Login failed. Please check your email and password.');
     }
 }
 

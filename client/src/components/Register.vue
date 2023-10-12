@@ -80,10 +80,7 @@ export default {
       }
 
       register(userData);
-      const notification = window.confirm(`Account registration successful!`);
-      if (notification) {
-          this.$router.push('/login');
-      }
+      
     }
   },
 };
