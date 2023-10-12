@@ -6,28 +6,28 @@
                 <hr>
                 <ul class="nav nav-pills flex-column mb-auto">
                     <li class="nav-item">
-                        <a @click="showContent('manageCars')" href="#" class="nav-link text-white fs-5">
+                        <a @click="showContent('manageCars')" href="#" class="nav-link fs-5">
                             Manage cars
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a @click="deleteAllCars" href="#" class="nav-link text-white fs-5">Delete all cars</a>
+                        <a @click="deleteAllCars" href="#" class="nav-link fs-5">Delete all cars</a>
                     </li>
-                    
+
                     <li class="nav-item">
-                        <a @click="showContent('postCar')" href="#" class="nav-link text-white fs-5">
+                        <a @click="showContent('postCar')" href="#" class="nav-link fs-5">
                             Post car
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a @click="showContent('information')" href="#" class="nav-link text-white fs-5">
+                        <a @click="showContent('information')" href="#" class="nav-link fs-5">
                             Setting
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="/" @click="logout" class="nav-link text-white fs-5">
+                        <a href="#" @click="logout" class="nav-link fs-5">
                             Sign out
                         </a>
                     </li>
@@ -106,42 +106,44 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 .account-sidebar {
     height: 100vh;
-    width: 20vh;
+    width: 25%;
     position: fixed;
     top: 0;
     left: 0;
 }
 
-
-
-
-.content {
-    margin-left: 10%;
-}
-
-.child {
-    position: relative;
-}
-
 @media (max-width: 767.98px) {
-    .account-sidebar {
-        position: static;
-        width: 100%;
-        height: auto;
-    }
 
     .account-sidebar .fs-3 {
         font-size: 1.0rem !important;
-
-
     }
 
     .account-sidebar .fs-5 {
         font-size: 0.8rem !important;
-
     }
+}
+
+a {
+    color: #ffffff;
+}
+
+
+
+.sidebar {
+    flex: 1;
+}
+
+
+.content {
+    margin-left: 20%;
+    margin-right: 6%;
+}
+
+.child {
+    position: relative;
+    left: 8%;
 }
 </style>

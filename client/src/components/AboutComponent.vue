@@ -24,4 +24,9 @@
 .container {
     scroll-margin-top: 100px;
 }
+
+p {
+    font-weight: bold;
+    color: #333;
+}
 </style>
