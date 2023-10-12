@@ -81,14 +81,14 @@ export default {
     },
     mounted() {
 
-        Api.get(`http://localhost:3000/api/v1/managers/${this.managerEmail}`).then((response) => {
+        Api.get(`/managers/${this.managerEmail}`).then((response) => {
             this.manager = response.data;
         });
     },
 
     methods: {
         updateInformation() {
-            Api.patch(`http://localhost:3000/api/v1/managers/${this.manager.email}`, this.manager).then(() => {
+            Api.patch(`/managers/${this.manager.email}`, this.manager).then(() => {
                 alert('Information update successfully!');
             });
         },

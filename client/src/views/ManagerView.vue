@@ -87,7 +87,7 @@ export default {
         deleteAllCars() {
             const deleteConfirm = window.confirm(`Are you sure you want to delete all cars?`);
             if (deleteConfirm) {
-                Api.delete('http://localhost:3000/api//v1/cars').then((response) => {
+                Api.delete('/cars').then((response) => {
                     console.log(response.data);
                     this.$router.push('/manager');
                 });

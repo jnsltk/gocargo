@@ -76,7 +76,7 @@ export default {
     },
     mounted() {
 
-        Api.get(`http://localhost:3000/api/v1/users/${userEmail}`).then((response) => {
+        Api.get(`/users/${userEmail}`).then((response) => {
             this.user = response.data;
         });
 
@@ -96,7 +96,7 @@ export default {
         },
 
         updateInformation() {
-            Api.patch(`http://localhost:3000/api/v1/users/${userEmail}`, this.user).then(() => {
+            Api.patch(`/users/${userEmail}`, this.user).then(() => {
                 alert('Information update successfully!');
             });
         },

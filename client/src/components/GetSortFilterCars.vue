@@ -92,7 +92,7 @@ export default {
     },
 
     mounted() {
-        Api.get("http://localhost:3000/api/v1/cars").then((response) => {
+        Api.get("/cars").then((response) => {
             this.cars = response.data;
         });
     },
@@ -101,9 +101,9 @@ export default {
         sortByPrice(order) {
             let url = null;
             if (order === "Recommend") {
-                url = `http://localhost:3000/api/v1/cars`;
+                url = `/cars`;
             } else {
-                url = `http://localhost:3000/api/v1/cars/price/${order}`;
+                url = `/cars/price/${order}`;
             }
             Api.get(url).then((response) => {
                 this.cars = response.data;
@@ -112,9 +112,9 @@ export default {
         filterByBrand(brand) {
             let url = null;
             if (brand === "All") {
-                url = `http://localhost:3000/api/v1/cars`;
+                url = `/cars`;
             } else {
-                url = `http://localhost:3000/api/v1/cars/brand/${brand}`;
+                url = `/cars/brand/${brand}`;
             }
             Api.get(url).then((response) => {
                 if (response.data.length === 0) {
@@ -129,9 +129,9 @@ export default {
         filterByColor(color) {
             let url = null;
             if (color === "All") {
-                url = `http://localhost:3000/api/v1/cars`;
+                url = `/cars`;
             } else {
-                url = `http://localhost:3000/api/v1/cars/color/${color}`;
+                url = `/cars/color/${color}`;
             }
             Api.get(url).then((response) => {
                 if (response.data.length === 0) {
