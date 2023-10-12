@@ -39,11 +39,11 @@
 
 <style scoped>
 .car-image {
-    width: 300px;
+    width: 250px;
 }
 @media (max-width: 767.98px) {
     .car-image {
-        width: 230px;
+        width: 210px;
     
     }
 }
