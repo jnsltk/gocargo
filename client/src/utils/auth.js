@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Router from '../router'
 
-const API_BASE_URL = import.meta.env.VUE_APP_API_ENDPOINT || 'http://localhost:3000/api/v1';
+const API_BASE_URL = import.meta.env.VITE_APP_API_ENDPOINT || 'http://localhost:3000/api/v1';
 
 export const getToken = () => {
     return sessionStorage.getItem('token');
