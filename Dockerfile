@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-ENV VITE_APP_API_ENDPOINT=http://gocargo.jnsl.tk/api/v1
+ENV VITE_APP_API_ENDPOINT=https://gocargo.jnsl.tk/api/v1
 
 RUN npm run postinstall
 
