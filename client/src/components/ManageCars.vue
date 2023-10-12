@@ -1,9 +1,9 @@
 <template>
-    <div id="cars" class="container  px-4 text-center">
+    <div class="container  px-4 text-center">
         <div class="pricing-header pb-md-4 mx-auto ">
             <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Manage cars</h1>
         </div>
-        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+        <div id="cars" class="row row-cols-1 row-cols-md-3 mb-3 text-center">
             <div class="col mb-3" v-for="(car, index) in cars" :key="car._id">
                 <div class="h-100">
                     <div class="card mb-4 rounded-3 shadow-sm h-100" :car="car" :isLastCard="index === car.length - 1">
@@ -90,6 +90,12 @@ export default {
 </script>
 
 <style scoped>
+#cars {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
 .description-ellipsis {
   white-space: nowrap;      
   overflow: hidden;          

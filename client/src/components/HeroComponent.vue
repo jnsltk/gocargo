@@ -33,5 +33,9 @@
         margin-top: 150px;
         scroll-margin-top: 150px;
     }
+
+    p {
+        color: #333;
+    }
 </style>
 

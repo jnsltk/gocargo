@@ -139,6 +139,7 @@ export default {
                 alert('Car posted successfully!');
                 console.log(response.data);
             }).catch(error => {
+                alert('Car posted failed, please re-post!');
                 console.error('Error:', error);
             });
         },

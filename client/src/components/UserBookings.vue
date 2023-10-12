@@ -1,9 +1,9 @@
 <template>
-    <div id="bookings" class="container  px-4 text-center">
+    <div class="container  text-center">
         <div class="pricing-header pb-md-4 mx-auto ">
             <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Your Bookings</h1>
         </div>
-        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+        <div  id="bookings" class="row row-cols-1 row-cols-md-3 mb-3 text-center">
             <div class="col mb-3" v-for="booking in bookings" :key="booking._id">
                 <div class="h-100">
                     <h2>Booking info</h2>
@@ -87,3 +87,16 @@ export default {
     },
 }
 </script>
+
+<style scoped>
+#bookings {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+.car-image {
+    max-width: 100%;
+    max-height: 100%;
+}
+</style>

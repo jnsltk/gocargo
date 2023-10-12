@@ -136,3 +136,8 @@ const axiosInstance = axios.create({
     }
 </script>
 
+<style scoped>
+a:hover {
+    color: blue;
+}
+</style>

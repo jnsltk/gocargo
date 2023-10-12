@@ -6,32 +6,32 @@
                 <hr>
                 <ul class="nav nav-pills flex-column mb-auto">
                     <li class="nav-item">
-                        <a href="/" class="nav-link text-white fs-5" aria-current="page">
+                        <a href="/" class="nav-link fs-5" aria-current="page">
                             Home
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a @click="showContent('myBookings')" href="#" class="nav-link text-white fs-5" aria-current="page">
+                        <a @click="showContent('myBookings')" href="#" class="nav-link fs-5" aria-current="page">
                             My bookings
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/#fleet" class="nav-link text-white fs-5">
+                        <a href="/#fleet" class="nav-link fs-5">
                             Create booking
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a @click="showContent('setting')" href="#" class="nav-link text-white fs-5">
+                        <a @click="showContent('setting')" href="#" class="nav-link fs-5">
                             Setting
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/" @click="logout" class="nav-link text-white fs-5">
+                        <a href="#" @click="logout" class="nav-link fs-5">
                             Sign out
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a @click="accountCancellation" href="#" class="nav-link text-white fs-5">
+                        <a @click="accountCancellation" href="#" class="nav-link fs-5">
                             Delete account
                         </a>
                     </li>
@@ -119,15 +119,29 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 .account-sidebar {
     height: 100vh;
-    width: 23%;
+    width: 25%;
     position: fixed;
     top: 0;
     left: 0;
 }
 
+@media (max-width: 767.98px) {
+
+.account-sidebar .fs-3 {
+    font-size: 1.0rem !important;
+}
+
+.account-sidebar .fs-5 {
+    font-size: 0.8rem !important;
+}
+}
+
+a {
+    color: #ffffff;
+}
 
 .sidebar {
     flex: 1;

@@ -90,6 +90,9 @@ export default {
         updateInformation() {
             axios.patch(`http://localhost:3000/api/v1/managers/${this.manager.email}`, this.manager).then(() => {
                 alert('Information update successfully!');
+            }).catch(error => {
+                alert('Information update failed!');
+                console.error('Error:', error);
             });
         },
     },
