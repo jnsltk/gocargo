@@ -70,7 +70,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { Api } from '@/Api'
 
 export default {
     data() {
@@ -81,14 +81,14 @@ export default {
     },
     mounted() {
 
-        axios.get(`http://localhost:3000/api/v1/managers/${this.managerEmail}`).then((response) => {
+        Api.get(`http://localhost:3000/api/v1/managers/${this.managerEmail}`).then((response) => {
             this.manager = response.data;
         });
     },
 
     methods: {
         updateInformation() {
-            axios.patch(`http://localhost:3000/api/v1/managers/${this.manager.email}`, this.manager).then(() => {
+            Api.patch(`http://localhost:3000/api/v1/managers/${this.manager.email}`, this.manager).then(() => {
                 alert('Information update successfully!');
             });
         },

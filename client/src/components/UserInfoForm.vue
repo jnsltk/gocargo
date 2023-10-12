@@ -61,8 +61,8 @@
 </template>
 
 <script>
-import axios from 'axios';
 import { getToken, decodeToken } from '../utils/auth'
+import { Api } from '@/Api'
 
 const token = getToken();
 
@@ -76,7 +76,7 @@ export default {
     },
     mounted() {
 
-        axios.get(`http://localhost:3000/api/v1/users/${userEmail}`).then((response) => {
+        Api.get(`http://localhost:3000/api/v1/users/${userEmail}`).then((response) => {
             this.user = response.data;
         });
 
@@ -96,7 +96,7 @@ export default {
         },
 
         updateInformation() {
-            axios.patch(`http://localhost:3000/api/v1/users/${userEmail}`, this.user).then(() => {
+            Api.patch(`http://localhost:3000/api/v1/users/${userEmail}`, this.user).then(() => {
                 alert('Information update successfully!');
             });
         },

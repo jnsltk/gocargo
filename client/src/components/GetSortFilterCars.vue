@@ -77,8 +77,8 @@
 </template>
 
 <script>
-import axios from 'axios';
 import CarCard from './CarCard.vue';
+import { Api } from '@/Api';
 
 export default {
     components: {
@@ -92,7 +92,7 @@ export default {
     },
 
     mounted() {
-        axios.get("http://localhost:3000/api/v1/cars").then((response) => {
+        Api.get("http://localhost:3000/api/v1/cars").then((response) => {
             this.cars = response.data;
         });
     },
@@ -105,7 +105,7 @@ export default {
             } else {
                 url = `http://localhost:3000/api/v1/cars/price/${order}`;
             }
-            axios.get(url).then((response) => {
+            Api.get(url).then((response) => {
                 this.cars = response.data;
             });
         },
@@ -116,7 +116,7 @@ export default {
             } else {
                 url = `http://localhost:3000/api/v1/cars/brand/${brand}`;
             }
-            axios.get(url).then((response) => {
+            Api.get(url).then((response) => {
                 if (response.data.length === 0) {
                     this.showNoResultsMessage = true;
                     this.cars = [];
@@ -133,7 +133,7 @@ export default {
             } else {
                 url = `http://localhost:3000/api/v1/cars/color/${color}`;
             }
-            axios.get(url).then((response) => {
+            Api.get(url).then((response) => {
                 if (response.data.length === 0) {
                     this.showNoResultsMessage = true;
                     this.cars = [];
