@@ -59,20 +59,12 @@ import { ref } from 'vue'
 import UserBookings from '../components/UserBookings.vue'
 import UserInfoForm from '../components/UserInfoForm.vue'
 import { logout } from '@/utils/auth'
-import axios from 'axios'
 import { getToken, decodeToken } from '../utils/auth'
+import { Api } from '@/Api'
 
 const token = getToken();
 
 const user = (token) ? decodeToken(token) : 'logged_out';
-
-const axiosInstance = axios.create({
-    baseURL: 'http://localhost:3000/api/v1',
-    headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer: ' + token
-    },
-});
 
 export default {
     components: {
@@ -101,7 +93,7 @@ export default {
             const deleteConfirm = window.confirm(`Are you sure you want to cancel your account?`);
             if (deleteConfirm) {
                 this.logout();
-                axiosInstance.delete(`/users/${user.userEmail}`).then((response) => {
+                Api.delete(`/users/${user.userEmail}`).then((response) => {
                     console.log(response.data);
                 })
             }

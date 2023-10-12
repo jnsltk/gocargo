@@ -33,18 +33,9 @@
 
 <script>
 import { decodeToken, getToken } from '../utils/auth'
-import axios from 'axios'
+import { Api } from '@/Api';
 
 const token = getToken();
-
-const axiosInstance = axios.create({
-    baseURL: 'http://localhost:3000/api/v1',
-    headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer: ' + token
-    },
-});
-
 
     export default {
         data() {
@@ -68,7 +59,7 @@ const axiosInstance = axios.create({
             const userEmail = decodeToken(token).userEmail;
             try {
 
-                const response = await axiosInstance.get(`/users/${userEmail}`) 
+                const response = await Api.get(`/users/${userEmail}`) 
 
                 this.userInfo = {
                     email: response.data.email,
@@ -83,7 +74,7 @@ const axiosInstance = axios.create({
                     endDate: this.$store.state.bookingData.bookingDates.endDate,
                 }
 
-                const carRes = await axiosInstance.get(`/cars/${this.bookingInfo.car}`);
+                const carRes = await Api.get(`/cars/${this.bookingInfo.car}`);
 
                 this.carInfo = carRes.data;
                 this.carsHref = this.carInfo.links.cars.href;
@@ -109,7 +100,7 @@ const axiosInstance = axios.create({
 
                 try {
                     // Make a POST request to create a booking
-                    const response = await axios.post(`http://localhost:3000/api/v1/users/${bookingData.userEmail}/bookings`, bookingData);
+                    const response = await Api.post(`/users/${bookingData.userEmail}/bookings`, bookingData);
                     this.$store.commit('setFinalBooking', response.data.booking);
                 } catch (error) {
                     console.error('Error creating booking:', error);
@@ -121,7 +112,7 @@ const axiosInstance = axios.create({
                 // Handle payment with Stripe
                 try {
                     console.log(this.$store.state.finalBooking)
-                    const response = await axiosInstance
+                    const response = await Api
                         .post('/create-checkout-session', { 
                             "bookingRef": this.$store.state.finalBooking.bookingReference,
                             "bookingInfo": this.bookingInfo,

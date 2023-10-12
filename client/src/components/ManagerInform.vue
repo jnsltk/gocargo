@@ -70,7 +70,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { Api } from '@/Api'
 
 export default {
     data() {
@@ -81,7 +81,7 @@ export default {
     },
     mounted() {
 
-        axios.get(`http://localhost:3000/api/v1/managers/${this.managerEmail}`).then((response) => {
+        Api.get(`/managers/${this.managerEmail}`).then((response) => {
             this.manager = response.data;
         });
     },
@@ -90,7 +90,7 @@ export default {
         updateInformation() {
             const managerDataWithoutPassword = { ...this.user };
             delete managerDataWithoutPassword.password;
-            axios.patch(`http://localhost:3000/api/v1/managers/${this.manager.email}`, managerDataWithoutPassword).then(() => {
+            Api.patch(`http://localhost:3000/api/v1/managers/${this.manager.email}`, managerDataWithoutPassword).then(() => {
                 alert('Information update successfully!');
             }).catch(error => {
                 alert('Information update failed!');
