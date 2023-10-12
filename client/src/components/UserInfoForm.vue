@@ -96,11 +96,16 @@ export default {
         },
 
         updateInformation() {
-            axios.patch(`http://localhost:3000/api/v1/users/${userEmail}`, this.user).then(() => {
+            const userDataWithoutPassword = { ...this.user };
+            delete userDataWithoutPassword.password;
+            axios.patch(`http://localhost:3000/api/v1/users/${userEmail}`, userDataWithoutPassword).then(() => {
                 alert('Information update successfully!');
+            }).catch(error => {
+                alert('Information update failed!');
+                console.error('Error:', error);
             });
         },
-        
+
     },
 
 }
