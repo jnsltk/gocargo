@@ -37,17 +37,22 @@ export const login = async (email, password, userType) => {
     };
 
     try {
-        if(userType === 'User'){
+        let token;
+
+        if (userType === 'User') {
             const response = await axios.post('http://localhost:3000/api/v1/users/login', loginData);
-            const token = response.data.token;
-            sessionStorage.setItem('token', token);
-            // redirect to user account 
-            Router.push('/useraccount');
-        }else if(userType === 'Manager'){
+            token = response.data.token;
+        } else if (userType === 'Manager') {
             const response = await axios.post('http://localhost:3000/api/v1/managers/login', loginData);
-            const token = response.data.token;
-            sessionStorage.setItem('token', token);
-            Router.push('/manager');
+            token = response.data.token;
+        }
+
+        sessionStorage.setItem('token', token);
+
+        if (userType === 'User') {
+            await Router.push('/useraccount');
+        } else if (userType === 'Manager') {
+            await Router.push('/manager');
         }
         
     } catch (err) {
