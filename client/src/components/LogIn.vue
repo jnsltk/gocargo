@@ -5,12 +5,10 @@
             <div class="modal-content rounded-4 shadow">
                 <div class="modal-header p-5 pb-4 border-bottom-0">
                     <h1 class="h3 mb-3 fw-bold custom-margin">Please Sign In</h1>
-                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">{{ userType
-                    }}</a>
-                    <ul class="dropdown-menu">
-                        <li><a @click="chooseUserType('User')" class="dropdown-item" href="#">User</a></li>
-                        <li><a @click="chooseUserType('Manager')" class="dropdown-item" href="#">Manager</a></li>
-                    </ul>
+                    <BDropdown v-model="dd" variant="white" :text=userType>
+                        <BDropdownItem><a @click="chooseUserType('User')" class="dropdown-item" href="#">User</a></BDropdownItem>
+                        <BDropdownItem><a @click="chooseUserType('Manager')" class="dropdown-item" href="#">Manager</a></BDropdownItem>
+                    </BDropdown>
                 </div>
 
                 <div class="modal-body p-5 pt-0">
@@ -50,8 +48,16 @@
 
 <script>
 import { login } from '../utils/auth'
+import { ref } from 'vue'
 
 export default {
+    setup() {
+        const dd = ref(false);
+
+        return {
+            dd
+        }
+    },
     data() {
         return {
             email: '',
