@@ -1,6 +1,6 @@
 <template>
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-        <div class="py-4" style="margin-left: 20%;">
+        <div class="py-4">
             <h1>Post a new car</h1>
         </div>
         <form>

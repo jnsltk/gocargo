@@ -94,6 +94,9 @@ export default {
                 Api.delete('/cars').then((response) => {
                     console.log(response.data);
                     this.$router.push('/manager');
+                }).catch(error => {
+                    alert('Failed to delete all cars.');
+                    console.error('Error:', error);
                 });
             }
 
