@@ -1,6 +1,8 @@
 import axios from 'axios'
 import Router from '../router'
 
+const API_BASE_URL = import.meta.env.VITE_APP_API_ENDPOINT || 'http://localhost:3000/api/v1';
+
 export const getToken = () => {
     return sessionStorage.getItem('token');
 }
@@ -21,7 +23,7 @@ export const decodeToken = (token) => {
 
 export const register = async (userData) => {
     try {
-        const response = await axios.post('http://localhost:3000/api/v1/users', userData);
+        const response = await axios.post(`${API_BASE_URL}/users`, userData);
         login(response.data.newUser.email, userData.password, 'User');
         
     } catch (err) {
@@ -37,22 +39,17 @@ export const login = async (email, password, userType) => {
     };
 
     try {
-        let token;
-
-        if (userType === 'User') {
-            const response = await axios.post('http://localhost:3000/api/v1/users/login', loginData);
-            token = response.data.token;
-        } else if (userType === 'Manager') {
-            const response = await axios.post('http://localhost:3000/api/v1/managers/login', loginData);
-            token = response.data.token;
-        }
-
-        sessionStorage.setItem('token', token);
-
-        if (userType === 'User') {
-            await Router.push('/useraccount');
-        } else if (userType === 'Manager') {
-            await Router.push('/manager');
+        if(userType === 'User'){
+            const response = await axios.post(`${API_BASE_URL}/users/login`, loginData);
+            const token = response.data.token;
+            sessionStorage.setItem('token', token);
+            // redirect to user account 
+            Router.push('/useraccount');
+        }else if(userType === 'Manager'){
+            const response = await axios.post(`${API_BASE_URL}/managers/login`, loginData);
+            const token = response.data.token;
+            sessionStorage.setItem('token', token);
+            Router.push('/manager');
         }
         
     } catch (err) {

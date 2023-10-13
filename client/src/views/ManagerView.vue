@@ -61,7 +61,7 @@ import ManagerInform from '../components/ManagerInform.vue'
 import PostCar from '../components/PostCar.vue'
 import ManageCars from '../components/ManageCars.vue'
 import { logout } from '@/utils/auth'
-import axios from 'axios'
+import { Api } from '@/Api'
 
 export default {
     components: {
@@ -91,8 +91,7 @@ export default {
         deleteAllCars() {
             const deleteConfirm = window.confirm(`Are you sure you want to delete all cars?`);
             if (deleteConfirm) {
-                axios.delete('http://localhost:3000/api/v1/cars').then((response) => {
-                    alert('Cars delete successfully.');
+                Api.delete('/cars').then((response) => {
                     console.log(response.data);
                     this.$router.push('/manager');
                 }).catch(error => {

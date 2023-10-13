@@ -86,18 +86,11 @@
 </template>
 
 <script>
-import axios from 'axios';
 import { getToken, decodeToken } from '../utils/auth'
+import { Api } from '@/Api'
 
 const token = getToken();
 const manager = (token) ? decodeToken(token) : 'logged_out';
-const axiosInstance = axios.create({
-    baseURL: 'http://localhost:3000/api/v1',
-    headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer: ' + token
-    },
-});
 
 export default {
 
@@ -135,7 +128,7 @@ export default {
                 description: this.descriptionData,
             };
             const url = `/managers/${this.managerEmail}/cars`;
-            axiosInstance.post(url, car).then((response) => {
+            Api.post(url, car).then((response) => {
                 alert('Car posted successfully!');
                 console.log(response.data);
             }).catch(error => {

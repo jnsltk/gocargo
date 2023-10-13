@@ -50,20 +50,12 @@
 </style>
 
 <script>
-import axios from 'axios';
 import { getToken, decodeToken } from '../utils/auth'
+import { Api } from '@/Api'
 
 const token = getToken();
 
 const user = (token) ? decodeToken(token) : 'logged_out';
-
-const axiosInstance = axios.create({
-    baseURL: 'http://localhost:3000/api/v1',
-    headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer: ' + token
-    },
-});
 
 export default {
     data() {
@@ -74,7 +66,7 @@ export default {
     },
     async mounted() {
         try {
-            const response = await axiosInstance.get(`/users/${user.userEmail}/bookings`)
+            const response = await Api.get(`/users/${user.userEmail}/bookings`)
             console.log(response);
             this.bookings = response.data;
             console.log(this.bookings);
