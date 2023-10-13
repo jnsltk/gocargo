@@ -90,7 +90,7 @@ export default {
         updateInformation() {
             const managerDataWithoutPassword = { ...this.user };
             delete managerDataWithoutPassword.password;
-            Api.patch(`http://localhost:3000/api/v1/managers/${this.manager.email}`, managerDataWithoutPassword).then(() => {
+            Api.patch(`/managers/${this.manager.email}`, managerDataWithoutPassword).then(() => {
                 alert('Information update successfully!');
             }).catch(error => {
                 alert('Information update failed!');
