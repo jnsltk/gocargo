@@ -3,7 +3,7 @@
         <div class="pricing-header pb-md-4 mx-auto ">
             <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Your Bookings</h1>
         </div>
-        <div  id="bookings" class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+        <div id="bookings" class="row row-cols-1 row-cols-md-3 mb-3 text-center">
             <div class="col mb-3" v-for="booking in bookings" :key="booking._id">
                 <div class="h-100">
                     <h2>Booking info</h2>
@@ -23,16 +23,17 @@
 
                 </div>
             </div>
-        </div>
-        <div v-if="showNoResultsMessage" class="pricing-header pb-md-4 mx-auto">
-            <div class="alert alert-warning">
-                You haven't booked yet!
+            <div v-if="showNoResultsMessage" class="pricing-header pb-md-4 mx-auto">
+                <div class="alert alert-warning">
+                    You haven't booked yet!
+                </div>
+                <div class="pricing-header pb-md-4 mx-auto">
+                    <a href="/#fleet">Create a booking now</a>
+                </div>
+                
             </div>
-            <div class="pricing-header pb-md-4 mx-auto">
-                <a href="/#fleet">Create a booking now</a>
-            </div>
-            <div style="height: 60vh;"></div>
         </div>
+        <div v-if="showNoResultsMessage" style="height: 60vh;"></div>
 
     </div>
 </template>
@@ -41,10 +42,11 @@
 .car-image {
     width: 250px;
 }
+
 @media (max-width: 767.98px) {
     .car-image {
         width: 210px;
-    
+
     }
 }
 </style>

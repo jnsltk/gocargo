@@ -119,6 +119,10 @@
         </form>
         <button class="w-50 btn btn-primary btn-lg" @click="updateCar" style="margin-top: 5%; margin-left: 7%;">Update
             Car</button>
+        <button class="w-50 btn btn-outline-primary btn-lg" @click="cancelUpdate" style="margin-top: 5%; margin-left: 7%;">
+            Cancel update</button>
+        
+        
     </main>
 </template>
 
@@ -150,7 +154,7 @@ export default {
     },
 
     methods: {
-        displayCars(){
+        displayCars() {
             Api.get(`/managers/${manager.managerEmail}/cars`).then((response) => {
                 this.cars = response.data;
                 if (this.cars.length === 0) {
@@ -169,13 +173,17 @@ export default {
         },
 
         updateCar() {
-            axios.put(`http://localhost:3000/api/v1/cars/${this.updateCarRegistration}`, this.updateCarData).then(() => {
+            Api.put(`/cars/${this.updateCarRegistration}`, this.updateCarData).then(() => {
                 alert('Information of car update successfully!');
                 this.isUpdateCar = false;
             }).catch(error => {
                 alert('Information of car update failed. You must modify all fields.');
                 console.error('Error:', error);
             });
+        },
+
+        cancelUpdate() {
+            this.isUpdateCar = false;
         },
 
         deleteCar(registration) {

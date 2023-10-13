@@ -71,26 +71,30 @@
 
 <script>
 import { Api } from '@/Api'
+import { getToken, decodeToken } from '../utils/auth'
+
+const token = getToken();
+
+const managerEmail = (token) ? decodeToken(token).managerEmail : 'logged_out';
 
 export default {
     data() {
         return {
-            managerEmail: 'tomandjerry@gmail.com',
             manager: {},
         };
     },
     mounted() {
 
-        Api.get(`/managers/${this.managerEmail}`).then((response) => {
+        Api.get(`/managers/${managerEmail}`).then((response) => {
             this.manager = response.data;
         });
     },
 
     methods: {
         updateInformation() {
-            const managerDataWithoutPassword = { ...this.user };
+            const managerDataWithoutPassword = { ...this.manager };
             delete managerDataWithoutPassword.password;
-            Api.patch(`http://localhost:3000/api/v1/managers/${this.manager.email}`, managerDataWithoutPassword).then(() => {
+            Api.patch(`/managers/${managerEmail}`, managerDataWithoutPassword).then(() => {
                 alert('Information update successfully!');
             }).catch(error => {
                 alert('Information update failed!');

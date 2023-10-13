@@ -98,7 +98,7 @@ export default {
         updateInformation() {
             const userDataWithoutPassword = { ...this.user };
             delete userDataWithoutPassword.password;
-            Api.patch(`http://localhost:3000/api/v1/users/${userEmail}`, userDataWithoutPassword).then(() => {
+            Api.patch(`/users/${userEmail}`, userDataWithoutPassword).then(() => {
                 alert('Information update successfully!');
             }).catch(error => {
                 alert('Information update failed!');
