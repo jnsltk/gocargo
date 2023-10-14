@@ -1,49 +1,67 @@
 <template>
-    <nav class="sticky-top">
-        <BNavbar toggleable="lg" variant="dark" v-b-color-mode="'dark'" placement="fixed">
-            <BNavbarBrand href=""></BNavbarBrand>
-            <BNavbarToggle target="sortbar-toggle-collapse">
-            </BNavbarToggle>
-
-            <BCollapse id="sortbar-toggle-collapse" class="flex-grow-1 justify-content-between" is-nav>
-                <BNavItem>
-                    <a class="nav-link" href="#">
-                    </a>
-                </BNavItem>
-                <BNavItem href="#fleet">
-                    <BDropdown v-model="dd1" text="Sort by price" variant="dark">
-                        <BDropdownItem><a @click="sortByPrice('asc')">ASC</a></BDropdownItem>
-                        <BDropdownItem><a @click="sortByPrice('desc')">DESC</a></BDropdownItem>
-                        <BDropdownItem><a @click="sortByPrice('Recommend')">Recommend</a></BDropdownItem>
-                    </BDropdown>
-                </BNavItem>
-                <BNavItem href="#fleet">
-                    <BDropdown v-model="dd2" text="Filter by brand" variant="dark">
-                        <BDropdownItem><a @click="filterByBrand('All')">All</a></BDropdownItem>
-                        <BDropdownItem><a @click="filterByBrand('Audi')">Audi</a></BDropdownItem>
-                        <BDropdownItem><a @click="filterByBrand('BMW')">BMW</a></BDropdownItem>
-                        <BDropdownItem><a @click="filterByBrand('BYD')">BYD</a></BDropdownItem>
-                        <BDropdownItem><a @click="filterByBrand('BYD')">Mercedes</a></BDropdownItem>
-                        <BDropdownItem><a @click="filterByBrand('Tesla')">Tesla</a></BDropdownItem>
-                        <BDropdownItem><a @click="filterByBrand('Toyota')">Toyota</a></BDropdownItem>
-                        <BDropdownItem><a @click="filterByBrand('Volvo')">Volvo</a></BDropdownItem>
-                    </BDropdown>
-                </BNavItem>
-                <BNavItem href="#fleet">
-                    <BDropdown v-model="dd3" text="Filter by color" variant="dark">
-                        <BDropdownItem><a @click="filterByColor('All')">All</a></BDropdownItem>
-                        <BDropdownItem><a @click="filterByColor('Black')">Black</a></BDropdownItem>
-                        <BDropdownItem><a @click="filterByColor('Blue')">Blue</a></BDropdownItem>
-                        <BDropdownItem><a @click="filterByColor('Grayness')">Grayness</a></BDropdownItem>
-                        <BDropdownItem><a @click="filterByColor('Green')">Green</a></BDropdownItem>
-                        <BDropdownItem><a @click="filterByColor('Red')">Red</a></BDropdownItem>
-                        <BDropdownItem><a @click="filterByColor('White')">White</a></BDropdownItem>
-                        <BDropdownItem><a @click="filterByColor('Yellow')">Yellow</a></BDropdownItem>
-                    </BDropdown>
-                </BNavItem>
-                <BNavItem><a class="nav-link" href="#"></a></BNavItem>
-            </BCollapse>
-        </BNavbar>
+    <nav class="navbar navbar-expand-md bg-dark sticky-top border-bottom" data-bs-theme="dark">
+        <div class="container">
+            <a class="navbar-brand" href="#fleet"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav flex-grow-1 justify-content-between">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown ms-2">
+                        <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Sort by
+                            price</button>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a @click="sortByPrice('asc')" class="dropdown-item" href="#fleet">ASC</a></li>
+                            <li><a @click="sortByPrice('desc')" class="dropdown-item" href="#fleet">DESC</a></li>
+                            <li><a @click="sortByPrice('Recommend')" class="dropdown-item" href="#fleet">Recommend</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown ms-2">
+                        <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown"
+                            aria-expanded="false">Brand</button>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a @click="filterByBrand('All')" class="dropdown-item" href="#fleet">All</a></li>
+                            <li><a @click="filterByBrand('Audi')" class="dropdown-item" href="#fleet">Audi</a></li>
+                            <li><a @click="filterByBrand('BMW')" class="dropdown-item" href="#fleet">BMW</a></li>
+                            <li><a @click="filterByBrand('BYD')" class="dropdown-item" href="#fleet">BYD</a></li>
+                            <li><a @click="filterByBrand('BYD')" class="dropdown-item" href="#fleet">Mercedes</a>
+                            </li>
+                            <li><a @click="filterByBrand('Tesla')" class="dropdown-item" href="#fleet">Tesla</a>
+                            </li>
+                            <li><a @click="filterByBrand('Toyota')" class="dropdown-item" href="#fleet">Toyota</a>
+                            </li>
+                            <li><a @click="filterByBrand('Volvo')" class="dropdown-item" href="#fleet">Volvo</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown ms-2">
+                        <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown"
+                            aria-expanded="false">Color</button>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a @click="filterByColor('All')" class="dropdown-item" href="#fleet">All</a></li>
+                            <li><a @click="filterByColor('Black')" class="dropdown-item" href="#fleet">Black</a>
+                            </li>
+                            <li><a @click="filterByColor('Blue')" class="dropdown-item" href="#fleet">Blue</a></li>
+                            <li><a @click="filterByColor('Grayness')" class="dropdown-item" href="#fleet">Grayness</a>
+                            </li>
+                            <li><a @click="filterByColor('Green')" class="dropdown-item" href="#fleet">Green</a>
+                            </li>
+                            <li><a @click="filterByColor('Red')" class="dropdown-item" href="#fleet">Red</a></li>
+                            <li><a @click="filterByColor('White')" class="dropdown-item" href="#fleet">White</a>
+                            </li>
+                            <li><a @click="filterByColor('Yellow')" class="dropdown-item" href="#fleet">Yellow</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#"></a></li>
+                </ul>
+            </div>
+        </div>
     </nav>
 
     <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
@@ -59,23 +77,10 @@
 </template>
 
 <script>
+import axios from 'axios';
 import CarCard from './CarCard.vue';
-import { Api } from '@/Api';
-import { ref } from 'vue'
-
 
 export default {
-    setup() {
-        const dd1 = ref(false);
-        const dd2 = ref(false);
-        const dd3 = ref(false);
-
-        return {
-            dd1,
-            dd2,
-            dd3
-        }
-    },
     components: {
         CarCard,
     },
@@ -87,11 +92,8 @@ export default {
     },
 
     mounted() {
-        Api.get("/cars").then((response) => {
+        axios.get("http://localhost:3000/api/v1/cars").then((response) => {
             this.cars = response.data;
-        }).catch(error => {
-            console.error('Error:', error);
-            alert('Failed to load cars information. Refresh the page to try again.');
         });
     },
 
@@ -99,25 +101,23 @@ export default {
         sortByPrice(order) {
             let url = null;
             if (order === "Recommend") {
-                url = `/cars`;
+                url = `http://localhost:3000/api/v1/cars`;
             } else {
-                url = `/cars/price/${order}`;
+                url = `http://localhost:3000/api/v1/cars/price/${order}`;
             }
-            Api.get(url).then((response) => {
+            axios.get(url).then((response) => {
                 this.cars = response.data;
-            }).catch(error => {
-                console.error('Error:', error);
-                alert('Failed to sort cars. Refresh the page to try again.');
             });
+            this.showNoResultsMessage = false;
         },
         filterByBrand(brand) {
             let url = null;
             if (brand === "All") {
-                url = `/cars`;
+                url = `http://localhost:3000/api/v1/cars`;
             } else {
-                url = `/cars/brand/${brand}`;
+                url = `http://localhost:3000/api/v1/cars/brand/${brand}`;
             }
-            Api.get(url).then((response) => {
+            axios.get(url).then((response) => {
                 if (response.data.length === 0) {
                     this.showNoResultsMessage = true;
                     this.cars = [];
@@ -125,19 +125,16 @@ export default {
                     this.showNoResultsMessage = false;
                     this.cars = response.data;
                 }
-            }).catch(error => {
-                console.error('Error:', error);
-                alert('Failed to filter cars. Refresh the page to try again.');
-            });
+            })
         },
         filterByColor(color) {
             let url = null;
             if (color === "All") {
-                url = `/cars`;
+                url = `http://localhost:3000/api/v1/cars`;
             } else {
-                url = `/cars/color/${color}`;
+                url = `http://localhost:3000/api/v1/cars/color/${color}`;
             }
-            Api.get(url).then((response) => {
+            axios.get(url).then((response) => {
                 if (response.data.length === 0) {
                     this.showNoResultsMessage = true;
                     this.cars = [];
@@ -145,10 +142,7 @@ export default {
                     this.showNoResultsMessage = false;
                     this.cars = response.data;
                 }
-            }).catch(error => {
-                console.error('Error:', error);
-                alert('Failed to filter cars. Refresh the page to try again.');
-            });
+            })
         }
     },
 };
@@ -164,3 +158,4 @@ export default {
     text-align: center;
 }
 </style>
+
