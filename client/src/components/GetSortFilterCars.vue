@@ -1,51 +1,51 @@
 <template>
-    <nav class="sticky-top" >
+    <nav class="sticky-top">
         <BNavbar toggleable="lg" variant="dark" v-b-color-mode="'dark'" placement="fixed">
-        <BNavbarBrand href=""></BNavbarBrand>
-        <BNavbarToggle target="sortbar-toggle-collapse">
-        </BNavbarToggle>
+            <BNavbarBrand href=""></BNavbarBrand>
+            <BNavbarToggle target="sortbar-toggle-collapse">
+            </BNavbarToggle>
 
-        <BCollapse id="sortbar-toggle-collapse" class="flex-grow-1 justify-content-between" is-nav>
-                    <BNavItem>
-                        <a class="nav-link" href="#">
-                        </a>
-                    </BNavItem>
-                    <BNavItem href="#fleet">
-                        <BDropdown v-model="dd1" text="Sort by price" variant="dark">
-                            <BDropdownItem><a @click="sortByPrice('asc')" >ASC</a></BDropdownItem>
-                            <BDropdownItem><a @click="sortByPrice('desc')" >DESC</a></BDropdownItem>
-                            <BDropdownItem><a @click="sortByPrice('Recommend')" >Recommend</a></BDropdownItem>
-                        </BDropdown>
-                    </BNavItem>
-                    <BNavItem href="#fleet">
-                        <BDropdown v-model="dd2" text="Filter by brand" variant="dark">
-                            <BDropdownItem><a @click="filterByBrand('All')" >All</a></BDropdownItem>
-                            <BDropdownItem><a @click="filterByBrand('Audi')" >Audi</a></BDropdownItem>                            
-                            <BDropdownItem><a @click="filterByBrand('BMW')" >BMW</a></BDropdownItem>
-                            <BDropdownItem><a @click="filterByBrand('BYD')" >BYD</a></BDropdownItem>                            
-                            <BDropdownItem><a @click="filterByBrand('BYD')" >Mercedes</a></BDropdownItem>
-                            <BDropdownItem><a @click="filterByBrand('Tesla')" >Tesla</a></BDropdownItem>
-                            <BDropdownItem><a @click="filterByBrand('Toyota')" >Toyota</a></BDropdownItem>
-                            <BDropdownItem><a @click="filterByBrand('Volvo')" >Volvo</a></BDropdownItem>
-                        </BDropdown>
-                    </BNavItem>
-                    <BNavItem href="#fleet">
-                        <BDropdown v-model="dd3" text="Filter by color" variant="dark">
-                            <BDropdownItem><a @click="filterByColor('All')" >All</a></BDropdownItem>
-                            <BDropdownItem><a @click="filterByColor('Black')" >Black</a></BDropdownItem>
-                            <BDropdownItem><a @click="filterByColor('Blue')" >Blue</a></BDropdownItem>
-                            <BDropdownItem><a @click="filterByColor('Grayness')" >Grayness</a></BDropdownItem>
-                            <BDropdownItem><a @click="filterByColor('Green')" >Green</a></BDropdownItem>
-                            <BDropdownItem><a @click="filterByColor('Red')" >Red</a></BDropdownItem>
-                            <BDropdownItem><a @click="filterByColor('White')" >White</a></BDropdownItem>
-                            <BDropdownItem><a @click="filterByColor('Yellow')" >Yellow</a></BDropdownItem>
-                        </BDropdown>
-                    </BNavItem>
-                    <BNavItem ><a class="nav-link" href="#"></a></BNavItem>
-        </BCollapse>
+            <BCollapse id="sortbar-toggle-collapse" class="flex-grow-1 justify-content-between" is-nav>
+                <BNavItem>
+                    <a class="nav-link" href="#">
+                    </a>
+                </BNavItem>
+                <BNavItem href="#fleet">
+                    <BDropdown v-model="dd1" text="Sort by price" variant="dark">
+                        <BDropdownItem><a @click="sortByPrice('asc')">ASC</a></BDropdownItem>
+                        <BDropdownItem><a @click="sortByPrice('desc')">DESC</a></BDropdownItem>
+                        <BDropdownItem><a @click="sortByPrice('Recommend')">Recommend</a></BDropdownItem>
+                    </BDropdown>
+                </BNavItem>
+                <BNavItem href="#fleet">
+                    <BDropdown v-model="dd2" text="Filter by brand" variant="dark">
+                        <BDropdownItem><a @click="filterByBrand('All')">All</a></BDropdownItem>
+                        <BDropdownItem><a @click="filterByBrand('Audi')">Audi</a></BDropdownItem>
+                        <BDropdownItem><a @click="filterByBrand('BMW')">BMW</a></BDropdownItem>
+                        <BDropdownItem><a @click="filterByBrand('BYD')">BYD</a></BDropdownItem>
+                        <BDropdownItem><a @click="filterByBrand('BYD')">Mercedes</a></BDropdownItem>
+                        <BDropdownItem><a @click="filterByBrand('Tesla')">Tesla</a></BDropdownItem>
+                        <BDropdownItem><a @click="filterByBrand('Toyota')">Toyota</a></BDropdownItem>
+                        <BDropdownItem><a @click="filterByBrand('Volvo')">Volvo</a></BDropdownItem>
+                    </BDropdown>
+                </BNavItem>
+                <BNavItem href="#fleet">
+                    <BDropdown v-model="dd3" text="Filter by color" variant="dark">
+                        <BDropdownItem><a @click="filterByColor('All')">All</a></BDropdownItem>
+                        <BDropdownItem><a @click="filterByColor('Black')">Black</a></BDropdownItem>
+                        <BDropdownItem><a @click="filterByColor('Blue')">Blue</a></BDropdownItem>
+                        <BDropdownItem><a @click="filterByColor('Grayness')">Grayness</a></BDropdownItem>
+                        <BDropdownItem><a @click="filterByColor('Green')">Green</a></BDropdownItem>
+                        <BDropdownItem><a @click="filterByColor('Red')">Red</a></BDropdownItem>
+                        <BDropdownItem><a @click="filterByColor('White')">White</a></BDropdownItem>
+                        <BDropdownItem><a @click="filterByColor('Yellow')">Yellow</a></BDropdownItem>
+                    </BDropdown>
+                </BNavItem>
+                <BNavItem><a class="nav-link" href="#"></a></BNavItem>
+            </BCollapse>
         </BNavbar>
     </nav>
-    
+
     <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
         <div class="col mb-3" v-for="(car, index) in cars" :key="car._id">
             <div class="h-100">
@@ -89,6 +89,9 @@ export default {
     mounted() {
         Api.get("/cars").then((response) => {
             this.cars = response.data;
+        }).catch(error => {
+            console.error('Error:', error);
+            alert('Failed to load cars information. Refresh the page to try again.');
         });
     },
 
@@ -102,6 +105,9 @@ export default {
             }
             Api.get(url).then((response) => {
                 this.cars = response.data;
+            }).catch(error => {
+                console.error('Error:', error);
+                alert('Failed to sort cars. Refresh the page to try again.');
             });
         },
         filterByBrand(brand) {
@@ -119,7 +125,10 @@ export default {
                     this.showNoResultsMessage = false;
                     this.cars = response.data;
                 }
-            })
+            }).catch(error => {
+                console.error('Error:', error);
+                alert('Failed to filter cars. Refresh the page to try again.');
+            });
         },
         filterByColor(color) {
             let url = null;
@@ -136,7 +145,10 @@ export default {
                     this.showNoResultsMessage = false;
                     this.cars = response.data;
                 }
-            })
+            }).catch(error => {
+                console.error('Error:', error);
+                alert('Failed to filter cars. Refresh the page to try again.');
+            });
         }
     },
 };
