@@ -12,7 +12,6 @@ import ManageCars from '../components/ManageCars.vue'
 import RegisterView from '../views/RegisterView.vue'
 import UserAccountView from '../views/UserAccountView.vue'
 
-import HomeCarousel from '../components/HomeCarousel.vue'
 import BookingConfirmation from '../components/BookingConfirmation.vue'
 import LogIn from '../components/LogIn.vue'
 import DatePicker from '../components/DatePicker.vue'
@@ -125,11 +124,6 @@ const router = createRouter({
             path: '/manager/manage',
             name: 'manageCars',
             component: ManageCars
-        },
-        {
-            path: '/homecarousel',
-            name: 'homecarousel',
-            component: HomeCarousel
         },
        
 

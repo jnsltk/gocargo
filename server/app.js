@@ -10,6 +10,7 @@ dotenv.config();
 
 // Variables
 const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/GoCarGoDB';
+//const mongoURI = 'mongodb://localhost:27017/GoCarGoDB';
 
 const port = process.env.PORT || 3000;
 
