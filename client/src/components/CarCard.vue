@@ -11,7 +11,7 @@
 
             <ul class="list-unstyled mt-3 mb-4">
                 <li>Color: {{ car.color }}</li>
-                <li>{{ car.description }}</li>
+                <li id="description-ellipsis">{{ car.description }}</li>
             </ul>
 
             <button type="button" class="w-100 btn btn-lg btn-primary" @click="bookCar">Book Now</button>
@@ -42,4 +42,13 @@
         }
     };
 </script>
+
+<style scoped>
+#description-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+</style>
 

@@ -83,6 +83,7 @@ const token = getToken();
 
             } catch (err) {
                 console.log(err);
+                alert('Information loading failed, please try again.');
             }
 
         },
@@ -104,6 +105,7 @@ const token = getToken();
                     this.$store.commit('setFinalBooking', response.data.booking);
                 } catch (error) {
                     console.error('Error creating booking:', error);
+                    alert('Create booking failed, please try again.');
                     this.$router.push('/');
                 }
 
@@ -121,6 +123,7 @@ const token = getToken();
                     window.location.href = response.data.url;
                 } catch (err) {
                     console.error(err);
+                    alert('Create booking failed, please try again.');
                 }
             },
         }
