@@ -26,7 +26,6 @@ exports.createCheckoutSession = async (req, res, next) => {
             currency: "sek",
             product_data: {
                 name: `Order id: ${bookingRef}, ${car.brand} car, for ${rentalDays} days.`,
-                images: [`${process.env.API_HOST}api/v1/cars/${car.registration}/image.png`],
                 metadata: {
                     bookingRef: bookingRef
                 }
