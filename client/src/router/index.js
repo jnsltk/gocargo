@@ -102,30 +102,44 @@ const router = createRouter({
             path: '/useraccount',
             name: 'UserAccount',
             component: UserAccountView,
-           
+            meta: {
+                requiresAuth: true
+            }
         },
         {
             path: '/manager',
             name: 'manager',
-            component: ManagerView
+            component: ManagerView,
+            meta: {
+                requiresAuth: true
+            }
         },
 
         {
             path: '/manager/inform',
             name: 'managerInform',
-            component: ManagerInform
+            component: ManagerInform,
+            meta: {
+                requiresAuth: true
+            }
         },
         {
             path: '/manager/post',
             name: 'postCar',
-            component: PostCar
+            component: PostCar,
+            meta: {
+                requiresAuth: true
+            }
         },
         {
             path: '/manager/manage',
             name: 'manageCars',
-            component: ManageCars
+            component: ManageCars,
+            meta: {
+                requiresAuth: true
+            }
         },
-       
+
 
     ]
 })
